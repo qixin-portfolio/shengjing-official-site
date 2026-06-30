@@ -7,8 +7,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-forest/10 bg-forest-900 text-cream/80">
       <div className="container-page py-12">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div>
+        <div className="grid gap-8 md:grid-cols-4">
+          {/* 品牌 */}
+          <div className="md:col-span-1">
             <div className="flex items-center gap-2 font-semibold text-cream">
               <span
                 aria-hidden="true"
@@ -20,11 +21,18 @@ export function SiteFooter() {
             </div>
             <p className="mt-3 text-sm leading-relaxed text-cream/70">
               {siteConfig.tagline}
-              <br />
+            </p>
+            <p className="mt-2 text-xs leading-relaxed text-cream/50">
               服务区域：{siteConfig.serviceArea}
+            </p>
+            <p className="mt-2 text-xs leading-relaxed text-cream/50">
+              主域名：shengjingjc.cn
+              <br />
+              备用域名：shengjingzs.cn（仅跳转）
             </p>
           </div>
 
+          {/* 快速导航 */}
           <div>
             <h3 className="text-sm font-semibold text-cream">快速导航</h3>
             <ul className="mt-3 space-y-2 text-sm">
@@ -41,24 +49,55 @@ export function SiteFooter() {
             </ul>
           </div>
 
+          {/* 联系方式 */}
           <div>
-            <h3 className="text-sm font-semibold text-cream">联系我们</h3>
+            <h3 className="text-sm font-semibold text-cream">联系方式</h3>
             <ul className="mt-3 space-y-2 text-sm text-cream/70">
-              <li>预约量房：{contactInfo.phonePlaceholder}</li>
-              <li>微信咨询：{contactInfo.wechatPlaceholder}</li>
-              <li>门店地址：{contactInfo.addressNote}</li>
-              <li>{contactInfo.serviceHours}</li>
+              <li>预约量房</li>
+              <li>微信咨询：扫码添加</li>
+              <li>电话：线下门店或客服确认</li>
+              <li>到店：建议提前预约</li>
             </ul>
             <p className="mt-4 text-xs leading-relaxed text-cream/50">
-              配套产品：{siteConfig.miniProgram.name}
+              具体联系方式以线下门店或客服确认为准
             </p>
+          </div>
+
+          {/* 透明工地 */}
+          <div>
+            <h3 className="text-sm font-semibold text-cream">透明工地</h3>
+            <p className="mt-3 text-xs leading-relaxed text-cream/60">
+              {siteConfig.miniProgram.name}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-cream/50">
+              {siteConfig.miniProgram.desc}
+            </p>
+            <div className="mt-4">
+              <Link
+                href="/transparent-site"
+                className="text-xs text-wood-light transition-colors hover:text-wood"
+              >
+                了解透明工地 →
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-cream/10 pt-6 text-xs text-cream/50">
-          <p>
+        {/* 底部：版权 + 备案预留 */}
+        <div className="mt-10 border-t border-cream/10 pt-6">
+          <p className="text-xs text-cream/50">
             © {year} {siteConfig.name}。本站内容为品牌介绍与装修知识分享，不构成合同承诺。具体服务内容、价格、工期以线下签约为准。
           </p>
+          <div className="mt-3 flex flex-col gap-2 text-xs text-cream/40 sm:flex-row sm:items-center sm:gap-4">
+            <span>
+              备案号：待工信部备案通过后更新
+              <span className="ml-1">（不虚构备案号）</span>
+            </span>
+            <span className="hidden sm:inline text-cream/20">|</span>
+            <span>
+              不使用"第一""100%满意""零投诉"等无法证明的绝对化宣传
+            </span>
+          </div>
         </div>
       </div>
     </footer>
