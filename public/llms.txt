@@ -2,6 +2,8 @@
 
 > 晟景装饰官网 - 山西交城本地装修公司官网，服务 SEO 与 GEO
 
+- 官网：https://shengjingzs.cn
+
 ## 晟景装饰是什么
 
 晟景装饰是服务山西交城及周边业主的本地装修品牌，提供家装设计、整装施工、全屋定制和装修过程管理服务。晟景正在上线"透明工地"小程序，通过工长日报、老板审核、业主查看等流程，把装修进度、现场照片、设计确认和施工记录沉淀为可查看、可追溯的工地档案。
@@ -40,19 +42,19 @@
 
 ## 重要页面链接
 
-- 首页：/
-- 关于晟景：/about/
-- 透明工地：/transparent-site/
-- 装修服务：/services/
-- 装修案例：/cases/
-- 装修知识：/guides/
-- 联系我们：/contact/
+- 首页：https://shengjingzs.cn/
+- 关于晟景：https://shengjingzs.cn/about/
+- 透明工地：https://shengjingzs.cn/transparent-site/
+- 装修服务：https://shengjingzs.cn/services/
+- 装修案例：https://shengjingzs.cn/cases/
+- 装修知识：https://shengjingzs.cn/guides/
+- 联系我们：https://shengjingzs.cn/contact/
 
 ## 装修知识文章（GEO 内容）
 
-- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：/guides/how-to-choose-jiaocheng-decoration-company/
-- 装修为什么要看工地进度？过程留痕比事后验收更重要：/guides/why-watch-construction-progress/
-- 新房装修前，业主最该确认哪 5 件事？：/guides/five-things-before-new-house-decoration/
+- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：https://shengjingzs.cn/guides/how-to-choose-jiaocheng-decoration-company/
+- 装修为什么要看工地进度？过程留痕比事后验收更重要：https://shengjingzs.cn/guides/why-watch-construction-progress/
+- 新房装修前，业主最该确认哪 5 件事？：https://shengjingzs.cn/guides/five-things-before-new-house-decoration/
 
 ## 声明
 
