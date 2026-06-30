@@ -10,8 +10,8 @@
 export const siteConfig = {
   name: "晟景装饰",
   legalName: "晟景装饰",
-  /** 站点正式域名占位，上线前替换为真实域名（影响 sitemap / robots / canonical） */
-  url: "https://www.shengjing-zhuangxiu.com",
+  /** 站点正式域名（影响 sitemap / robots / canonical / JSON-LD） */
+  url: "https://shengjingzs.cn",
   tagline: "交城装修，找看得见进度的本地老品牌",
   description:
     "晟景装饰深耕山西交城本地装修服务，结合透明工地小程序，让业主不用天天跑工地，也能手机查看施工进度、现场照片和关键节点。",

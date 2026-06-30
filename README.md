@@ -81,7 +81,7 @@ AI_TASKS/                   # AI 协作协议
 
 以下信息在 `lib/site.ts` 中，上线前必须由人工确认后替换：
 
-- `siteConfig.url`：真实域名
+- `siteConfig.url`：真实域名（已配置为 https://shengjingzs.cn）
 - `contactInfo.phonePlaceholder`：真实电话
 - `contactInfo.wechatPlaceholder`：真实微信
 - `contactInfo.addressNote`：真实门店地址
