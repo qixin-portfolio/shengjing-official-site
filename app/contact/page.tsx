@@ -151,6 +151,53 @@ export default function ContactPage() {
             </div>
           </div>
 
+          {/* 量房准备清单 */}
+          <div className="mt-12 rounded-2xl border border-forest/10 bg-white p-6 sm:p-8">
+            <h2 className="text-lg font-semibold text-forest">
+              预约量房前，建议准备这些
+            </h2>
+            <p className="mt-2 text-sm text-ink-muted">
+              准备越充分，量房后出的方案越贴近你的需求。
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-xl bg-cream-50 p-4">
+                <h3 className="text-sm font-semibold text-forest">基本资料</h3>
+                <ul className="mt-2 space-y-1 text-xs text-ink-soft">
+                  <li>· 户型图（开发商给的有尺寸版）</li>
+                  <li>· 房屋现状照片（毛坯/老房）</li>
+                  <li>· 小区名称和地址</li>
+                </ul>
+              </div>
+              <div className="rounded-xl bg-cream-50 p-4">
+                <h3 className="text-sm font-semibold text-forest">需求清单</h3>
+                <ul className="mt-2 space-y-1 text-xs text-ink-soft">
+                  <li>· 家庭成员和居住需求</li>
+                  <li>· 风格倾向（可发参考图）</li>
+                  <li>· 收纳重点和特殊需求</li>
+                </ul>
+              </div>
+              <div className="rounded-xl bg-cream-50 p-4">
+                <h3 className="text-sm font-semibold text-forest">预算范围</h3>
+                <ul className="mt-2 space-y-1 text-xs text-ink-soft">
+                  <li>· 总预算区间（不必精确）</li>
+                  <li>· 哪些项目优先投入</li>
+                  <li>· 哪些可以省</li>
+                </ul>
+              </div>
+              <div className="rounded-xl bg-cream-50 p-4">
+                <h3 className="text-sm font-semibold text-forest">时间安排</h3>
+                <ul className="mt-2 space-y-1 text-xs text-ink-soft">
+                  <li>· 期望开工时间</li>
+                  <li>· 期望入住时间</li>
+                  <li>· 是否需要临时住处</li>
+                </ul>
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-ink-muted">
+              没准备齐也没关系，可以先预约量房，现场沟通中再明确。
+            </p>
+          </div>
+
           {/* 底部透明工地 CTA */}
           <div className="mt-12 rounded-2xl bg-forest-900 p-6 text-cream sm:p-8">
             <h2 className="text-lg font-semibold">

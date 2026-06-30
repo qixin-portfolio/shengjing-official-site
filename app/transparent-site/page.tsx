@@ -289,6 +289,114 @@ export default function TransparentSitePage() {
         </div>
       </section>
 
+      {/* 对比表：普通装修沟通 vs 透明工地沟通 */}
+      <section className="section bg-cream-50">
+        <div className="container-page">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="eyebrow justify-center">
+              <span className="h-px w-8 bg-wood-dark" />
+              对比
+              <span className="h-px w-8 bg-wood-dark" />
+            </span>
+            <h2 className="mt-4 section-title">普通装修沟通 vs 透明工地沟通</h2>
+            <p className="section-subtitle">
+              差别不在概念，而在过程有没有记录。
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-forest/10 bg-white">
+            <div className="grid grid-cols-3 border-b border-forest/10 bg-forest-50 text-sm font-semibold text-forest">
+              <div className="p-4">环节</div>
+              <div className="p-4">普通装修沟通</div>
+              <div className="p-4 bg-wood/10">透明工地沟通</div>
+            </div>
+            {[
+              {
+                stage: "施工进度",
+                normal: "靠业主自己跑工地，或口头问工长",
+                transparent: "手机查看进度节点，清楚做到哪一步",
+              },
+              {
+                stage: "现场照片",
+                normal: "想看就要去现场，或等工长发（不一定发）",
+                transparent: "按节点上传，隐蔽工程封槽前留档",
+              },
+              {
+                stage: "工长日报",
+                normal: "没有日报，或口头说一句",
+                transparent: "每天记录施工内容、人员、进度",
+              },
+              {
+                stage: "审核机制",
+                normal: "无审核，工长自己说了算",
+                transparent: "老板/管理人员审核后再展示给业主",
+              },
+              {
+                stage: "设计确认",
+                normal: "口头确认或微信聊，后期找不到记录",
+                transparent: "线上确认留痕，可追溯",
+              },
+              {
+                stage: "出问题扯皮",
+                normal: "各说各的，没有依据",
+                transparent: "过程记录可作依据，责任清楚",
+              },
+              {
+                stage: "售后追溯",
+                normal: "完工后资料散落，难追溯",
+                transparent: "装修档案长期保存，可回看",
+              },
+            ].map((row, idx) => (
+              <div
+                key={row.stage}
+                className={`grid grid-cols-3 text-sm ${
+                  idx % 2 === 0 ? "bg-white" : "bg-cream-50/50"
+                }`}
+              >
+                <div className="p-4 font-medium text-forest">{row.stage}</div>
+                <div className="p-4 text-ink-muted">{row.normal}</div>
+                <div className="p-4 bg-wood/5 text-ink-soft">{row.transparent}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 适合哪些业主 */}
+      <section className="section">
+        <div className="container-page">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="section-title">透明工地适合哪些业主</h2>
+            <p className="section-subtitle">
+              不是所有人都需要，但对这些业主特别有用。
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            <div className="card">
+              <h3 className="text-base font-semibold text-forest">✓ 适合</h3>
+              <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+                <li>· 工作忙、没时间天天跑工地的业主</li>
+                <li>· 想及时发现问题、不想事后返工的业主</li>
+                <li>· 重视过程记录、希望出问题能说清的业主</li>
+                <li>· 老房翻新、隐蔽工程多的业主</li>
+                <li>· 第一次装修、不懂工地的业主</li>
+              </ul>
+            </div>
+            <div className="card border-wood/20">
+              <h3 className="text-base font-semibold text-wood-dark">不一定适合</h3>
+              <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+                <li>· 自己就是装修从业者、全程盯工的业主</li>
+                <li>· 极简翻新、几乎没有隐蔽工程的业主</li>
+                <li>· 完全不在意过程、只看最终结果的业主</li>
+              </ul>
+              <p className="mt-3 text-xs text-ink-muted">
+                不适合不代表不能做，只是性价比相对低。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 小程序说明 + CTA */}
       <section className="section bg-forest-900 text-cream">
         <div className="container-page">

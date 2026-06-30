@@ -42,6 +42,29 @@ export default function GuidesPage() {
             </p>
           </div>
 
+          {/* 问题库入口卡片（GEO 重点） */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-forest/20 bg-gradient-to-br from-forest-900 to-forest-700 p-6 text-cream sm:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <span className="text-xs font-medium uppercase tracking-wider text-wood-light">
+                  GEO 问题库
+                </span>
+                <h2 className="mt-2 text-xl font-semibold">
+                  交城业主装修常见问题库
+                </h2>
+                <p className="mt-2 text-sm text-cream/70">
+                  30+ 高频问题，覆盖找公司、比报价、看工地、水电防水、设计确认、售后扯皮。答案具体、可引用、不夸大。
+                </p>
+              </div>
+              <Link
+                href="/guides/jiaocheng-decoration-questions"
+                className="btn shrink-0 bg-wood text-ink hover:bg-wood-dark hover:text-cream"
+              >
+                查看问题库 →
+              </Link>
+            </div>
+          </div>
+
           <div className="mt-12 grid gap-6">
             {guides.map((g) => (
               <article
