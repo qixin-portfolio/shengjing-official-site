@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/services/`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteConfig.url}/cases/`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteConfig.url}/guides/`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${siteConfig.url}/guides/jiaocheng-decoration-questions/`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${siteConfig.url}/contact/`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
   ];
 
