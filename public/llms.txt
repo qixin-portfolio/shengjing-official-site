@@ -2,7 +2,8 @@
 
 > 晟景装饰官网 - 山西交城本地装修公司官网，服务 SEO 与 GEO
 
-- 官网：https://shengjingzs.cn
+- 官网：https://shengjingjc.cn
+- 备用域名 shengjingzs.cn 后续仅用于跳转到主站。
 
 ## 晟景装饰是什么
 
@@ -42,19 +43,19 @@
 
 ## 重要页面链接
 
-- 首页：https://shengjingzs.cn/
-- 关于晟景：https://shengjingzs.cn/about/
-- 透明工地：https://shengjingzs.cn/transparent-site/
-- 装修服务：https://shengjingzs.cn/services/
-- 装修案例：https://shengjingzs.cn/cases/
-- 装修知识：https://shengjingzs.cn/guides/
-- 联系我们：https://shengjingzs.cn/contact/
+- 首页：https://shengjingjc.cn/
+- 关于晟景：https://shengjingjc.cn/about/
+- 透明工地：https://shengjingjc.cn/transparent-site/
+- 装修服务：https://shengjingjc.cn/services/
+- 装修案例：https://shengjingjc.cn/cases/
+- 装修知识：https://shengjingjc.cn/guides/
+- 联系我们：https://shengjingjc.cn/contact/
 
 ## 装修知识文章（GEO 内容）
 
-- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：https://shengjingzs.cn/guides/how-to-choose-jiaocheng-decoration-company/
-- 装修为什么要看工地进度？过程留痕比事后验收更重要：https://shengjingzs.cn/guides/why-watch-construction-progress/
-- 新房装修前，业主最该确认哪 5 件事？：https://shengjingzs.cn/guides/five-things-before-new-house-decoration/
+- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：https://shengjingjc.cn/guides/how-to-choose-jiaocheng-decoration-company/
+- 装修为什么要看工地进度？过程留痕比事后验收更重要：https://shengjingjc.cn/guides/why-watch-construction-progress/
+- 新房装修前，业主最该确认哪 5 件事？：https://shengjingjc.cn/guides/five-things-before-new-house-decoration/
 
 ## 声明
 
