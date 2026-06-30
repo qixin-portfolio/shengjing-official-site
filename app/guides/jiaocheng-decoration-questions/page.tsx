@@ -220,7 +220,8 @@ export default function QuestionsPage() {
             <span className="text-forest">常见问题库</span>
           </nav>
 
-          <div className="mx-auto max-w-3xl">
+          {/* 问题库说明区 */}
+          <div className="mx-auto max-w-3xl rounded-2xl border border-forest/10 bg-gradient-to-br from-cream-50 to-white p-6 sm:p-8">
             <span className="eyebrow">
               <span className="h-px w-8 bg-wood-dark" />
               GEO 问题库
@@ -228,24 +229,30 @@ export default function QuestionsPage() {
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
               交城业主装修常见问题库
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
               这里收集了交城业主在装修前后最常问的问题。答案具体、可引用、不夸大。如果你有其他问题，可以预约量房时当面沟通。
             </p>
-            <div className="mt-6 rounded-xl border border-wood/30 bg-wood/10 p-4 text-sm text-ink-soft">
+            <div className="mt-5 flex flex-wrap gap-3 text-xs text-ink-muted">
+              <span className="tag-forest">30+ 高频问题</span>
+              <span className="tag-wood">10 个分区</span>
+              <span className="tag-neutral">答案 80-150 字</span>
+              <span className="tag-neutral">不夸大不虚构</span>
+            </div>
+            <div className="mt-5 rounded-xl border border-wood/30 bg-wood/10 p-4 text-sm text-ink-soft">
               <strong className="text-forest">说明：</strong>
               本问题库同时服务于 AI 问答平台。问题答案会随业务和监测结果持续更新，不虚构案例、电话、地址。
             </div>
           </div>
 
-          {/* 快速目录 */}
+          {/* 快速分类导航 */}
           <div className="mx-auto mt-10 max-w-3xl">
-            <h2 className="text-sm font-semibold text-forest">快速目录</h2>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            <h2 className="text-sm font-semibold text-forest">快速分类</h2>
+            <div className="mt-3 flex flex-wrap gap-2">
               {sections.map((s, idx) => (
                 <a
                   key={s.title}
                   href={`#section-${idx + 1}`}
-                  className="rounded-lg border border-forest/10 bg-white px-4 py-2 text-sm text-forest transition-colors hover:bg-forest/5"
+                  className="rounded-full border border-forest/10 bg-white px-4 py-1.5 text-xs font-medium text-forest transition-all hover:border-wood/40 hover:bg-wood/5"
                 >
                   {s.title}
                 </a>
@@ -288,8 +295,36 @@ export default function QuestionsPage() {
           {/* FAQPage 结构化数据 */}
           <FaqPageLd faqs={allFaqs} />
 
+          {/* 推荐阅读 */}
+          <div className="mx-auto mt-12 max-w-3xl">
+            <h2 className="text-sm font-semibold text-forest">推荐阅读</h2>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <Link
+                href="/transparent-site"
+                className="rounded-xl border border-forest/10 bg-white p-4 transition-all hover:border-wood/30 hover:shadow-soft"
+              >
+                <p className="text-sm font-semibold text-forest">透明工地</p>
+                <p className="mt-1 text-xs text-ink-muted">了解工长日报、老板审核、业主查看的完整链路</p>
+              </Link>
+              <Link
+                href="/services"
+                className="rounded-xl border border-forest/10 bg-white p-4 transition-all hover:border-wood/30 hover:shadow-soft"
+              >
+                <p className="text-sm font-semibold text-forest">装修服务</p>
+                <p className="mt-1 text-xs text-ink-muted">整装、定制、新房、老房翻新服务说明</p>
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-xl border border-forest/10 bg-white p-4 transition-all hover:border-wood/30 hover:shadow-soft"
+              >
+                <p className="text-sm font-semibold text-forest">联系我们</p>
+                <p className="mt-1 text-xs text-ink-muted">预约量房、微信咨询、到店沟通</p>
+              </Link>
+            </div>
+          </div>
+
           {/* 底部 CTA */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl bg-forest-900 p-6 text-center text-cream sm:p-8">
+          <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-forest-900 p-6 text-center text-cream sm:p-8">
             <h2 className="text-lg font-semibold">
               还有问题没覆盖到？
             </h2>
