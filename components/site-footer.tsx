@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navLinks, siteConfig, contactInfo } from "@/lib/site";
+import { navLinks, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -10,14 +10,19 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-4">
           {/* 品牌 */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 font-semibold text-cream">
+            <div className="flex items-center gap-2.5 font-semibold text-cream">
               <span
                 aria-hidden="true"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-wood text-sm font-bold text-ink"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-800 text-base font-bold text-cream ring-1 ring-clay/20"
               >
                 晟
               </span>
-              <span className="text-lg">{siteConfig.name}</span>
+              <span className="flex flex-col leading-none">
+                <span className="text-lg">{siteConfig.name}</span>
+                <span className="mt-0.5 text-[10px] font-normal tracking-wider text-cream/50">
+                  交城 · 透明工地
+                </span>
+              </span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-cream/70">
               {siteConfig.tagline}
@@ -40,7 +45,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-cream/70 transition-colors hover:text-cream"
+                    className="text-cream/70 transition-colors hover:text-clay-light"
                   >
                     {link.label}
                   </Link>
@@ -75,7 +80,7 @@ export function SiteFooter() {
             <div className="mt-4">
               <Link
                 href="/transparent-site"
-                className="text-xs text-wood-light transition-colors hover:text-wood"
+                className="text-xs text-clay-light transition-colors hover:text-clay"
               >
                 了解透明工地 →
               </Link>
