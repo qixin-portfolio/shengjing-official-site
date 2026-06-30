@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --background: #f6f2ea;
+  --foreground: #222222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 可访问性：跳转链接聚焦样式 */
+:focus-visible {
+  outline: 2px solid #304238;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .btn-primary {
+    @apply btn bg-forest text-cream hover:bg-forest-800;
+  }
+
+  .btn-secondary {
+    @apply btn border border-forest/30 bg-transparent text-forest hover:bg-forest/5;
+  }
+
+  .btn-wood {
+    @apply btn bg-wood text-ink hover:bg-wood-dark hover:text-cream;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tight text-forest sm:text-3xl;
+  }
+
+  .section-subtitle {
+    @apply mt-3 text-base leading-relaxed text-ink-muted sm:text-lg;
+  }
+
+  .card {
+    @apply rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-shadow hover:shadow-card;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-wood-dark;
+  }
+
+  .prose-cn {
+    @apply max-w-prose text-[15px] leading-7 text-ink-soft;
+  }
+  .prose-cn h2 {
+    @apply mt-8 mb-3 text-xl font-semibold text-forest;
+  }
+  .prose-cn h3 {
+    @apply mt-6 mb-2 text-lg font-semibold text-forest;
+  }
+  .prose-cn p {
+    @apply mb-4;
+  }
+  .prose-cn ul {
+    @apply mb-4 list-disc space-y-1 pl-5;
+  }
+  .prose-cn li {
+    @apply marker:text-wood-dark;
+  }
+}
