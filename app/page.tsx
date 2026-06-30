@@ -30,8 +30,8 @@ const trustItems = [
     desc: "工长日报 + 老板审核 + 业主查看，过程可追溯。",
   },
   {
-    num: "0",
-    unit: "次",
+    num: "少",
+    unit: "跑",
     title: "不用天天跑工地",
     desc: "手机就能看施工进度、现场照片和关键节点。",
   },
@@ -42,16 +42,19 @@ const transparentFlow = [
     step: "01",
     title: "工长提交日报",
     desc: "记录施工内容、人员和进度，上传现场照片。",
+    icon: "pen",
   },
   {
     step: "02",
     title: "老板审核",
     desc: "管理人员审核后再展示给业主，避免随意发。",
+    icon: "check",
   },
   {
     step: "03",
     title: "业主手机查看",
     desc: "进度、照片、节点、设计确认，都在手机里。",
+    icon: "phone",
   },
 ];
 
@@ -143,12 +146,44 @@ function ServiceIcon({ name }: { name: string }) {
   }
 }
 
+function FlowIcon({ name }: { name: string }) {
+  const common = "h-5 w-5";
+  switch (name) {
+    case "pen":
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 19l7-7 3 3-7 7-3-3z" />
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+        </svg>
+      );
+    case "check":
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 11l3 3L22 4" />
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+        </svg>
+      );
+    case "phone":
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" />
+          <path d="M12 18h.01" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export default function HomePage() {
   return (
     <>
-      {/* Hero 首屏：左文案 + 右手机日报模拟 */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 to-cream">
-        <div className="container-page py-12 sm:py-16 lg:py-20">
+      {/* Hero 首屏：左文案 + 右产品展示组合 */}
+      <section className="relative overflow-hidden bg-paper">
+        {/* 木色光斑背景 */}
+        <div className="pointer-events-none absolute inset-0 bg-wood-glow" aria-hidden="true" />
+
+        <div className="container-page relative py-12 sm:py-16 lg:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             {/* 左：文案 */}
             <div>
@@ -160,8 +195,7 @@ export default function HomePage() {
                 交城装修，找看得见进度的本地老品牌
               </h1>
               <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
-                不用天天跑工地，手机就能看施工进度、现场照片和关键节点。
-                晟景装饰深耕交城 28 年，结合透明工地小程序，让装修过程有记录、可追溯、少扯皮。
+                不用天天跑工地，手机就能看施工进度、现场照片和关键节点。晟景装饰结合透明工地小程序，把装修过程记录下来，让沟通更清楚。
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/contact" className="btn-primary">
@@ -171,10 +205,10 @@ export default function HomePage() {
                   了解透明工地
                 </Link>
                 <Link
-                  href="/guides"
-                  className="btn border border-wood/40 bg-wood/10 text-wood-dark hover:bg-wood/20"
+                  href="/guides/jiaocheng-decoration-questions"
+                  className="btn-ghost"
                 >
-                  查看装修知识
+                  查看装修问题库
                 </Link>
               </div>
               <p className="mt-5 text-xs text-ink-muted">
@@ -182,28 +216,58 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* 右：手机日报模拟界面 */}
+            {/* 右：手机 + 背后卡片 + 标签组合 */}
             <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-wood/10 blur-2xl" />
-              <PhoneMockup>
-                <DailyReportMockup />
-              </PhoneMockup>
+              {/* 背后浮动卡片 */}
+              <div className="absolute -left-4 top-8 hidden w-40 rounded-2xl border border-forest/10 bg-white p-3 shadow-card lg:block">
+                <p className="text-[10px] font-semibold text-forest">现场照片</p>
+                <div className="mt-2 grid grid-cols-3 gap-1">
+                  <div className="aspect-square rounded bg-gradient-to-br from-wood/40 to-wood/20" />
+                  <div className="aspect-square rounded bg-gradient-to-br from-forest/30 to-forest/10" />
+                  <div className="aspect-square rounded bg-gradient-to-br from-ink/20 to-ink/5" />
+                </div>
+                <p className="mt-1.5 text-[9px] text-ink-muted">3 张 · 封槽前留档</p>
+              </div>
+
+              {/* 背后浮动标签 */}
+              <div className="absolute -right-2 top-20 hidden rounded-xl bg-wood/90 px-3 py-2 text-xs font-medium text-ink shadow-card lg:block">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block h-2 w-2 rounded-full bg-forest" />
+                  老板已审核
+                </span>
+              </div>
+
+              {/* 背后浮动标签 2 */}
+              <div className="absolute -right-4 bottom-16 hidden rounded-xl bg-forest px-3 py-2 text-xs font-medium text-cream shadow-card lg:block">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block h-2 w-2 rounded-full bg-wood" />
+                  设计确认已留痕
+                </span>
+              </div>
+
+              {/* 手机主体 */}
+              <div className="relative mx-auto">
+                <PhoneMockup>
+                  <DailyReportMockup />
+                </PhoneMockup>
+              </div>
+
               <p className="mt-4 text-center text-[11px] text-ink-muted">
                 ↑ 业主手机查看工地日报模拟界面（非真实截图）
               </p>
             </div>
           </div>
         </div>
-        <div className="h-1 w-full bg-wood/30" />
+        <div className="h-1 w-full bg-gradient-to-r from-wood/30 via-wood to-wood/30" />
       </section>
 
-      {/* 信任背书区：数字条带 */}
+      {/* 信任背书区：横向品牌信任条 */}
       <section className="border-b border-forest/10 bg-white">
-        <div className="container-page py-12">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="container-page py-10">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {trustItems.map((item) => (
-              <div key={item.title} className="text-center sm:text-left">
-                <div className="flex items-baseline justify-center gap-1 sm:justify-start">
+              <div key={item.title} className="trust-stat pl-4">
+                <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold text-forest">
                     {item.num}
                   </span>
@@ -211,7 +275,7 @@ export default function HomePage() {
                     {item.unit}
                   </span>
                 </div>
-                <h3 className="mt-2 text-sm font-semibold text-forest">
+                <h3 className="mt-1.5 text-sm font-semibold text-forest">
                   {item.title}
                 </h3>
                 <p className="mt-1 text-xs leading-relaxed text-ink-muted">
@@ -223,7 +287,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 透明工地区：流程 + 手机模拟 */}
+      {/* 透明工地区：横向流程时间线 + 手机模拟 */}
       <section className="section bg-forest-50">
         <div className="container-page">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -239,24 +303,31 @@ export default function HomePage() {
                 工长提交日报，老板审核后再展示给业主。业主不用天天跑工地，也能在手机上看到施工进度、现场照片和关键节点。
               </p>
 
-              {/* 流程三步 */}
-              <div className="mt-8 space-y-3">
+              {/* 横向流程时间线 */}
+              <div className="mt-8 space-y-4">
                 {transparentFlow.map((f, idx) => (
                   <div key={f.step} className="flex items-start gap-4">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest text-xs font-bold text-cream">
-                      {f.step}
+                    <div className="flex flex-col items-center">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest text-cream shadow-soft">
+                        <FlowIcon name={f.icon} />
+                      </div>
+                      {idx < transparentFlow.length - 1 && (
+                        <div className="mt-1 h-8 w-px bg-forest/20" />
+                      )}
                     </div>
-                    <div className="pt-1">
-                      <h3 className="text-sm font-semibold text-forest">
-                        {f.title}
-                      </h3>
-                      <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">
+                    <div className="pt-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-wood-dark">
+                          {f.step}
+                        </span>
+                        <h3 className="text-sm font-semibold text-forest">
+                          {f.title}
+                        </h3>
+                      </div>
+                      <p className="mt-1 text-xs leading-relaxed text-ink-muted">
                         {f.desc}
                       </p>
                     </div>
-                    {idx < transparentFlow.length - 1 && (
-                      <div className="ml-4 hidden self-stretch border-l-2 border-dashed border-forest/20 sm:block" />
-                    )}
                   </div>
                 ))}
               </div>
@@ -357,28 +428,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 底部 CTA */}
+      {/* 底部 CTA：左文案右按钮 */}
       <section className="section bg-forest-900 text-cream">
-        <div className="container-page text-center">
-          <h2 className="text-2xl font-semibold sm:text-3xl">
-            准备装修，先看看工地怎么管。
-          </h2>
-          <p className="mt-4 text-base text-cream/70 sm:text-lg">
-            预约量房，了解晟景装饰的透明工地服务，开工后手机查看施工进度。
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link
-              href="/contact"
-              className="btn bg-wood text-ink hover:bg-wood-dark hover:text-cream"
-            >
-              预约量房
-            </Link>
-            <Link
-              href="/transparent-site"
-              className="btn border border-cream/30 text-cream hover:bg-cream/10"
-            >
-              了解透明工地
-            </Link>
+        <div className="container-page">
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+            <div className="max-w-xl">
+              <h2 className="text-2xl font-semibold sm:text-3xl">
+                准备装修，先看看工地怎么管。
+              </h2>
+              <p className="mt-3 text-base text-cream/70 sm:text-lg">
+                预约量房，了解晟景装饰的透明工地服务，开工后手机查看施工进度。
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              <Link
+                href="/contact"
+                className="btn bg-wood text-ink shadow-card hover:bg-wood-dark hover:text-cream"
+              >
+                预约量房
+              </Link>
+              <Link
+                href="/transparent-site"
+                className="btn border border-cream/30 text-cream hover:bg-cream/10"
+              >
+                了解透明工地
+              </Link>
+            </div>
           </div>
         </div>
       </section>
