@@ -6,7 +6,7 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --background: #f6f2ea;
-  --foreground: #222222;
+  --foreground: #352f2a;
 }
 
 * {
@@ -27,9 +27,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 可访问性：跳转链接聚焦样式 */
 :focus-visible {
-  outline: 2px solid #304238;
+  outline: 2px solid #947461;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -39,40 +38,50 @@ body {
     @apply mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8;
   }
 
+  /* 按钮 */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all duration-200 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
   }
-
   .btn-primary {
-    @apply btn bg-forest text-cream hover:bg-forest-800;
+    @apply btn bg-forest text-cream shadow-soft hover:bg-forest-800 hover:shadow-card hover:-translate-y-px;
   }
-
   .btn-secondary {
-    @apply btn border border-forest/30 bg-transparent text-forest hover:bg-forest/5;
+    @apply btn border border-forest/30 bg-transparent text-forest hover:bg-forest/5 hover:border-forest/50;
   }
-
+  .btn-clay {
+    @apply btn bg-clay text-cream shadow-soft hover:bg-clay-dark hover:shadow-card hover:-translate-y-px;
+  }
+  .btn-ghost-clay {
+    @apply btn border border-clay/30 bg-clay/10 text-clay-dark hover:bg-clay/20;
+  }
   .btn-wood {
-    @apply btn bg-wood text-ink hover:bg-wood-dark hover:text-cream;
+    @apply btn bg-wood text-ink shadow-soft hover:bg-wood-dark hover:text-cream;
   }
 
+  /* 区块 */
   .section {
     @apply py-16 sm:py-20 lg:py-24;
   }
-
   .section-title {
     @apply text-2xl font-semibold tracking-tight text-forest sm:text-3xl;
   }
-
   .section-subtitle {
-    @apply mt-3 text-base leading-relaxed text-ink-muted sm:text-lg;
+    @apply mt-3 text-base leading-relaxed text-ink-soft sm:text-lg;
   }
 
+  /* 卡片 */
   .card {
-    @apply rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-shadow hover:shadow-card;
+    @apply rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-all duration-200 ease-smooth hover:shadow-card hover:border-clay/20 hover:-translate-y-0.5;
+  }
+  .card-dark {
+    @apply rounded-2xl bg-forest-900 p-6 text-cream shadow-dark sm:p-8;
+  }
+  .card-clay {
+    @apply rounded-2xl border border-clay/20 bg-clay/5 p-6;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-wood-dark;
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-clay-dark;
   }
 
   /* 标签 */
@@ -82,26 +91,101 @@ body {
   .tag-forest {
     @apply tag bg-forest/10 text-forest;
   }
+  .tag-clay {
+    @apply tag bg-clay/15 text-clay-dark;
+  }
   .tag-wood {
     @apply tag bg-wood/20 text-wood-dark;
   }
-
-  /* 流程步骤卡 */
-  .flow-step {
-    @apply rounded-2xl border border-forest/10 bg-white p-5 shadow-soft;
+  .tag-neutral {
+    @apply tag bg-ink/10 text-ink-muted;
+  }
+  .tag-dot {
+    @apply inline-flex items-center gap-1.5;
+  }
+  .tag-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
   }
 
-  /* 案例风格色块（替代灰色占位） */
+  /* 流程步骤 */
+  .flow-step {
+    @apply rounded-2xl border border-forest/10 bg-white p-5 shadow-soft transition-all duration-200 ease-smooth hover:shadow-card hover:border-clay/30;
+  }
+
+  /* 案例风格色块 */
   .swatch {
-    @apply flex h-36 items-center justify-center px-6;
+    @apply flex h-40 items-center justify-center px-6;
   }
 
   /* 手机模拟外框 */
   .phone-frame {
-    @apply mx-auto w-full max-w-[260px] rounded-[2.2rem] border-4 border-forest-800 bg-forest-900 p-2.5 shadow-card;
+    @apply rounded-[2.2rem] border-4 border-forest-900 bg-forest-900 p-2.5 shadow-dark;
   }
   .phone-screen {
     @apply overflow-hidden rounded-[1.6rem] bg-cream-50 p-3.5;
+  }
+
+  /* 信任条带 */
+  .trust-stat {
+    @apply relative pl-4;
+  }
+  .trust-stat::before {
+    @apply absolute left-0 top-0 h-full w-1 rounded-l bg-clay/50 content-[""];
+  }
+
+  /* 导航链接 hover 下划线 */
+  .nav-link {
+    position: relative;
+    @apply rounded-lg px-3 py-2 text-sm font-medium text-ink-soft transition-colors;
+  }
+  .nav-link:hover {
+    @apply text-forest;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 0;
+    height: 2px;
+    background: #947461;
+    border-radius: 1px;
+    transform: translateX(-50%);
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover::after {
+    width: 60%;
+  }
+
+  /* 背景纹理：纸张感 + 陶土光斑 */
+  .bg-paper {
+    background-color: #f6f2ea;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(148, 116, 97, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(48, 66, 56, 0.04) 0%, transparent 40%);
+  }
+  .bg-wood-glow {
+    background-image: radial-gradient(
+      ellipse at top right,
+      rgba(207, 174, 123, 0.12) 0%,
+      transparent 50%
+    );
+  }
+  .bg-clay-glow {
+    background-image: radial-gradient(
+      ellipse at bottom left,
+      rgba(148, 116, 97, 0.08) 0%,
+      transparent 50%
+    );
+  }
+
+  /* 对比表高亮列 */
+  .compare-highlight {
+    @apply bg-clay/5;
   }
 
   .prose-cn {
@@ -120,6 +204,30 @@ body {
     @apply mb-4 list-disc space-y-1 pl-5;
   }
   .prose-cn li {
-    @apply marker:text-wood-dark;
+    @apply marker:text-clay-dark;
+  }
+}
+
+/* 滚动渐显动效（克制，尊重 prefers-reduced-motion） */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 移动端表格横向滚动 */
+@media (max-width: 640px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    min-width: 600px;
   }
 }
