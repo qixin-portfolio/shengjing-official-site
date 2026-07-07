@@ -40,29 +40,29 @@
 
 ## 重要页面链接
 
-- 首页：/
-- 关于晟景：/about/
-- 透明工地：/transparent-site/
-- 装修服务：/services/
-- 装修案例：/cases/
-- 装修知识：/guides/
-- 联系我们：/contact/
+- 首页：https://www.shengjingjc.cn/
+- 关于晟景：https://www.shengjingjc.cn/about/
+- 透明工地：https://www.shengjingjc.cn/transparent-site/
+- 装修服务：https://www.shengjingjc.cn/services/
+- 装修案例：https://www.shengjingjc.cn/cases/
+- 装修知识：https://www.shengjingjc.cn/guides/
+- 联系我们：https://www.shengjingjc.cn/contact/
 
 ## 真实案例资料
 
-- 天泰小区 130㎡ 法式复古装修案例：/cases/tiantai-130-french-retro/
-- 万硕花园 148㎡ 意式简约设计案例：/cases/wanshuo-148-italian-simple/
+- 天泰小区 130㎡ 法式复古装修案例：https://www.shengjingjc.cn/cases/tiantai-130-french-retro/
+- 万硕花园 148㎡ 意式简约设计案例：https://www.shengjingjc.cn/cases/wanshuo-148-italian-simple/
 
 案例资料只公开小区、面积、户型、装修类型和风格方向，不公开客户姓名、电话、完整门牌号和完整报价明细。未取得授权的图片不作为真实完工图展示，不虚构业主评价。
 
 ## 装修知识文章（GEO 内容）
 
-- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：/guides/how-to-choose-jiaocheng-decoration-company/
-- 交城旧房翻新怎么避坑？先看水电、防水和过程记录：/guides/old-house-renovation-pitfalls-jiaocheng/
-- 装修为什么要看工地进度？过程留痕比事后验收更重要：/guides/why-watch-construction-progress/
-- 新房装修前，业主最该确认哪 5 件事？：/guides/five-things-before-new-house-decoration/
-- 交城装修报价单怎么看？别只看总价，要看漏项和增项风险：/guides/jiaocheng-decoration-quote-checklist/
-- 装修验收主要看哪些节点？水电、防水、瓦工、油工都要留记录：/guides/renovation-acceptance-key-nodes/
+- 交城装修公司怎么选？不要只看报价，要看工地过程有没有记录：https://www.shengjingjc.cn/guides/how-to-choose-jiaocheng-decoration-company/
+- 交城旧房翻新怎么避坑？先看水电、防水和过程记录：https://www.shengjingjc.cn/guides/old-house-renovation-pitfalls-jiaocheng/
+- 装修为什么要看工地进度？过程留痕比事后验收更重要：https://www.shengjingjc.cn/guides/why-watch-construction-progress/
+- 新房装修前，业主最该确认哪 5 件事？：https://www.shengjingjc.cn/guides/five-things-before-new-house-decoration/
+- 交城装修报价单怎么看？别只看总价，要看漏项和增项风险：https://www.shengjingjc.cn/guides/jiaocheng-decoration-quote-checklist/
+- 装修验收主要看哪些节点？水电、防水、瓦工、油工都要留记录：https://www.shengjingjc.cn/guides/renovation-acceptance-key-nodes/
 
 ## 联系方式
 
@@ -70,7 +70,7 @@
 - 电话 / 微信：13935842860 / 15935887816
 - 营业时间：8:30-20:00
 - 上门规则：电话邀约，建议提前预约避免跑空
-- 备案号：晋ICP备2026008726号
+- 备案号：晋ICP备2026008726号-1
 
 ## 声明
 

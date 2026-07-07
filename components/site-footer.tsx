@@ -26,7 +26,7 @@ export function SiteFooter() {
               服务区域：{siteConfig.serviceArea}
             </p>
             <p className="mt-2 text-xs leading-relaxed text-cream/50">
-              官网域名：shengjingjc.com
+              官网域名：{new URL(siteConfig.url).hostname}
             </p>
           </div>
 

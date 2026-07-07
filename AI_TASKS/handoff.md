@@ -49,7 +49,7 @@
 - `pnpm lint` 通过
 - `git diff --check` 通过
 - 未发现旧域名、localhost、本地路径、占位电话 / 地址 / 二维码、虚构案例、虚构评价、绝对化宣传
-- `robots.txt` / `sitemap.xml` / `llms.txt` 仍指向 `https://shengjingjc.com`
+- `robots.txt` / `sitemap.xml` / `llms.txt` 仍指向 `https://www.shengjingjc.cn`
 
 **下一步交给谁：**
 - 用户 / ChatGPT：审查后决定是否合并或部署
@@ -60,8 +60,8 @@
 ## 2026-07-07 | Codex | 官网 MVP 内容、GEO 与移动端复检优化
 
 **做了什么：**
-- 根据 shengjing-evidence-pack 和备案信息，把正式域名统一为 `https://shengjingjc.com`
-- 补充备案号：`晋ICP备2026008726号`
+- 根据 shengjing-evidence-pack 和备案信息，把正式域名统一为 `https://www.shengjingjc.cn`
+- 补充备案号：`晋ICP备2026008726号-1`
 - 补充公开联系方式：`13935842860 / 15935887816`
 - 补充门店地址：交城县南环路康建装饰广场晟景装饰｜开开木门门店
 - 首页首屏调整为「交城装修，找一家过程看得见的本地装修公司」，CTA 为预约量房 / 微信咨询 / 了解透明工地
@@ -77,7 +77,7 @@
 - `pnpm lint` 通过
 - `git diff --check` 通过
 - 源码扫描未发现旧域名、本地路径、占位电话 / 地址 / 二维码、虚构案例、绝对化宣传
-- `out/robots.txt`、`out/sitemap.xml`、`out/llms.txt` 已包含正式域名 `https://shengjingjc.com`
+- `out/robots.txt`、`out/sitemap.xml`、`out/llms.txt` 已包含正式域名 `https://www.shengjingjc.cn`
 
 **下一步交给谁：**
 - Checker（ChatGPT + 用户）：审查内容、视觉、合规和是否建议提交

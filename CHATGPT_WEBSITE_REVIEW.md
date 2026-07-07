@@ -29,8 +29,8 @@
 ## 网站基本信息
 
 - 网站名称：晟景装饰官网
-- 正式域名：`https://shengjingjc.com`
-- 备案号：`晋ICP备2026008726号`
+- 正式域名：`https://www.shengjingjc.cn`
+- 备案号：`晋ICP备2026008726号-1`
 - 品牌名称：晟景装饰
 - 经营主体：交城县晟景装饰有限责任公司
 - 品牌起点：始于 1997 年
@@ -292,16 +292,16 @@ CTA：
 
 重要页面：
 
-- `https://shengjingjc.com/`
-- `https://shengjingjc.com/about/`
-- `https://shengjingjc.com/transparent-site/`
-- `https://shengjingjc.com/services/`
-- `https://shengjingjc.com/cases/`
-- `https://shengjingjc.com/guides/`
-- `https://shengjingjc.com/contact/`
-- `https://shengjingjc.com/robots.txt`
-- `https://shengjingjc.com/sitemap.xml`
-- `https://shengjingjc.com/llms.txt`
+- `https://www.shengjingjc.cn/`
+- `https://www.shengjingjc.cn/about/`
+- `https://www.shengjingjc.cn/transparent-site/`
+- `https://www.shengjingjc.cn/services/`
+- `https://www.shengjingjc.cn/cases/`
+- `https://www.shengjingjc.cn/guides/`
+- `https://www.shengjingjc.cn/contact/`
+- `https://www.shengjingjc.cn/robots.txt`
+- `https://www.shengjingjc.cn/sitemap.xml`
+- `https://www.shengjingjc.cn/llms.txt`
 
 ## 合规边界
 

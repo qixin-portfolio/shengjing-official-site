@@ -8,7 +8,7 @@
 export const siteConfig = {
   name: "晟景装饰",
   legalName: "交城县晟景装饰有限责任公司",
-  url: "https://shengjingjc.com",
+  url: "https://www.shengjingjc.cn",
   tagline: "交城装修，找一家过程看得见的本地装修公司",
   description:
     "晟景装饰始于 1997 年，以交城县为主，太原市、文水县、清徐县及周边县市可提前电话或微信沟通确认，提供新房装修、旧房翻新、整装、全屋定制和透明工地服务。",
@@ -48,7 +48,7 @@ export const contactInfo = {
   address: "交城县南环路康建装饰广场晟景装饰｜开开木门门店",
   serviceHours: "8:30-20:00",
   visitRule: "建议提前电话或微信预约，避免跑空",
-  icp: "晋ICP备2026008726号",
+  icp: "晋ICP备2026008726号-1",
 };
 
 /** 首页 FAQ（同步用于 FAQPage JSON-LD） */
