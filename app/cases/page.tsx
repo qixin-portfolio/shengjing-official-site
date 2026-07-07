@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbLd } from "@/components/json-ld";
+import { caseStudies } from "@/lib/cases";
 
 export const metadata: Metadata = {
   title: "装修案例",
   description:
-    "晟景装饰装修案例类型展示，包括现代简约、新中式、奶油风、改善型住宅。本页为案例类型展示，后续补充真实案例。",
+    "晟景装饰装修案例，包括天泰小区 130㎡ 法式复古装修案例、万硕花园 148㎡ 意式简约设计案例，以及后续真实案例整理口径。",
   alternates: { canonical: "/cases" },
 };
 
@@ -99,11 +100,60 @@ export default function CasesPage() {
               装修案例
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
-              风格类型 · 户型类型 · 施工阶段
+              真实案例 · 风格类型 · 施工阶段
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              以下为晟景装饰可承接的装修风格和户型类型。我们正在整理真实案例，后续会补充小区、面积、户型、风格、施工周期和完工照片。
+              本页先补充两套已整理的真实成交案例。案例只公开小区、面积、户型、类型和风格方向，不公开客户姓名、完整门牌号和完整报价明细。
             </p>
+          </div>
+
+          <div className="mt-12">
+            <h2 className="section-title">真实案例</h2>
+            <p className="section-subtitle">
+              图片和业主反馈会在取得授权后继续补充，当前不把效果图写成完工图。
+            </p>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              {caseStudies.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/cases/${item.slug}`}
+                  className="block rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-shadow hover:shadow-card"
+                >
+                  <span className="tag-wood">{item.status}</span>
+                  <h3 className="mt-4 text-xl font-semibold leading-snug text-forest">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                    {item.summary}
+                  </p>
+                  <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
+                    <div>
+                      <dt className="text-xs text-ink-muted">小区</dt>
+                      <dd className="mt-1 font-medium text-ink">{item.community}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-ink-muted">面积 / 户型</dt>
+                      <dd className="mt-1 font-medium text-ink">
+                        {item.area} · {item.layout}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-ink-muted">装修类型</dt>
+                      <dd className="mt-1 font-medium text-ink">
+                        {item.renovationType}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-ink-muted">风格方向</dt>
+                      <dd className="mt-1 font-medium text-ink">{item.style}</dd>
+                    </div>
+                  </dl>
+                  <span className="mt-5 inline-flex text-sm font-medium text-wood-dark">
+                    查看案例详情 →
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* 风格类型库 */}
