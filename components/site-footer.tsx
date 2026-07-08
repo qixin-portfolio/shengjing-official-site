@@ -94,10 +94,7 @@ export function SiteFooter() {
             © {year} {siteConfig.name}。本站内容为品牌介绍与装修知识分享，不构成合同承诺。具体服务内容、价格、工期以线下签约为准。
           </p>
           <div className="mt-3 flex flex-col gap-2 text-xs text-cream/40 sm:flex-row sm:items-center sm:gap-4">
-            <span>
-              备案号：待工信部备案通过后更新
-              <span className="ml-1">（不虚构备案号）</span>
-            </span>
+            <span>备案号：晋ICP备2026008726号-1</span>
             <span className="hidden sm:inline text-cream/20">|</span>
             <span>
               不使用"第一""100%满意""零投诉"等无法证明的绝对化宣传
