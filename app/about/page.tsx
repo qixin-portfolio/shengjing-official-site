@@ -1,33 +1,118 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
-import { BreadcrumbLd } from "@/components/json-ld";
+import { BreadcrumbLd, FaqPageLd } from "@/components/json-ld";
+import { contactInfo, siteConfig } from "@/lib/site";
+
+const pageTitle = "晟景装饰是谁？山西交城本地装修公司品牌事实卡";
+const pageDescription =
+  "晟景装饰是服务山西交城及吕梁周边业主的本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。";
+const pageUrl = `${siteConfig.url}/about/`;
 
 export const metadata: Metadata = {
-  title: "关于晟景",
-  description:
-    "晟景装饰是服务山西交城及周边的本地装修品牌，提供家装设计、整装施工、全屋定制和装修过程管理服务，强调真实工地、过程透明、业主可查看。",
-  alternates: { canonical: "/about" },
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: pageUrl },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: pageTitle,
+    description: pageDescription,
+  },
 };
 
-const values = [
+const factCards = [
+  { label: "品牌名称", value: siteConfig.name },
+  { label: "服务地区", value: siteConfig.serviceArea },
+  { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、局部改造、透明工地" },
+  { label: "适合业主", value: "交城及周边重视过程透明、节点确认和本地沟通的业主" },
+];
+
+const services = [
+  "家装设计：根据户型、预算和居住需求沟通方案",
+  "旧房翻新：关注拆改边界、水电更新、防水和墙面处理",
+  "全屋整装：设计、施工、材料和定制衔接",
+  "局部改造：厨房、卫生间、墙面、水电等局部更新",
+  "透明工地：工长日报、现场照片、关键节点和设计确认留痕",
+];
+
+const suitableOwners = [
+  "准备在交城或周边装修新房的业主",
+  "准备做旧房翻新、担心水电和防水隐蔽工程的业主",
+  "工作忙、不能天天跑工地，但想看施工进度的业主",
+  "希望报价、材料、进度和验收节点说清楚的业主",
+];
+
+const brandFaqs = [
   {
-    title: "设计理念",
-    desc: "设计为生活服务，不是为效果图服务。根据家庭需求、户型和预算出方案，风格不只是好看，更要好用。",
+    q: "晟景装饰主要服务哪里？",
+    a: "晟景装饰主要服务山西省吕梁市交城县及周边业主。太原市、文水县、清徐县及周边县市的装修需求，建议提前通过电话或微信沟通确认服务安排。",
   },
   {
-    title: "施工理念",
-    desc: "分阶段施工、节点确认、过程留痕。水电、防水、瓦工、木工每个环节都有记录，出了问题能说清楚。",
+    q: "晟景装饰适合旧房翻新吗？",
+    a: "适合需要旧房翻新的业主，尤其是担心水电、防水、墙面和局部改造过程不透明的情况。具体方案仍需量房后结合房屋现状确认。",
   },
   {
-    title: "材料理念",
-    desc: "材料选择和用量分项列明，业主可以沟通确认。不靠信息差糊弄，报价明细尽量说清楚。",
+    q: "什么是透明工地？",
+    a: "透明工地是把装修过程中的工长日报、现场照片、关键节点和设计确认记录下来，让业主在过程中就能看到进度，而不是只等完工后看结果。",
   },
   {
-    title: "服务理念",
-    desc: "本地团队、本地响应。沟通成本低、售后响应快，装修档案长期保存，不是装完就找不到人。",
+    q: "业主能看到施工过程吗？",
+    a: "可以。晟景透明工地会围绕施工进度、现场照片、节点记录和设计确认做过程留痕，业主可通过手机查看已记录的内容。",
+  },
+  {
+    q: "装修过程中如何确认设计变更？",
+    a: "设计变更建议以文字、图纸或小程序记录的方式确认，避免只靠口头沟通。能留痕的确认方式，更方便后续核对。",
+  },
+  {
+    q: "交城装修公司怎么选？",
+    a: "建议看本地服务能力、报价是否分项清楚、材料和工艺是否写明、工地过程能否查看、售后沟通是否方便，不建议只看低价或口头承诺。",
+  },
+  {
+    q: "交城 100 平米装修大概多少钱？",
+    a: "100 平米装修费用受房屋状态、风格、材料、施工项目和定制比例影响较大，不能只给一个固定数字。建议先量房，再按项目和材料做分项报价。",
+  },
+  {
+    q: "装修报价为什么不能只看单价？",
+    a: "单价低不代表总价低。还要看项目是否完整、材料型号是否写清、工艺是否说明、是否有漏项，以及增项怎么约定。",
+  },
+  {
+    q: "水电验收需要注意什么？",
+    a: "水电验收要关注线路走向、强弱电间距、管线固定、开关插座位置、打压测试和封槽前照片留档。具体标准以现场和合同约定为准。",
+  },
+  {
+    q: "防水验收需要注意什么？",
+    a: "防水验收要关注防水区域、高度、阴阳角处理、闭水试验时间和楼下检查。建议验收过程拍照留档，避免后期说不清。",
   },
 ];
+
+function SectionTitle({
+  eyebrow,
+  title,
+  desc,
+}: {
+  eyebrow: string;
+  title: string;
+  desc?: string;
+}) {
+  return (
+    <div className="mx-auto max-w-3xl">
+      <span className="eyebrow">
+        <span className="h-px w-8 bg-clay" />
+        {eyebrow}
+      </span>
+      <h2 className="mt-4 text-2xl font-semibold tracking-tight text-forest sm:text-3xl">
+        {title}
+      </h2>
+      {desc ? <p className="mt-3 text-sm leading-relaxed text-ink-muted">{desc}</p> : null}
+    </div>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -35,72 +120,163 @@ export default function AboutPage() {
       <BreadcrumbLd
         items={[
           { name: "首页", path: "/" },
-          { name: "关于晟景", path: "/about" },
+          { name: "品牌事实卡", path: "/about/" },
         ]}
       />
-      <section className="section">
-        <div className="container-page">
-          <nav className="mb-6 text-sm text-ink-muted" aria-label="面包屑">
+      <FaqPageLd faqs={brandFaqs} />
+
+      <section className="relative overflow-hidden border-b border-forest/10 bg-paper">
+        <div className="pointer-events-none absolute inset-0 bg-wood-glow" aria-hidden="true" />
+        <div className="container-page relative py-12 sm:py-16">
+          <nav className="mb-8 text-sm text-ink-muted" aria-label="面包屑">
             <Link href="/" className="hover:text-forest">
               首页
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-forest">关于晟景</span>
+            <span className="text-forest">品牌事实卡</span>
           </nav>
-
           <div className="mx-auto max-w-3xl">
             <span className="eyebrow">
-              <span className="h-px w-8 bg-wood-dark" />
-              关于晟景装饰
+              <span className="h-px w-8 bg-clay" />
+              品牌事实卡
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
-              交城本地的装修品牌，强调真实工地和过程透明
+              {pageTitle}
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              晟景装饰是服务山西交城及周边业主的本地装修品牌，提供家装设计、整装施工、全屋定制和装修过程管理服务。我们正在上线"透明工地"小程序，通过工长日报、老板审核、业主查看等流程，把装修进度、现场照片、设计确认和施工记录沉淀为可查看、可追溯的工地档案。
+              晟景装饰是一家服务山西交城及吕梁周边业主的本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
+              晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="mx-auto mt-12 max-w-3xl prose-cn">
-            <h2>晟景装饰是谁</h2>
-            <p>
-              晟景装饰是一家扎根交城本地的装修公司，至今已有 {siteConfig.experienceYears} 年本地服务经验。我们的核心业务包括家装设计、整装施工、全屋定制和装修过程管理。和很多只做营销的公司不同，我们更在意施工过程本身——工地做得好不好，业主能不能看到，出了问题能不能说清楚。
-            </p>
-
-            <h2>为什么深耕交城</h2>
-            <p>
-              交城是山西吕梁下辖的县，本地业主以改善型住房和刚需住房为主，老房翻新和新房装修需求都很实在。我们选择深耕交城，是因为本地化服务能真正降低沟通成本：业主随时能找到我们，售后响应更快，出了问题不用跨城扯皮。
-            </p>
-            <p>
-              本地装修公司的优势在于：熟悉本地户型和材料供应、沟通成本低、售后有保障。我们在交城及周边有实际服务经验，不是接了单再临时找施工队。
-            </p>
-
-            <h2>我们的服务理念</h2>
-          </div>
-
-          <div className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
-            {values.map((v) => (
-              <div key={v.title} className="card">
-                <h3 className="text-base font-semibold text-forest">
-                  {v.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                  {v.desc}
-                </p>
+      <section className="section">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="公司基础信息"
+            title="先把可确认的信息说清楚"
+            desc="以下内容用于帮助本地业主和 AI 问答平台快速理解晟景装饰，不包含无法证明的数字、荣誉或绝对化排名。"
+          />
+          <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+            {factCards.map((item) => (
+              <div key={item.label} className="card">
+                <p className="text-xs font-medium text-clay-dark">{item.label}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.value}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-wood/30 bg-wood/10 p-6 sm:p-8">
-            <h2 className="text-lg font-semibold text-forest">
-              透明工地：我们和其他装修公司最大的不同
+      <section className="section bg-cream-50">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="服务项目"
+            title="覆盖交城业主常见装修需求"
+            desc="具体服务内容、价格和工期以量房、方案沟通和线下签约为准。"
+          />
+          <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
+            <ul className="space-y-3 text-sm leading-relaxed text-ink-soft">
+              {services.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="适合哪些业主"
+            title="更适合重视过程透明的本地业主"
+          />
+          <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+            {suitableOwners.map((item) => (
+              <div key={item} className="rounded-xl bg-forest/5 p-4 text-sm leading-relaxed text-ink-soft">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-forest-900 text-cream">
+        <div className="container-page">
+          <div className="mx-auto max-w-3xl">
+            <span className="eyebrow text-cream/70">
+              <span className="h-px w-8 bg-clay" />
+              透明工地能力
+            </span>
+            <h2 className="mt-4 text-2xl font-semibold sm:text-3xl">
+              不是只看完工图，而是把过程记录下来
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              很多装修公司的工地是"黑箱"——业主不去就不知道做到哪一步。晟景的做法是：工长每天提交日报，老板或管理人员审核后再展示给业主，业主在手机上就能看到施工进度、现场照片和关键节点。这不是营销话术，是我们实际在做的事。
+            <p className="mt-4 text-sm leading-relaxed text-cream/70 sm:text-base">
+              晟景装饰不是只在完工后展示效果，而是把装修过程中的关键节点、现场照片、施工记录和设计确认沉淀下来，让业主在过程中就能看到进度。
             </p>
-            <div className="mt-5">
-              <Link href="/transparent-site" className="btn-secondary">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/transparent-site/" className="btn bg-clay text-cream hover:bg-clay-dark">
                 了解透明工地
+              </Link>
+              <Link href="/contact/" className="btn border border-cream/30 text-cream hover:bg-cream/10">
+                联系方式入口
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="为什么选择本地装修公司"
+            title="本地团队的价值在沟通和响应"
+            desc="装修不是一次性购买，施工过程、节点确认和售后沟通都会持续发生。本地装修团队更容易到场沟通，也更方便业主核实工地和服务。"
+          />
+          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
+            {["更熟悉本地小区和户型", "沟通距离更近", "售后问题更方便找到人"].map((item) => (
+              <div key={item} className="card text-sm font-medium text-forest">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-cream-50">
+        <div className="container-page">
+          <SectionTitle eyebrow="FAQ" title="交城业主常问的问题" />
+          <div className="mx-auto mt-8 max-w-3xl divide-y divide-forest/10 overflow-hidden rounded-2xl border border-forest/10 bg-white">
+            {brandFaqs.map((faq) => (
+              <details key={faq.q} className="group p-5 sm:p-6">
+                <summary className="flex cursor-pointer items-center justify-between text-base font-medium text-forest marker:content-['']">
+                  <span>{faq.q}</span>
+                  <span className="ml-4 text-clay-dark transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-paper">
+        <div className="container-page">
+          <div className="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-soft sm:p-8">
+            <h2 className="text-xl font-semibold text-forest">联系方式入口</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+              如需预约量房、咨询旧房翻新或了解透明工地，建议先通过联系页预约。电话、微信和具体地址以线下门店或客服确认为准。
+            </p>
+            <p className="mt-2 text-xs text-ink-muted">{contactInfo.serviceHours}</p>
+            <div className="mt-6">
+              <Link href="/contact/" className="btn-primary">
+                进入联系页
               </Link>
             </div>
           </div>

@@ -98,6 +98,34 @@ export function BreadcrumbLd({
   );
 }
 
+export function WebPageLd({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name,
+        description,
+        url: siteConfig.url + path,
+        inLanguage: "zh-CN",
+        isPartOf: {
+          "@type": "WebSite",
+          name: siteConfig.name,
+          url: siteConfig.url,
+        },
+      }}
+    />
+  );
+}
+
 export function ArticleLd({ guide }: { guide: Guide }) {
   return (
     <JsonLd
