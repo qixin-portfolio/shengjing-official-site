@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import { contactInfo, siteConfig } from "@/lib/site";
 import { BreadcrumbLd, FaqPageLd, WebPageLd } from "@/components/json-ld";
 import { PhoneMockup, PhotoGridMockup, DailyReportMockup, DesignConfirmMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
@@ -328,7 +328,8 @@ export default function TransparentSitePage() {
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div className="max-w-xl">
               <h2 className="text-2xl font-semibold sm:text-3xl">{siteConfig.miniProgram.name}</h2>
-              <p className="mt-4 text-base leading-relaxed text-cream/70 sm:text-lg">{siteConfig.miniProgram.desc}。工长提交日报后，由老板或管理人员审核，再展示给业主。业主在手机上查看施工进度、现场照片和关键节点，设计方案可以线上确认留痕。</p>
+              <p className="mt-4 text-base leading-relaxed text-cream/70 sm:text-lg">作为交城{siteConfig.brandHistory}，晟景装饰希望把装修过程做得更透明：工长上传日报，老板审核后展示，业主通过手机查看施工进度、现场照片和设计方案。</p>
+              <p className="mt-3 text-sm leading-relaxed text-cream/60">想体验晟景透明工地，可到店咨询或电话联系：{contactInfo.phonePlaceholder}。地址：{contactInfo.addressNote}。</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link href="/contact" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">预约量房</Link>

@@ -1,10 +1,8 @@
 /**
  * 晟景装饰官网 - 站点集中配置
  *
- * 说明：以下信息为 MVP 占位，部署上线前需由人工确认并替换为真实数据：
- *  - site.url（真实域名）
- *  - 联系电话 / 微信 / 具体门店地址
- *  严禁写入无法证明的绝对化宣传与虚假客户/地址。
+ * 说明：以下信息用于官网、sitemap、robots、canonical 与 GEO 内容。
+ * 严禁写入无法证明的绝对化宣传与虚假客户/地址。
  */
 
 export const siteConfig = {
@@ -26,6 +24,8 @@ export const siteConfig = {
   },
   /** 谨慎表达的经验年限（不写"第一/100%满意"等无法证明的话） */
   experienceYears: 28,
+  foundedYear: "1997",
+  brandHistory: "本地28年老品牌",
   /** 配套产品 */
   miniProgram: {
     name: "晟景透明工地小程序",
@@ -46,14 +46,12 @@ export const navLinks: NavLink[] = [
 ];
 
 /**
- * 联系信息（谨慎表达）
- * - 电话/微信/具体门店地址未确定，统一以"请以线下门店或客服确认为准"表达
- * - 上线前由人工填写真实信息后，再开放给搜索引擎与 AI 问答平台抓取
+ * 联系信息（电话与地址已由用户确认可公开；微信仍以线下确认为准）
  */
 export const contactInfo = {
-  phonePlaceholder: "请以线下门店或客服确认为准",
+  phonePlaceholder: "13935842860",
   wechatPlaceholder: "请以线下门店或客服确认为准",
-  addressNote: "具体地址请以线下门店或客服确认为准",
+  addressNote: "山西省交城县南环路康健装饰广场",
   serviceHours: "建议提前预约，避免跑空",
 };
 
