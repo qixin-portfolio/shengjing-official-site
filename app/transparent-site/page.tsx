@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
-import { BreadcrumbLd } from "@/components/json-ld";
+import { BreadcrumbLd, FaqPageLd, WebPageLd } from "@/components/json-ld";
 import { PhoneMockup, PhotoGridMockup, DailyReportMockup, DesignConfirmMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
 
+const pageTitle = "晟景透明工地：装修进度看得见，施工过程有记录";
+const pageDescription =
+  "晟景透明工地通过工长日报、现场照片、节点记录、老板审核和设计确认，把装修过程沉淀为业主可查看的施工记录。";
+const pageUrl = `${siteConfig.url}/transparent-site/`;
+
 export const metadata: Metadata = {
-  title: "透明工地",
-  description:
-    "晟景透明工地小程序，通过工长日报、老板审核、业主查看，把装修进度、现场照片、设计确认和施工记录沉淀为可查看的工地档案，减少扯皮和不信任。",
-  alternates: { canonical: "/transparent-site" },
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: pageUrl },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: pageTitle,
+    description: pageDescription,
+  },
 };
 
 const flow = [
@@ -17,7 +33,7 @@ const flow = [
   { step: "02", title: "老板审核", desc: "管理人员审核日报内容和照片，确认无误后再展示给业主。不是工长随便发。", icon: "check" },
   { step: "03", title: "业主手机查看", desc: "业主在手机上查看施工进度、现场照片和关键节点，不用天天跑工地。", icon: "phone" },
   { step: "04", title: "设计方案确认", desc: "设计图和变更可线上确认，留痕可追溯，减少口头沟通误差。", icon: "design" },
-  { step: "05", title: "施工过程留痕", desc: "从开工到验收，记录沉淀为可长期保存的工地档案，出问题能说清。", icon: "archive" },
+  { step: "05", title: "施工过程留痕", desc: "从开工到验收，记录沉淀为可回看的工地档案，后续沟通更有依据。", icon: "archive" },
 ];
 
 const comparisonRows = [
@@ -26,14 +42,14 @@ const comparisonRows = [
   { stage: "工长日报", normal: "没有日报，或口头说一句", transparent: "每天记录施工内容、人员、进度" },
   { stage: "审核机制", normal: "无审核，工长自己说了算", transparent: "老板/管理人员审核后再展示给业主" },
   { stage: "设计确认", normal: "口头确认或微信聊，后期找不到记录", transparent: "线上确认留痕，可追溯" },
-  { stage: "出问题扯皮", normal: "各说各的，没有依据", transparent: "过程记录可作依据，责任清楚" },
+  { stage: "问题沟通", normal: "各说各的，缺少过程依据", transparent: "过程记录可回看，方便核对当时情况" },
   { stage: "售后追溯", normal: "完工后资料散落，难追溯", transparent: "装修档案长期保存，可回看" },
 ];
 
 const benefits = [
   { title: "减少信息差", desc: "业主不用天天跑工地，也能知道做到哪一步、有没有问题。" },
   { title: "关键节点可回看", desc: "水电封槽前、防水做完后、瓦工贴砖后，照片和记录都在。" },
-  { title: "出了问题能说清", desc: "哪天做了什么、谁确认的，记录可追溯，责任清楚。" },
+  { title: "沟通更有依据", desc: "哪天做了什么、谁确认的，记录可回看，减少只靠口头回忆。" },
   { title: "装修档案长期保存", desc: "设计资料、施工记录、验收记录、完工照片可以长期保存。" },
 ];
 
@@ -44,6 +60,41 @@ const nodes = [
   { name: "木工", period: "瓦工进行中" },
   { name: "油工", period: "木工完成后" },
   { name: "竣工验收", period: "全部完工" },
+];
+
+const transparentFaqs = [
+  {
+    q: "什么是透明工地？",
+    a: "透明工地是把装修过程中的施工进度、现场照片、工长日报、节点记录和设计确认沉淀下来，让业主在过程中就能看到记录，而不是只等完工后看结果。",
+  },
+  {
+    q: "业主能看到施工过程吗？",
+    a: "可以。业主可以查看已记录的工长日报、现场照片、关键节点和设计确认内容。具体可见范围以实际小程序和项目沟通为准。",
+  },
+  {
+    q: "工长日报是什么？",
+    a: "工长日报用于记录当天施工内容、人员、进度和现场照片，帮助业主了解当天工地发生了什么。",
+  },
+  {
+    q: "老板审核是什么？",
+    a: "老板审核是指工长提交日报后，由管理人员先看内容和照片，再展示给业主，减少随意发送和信息不完整的情况。",
+  },
+  {
+    q: "装修过程中如何确认设计变更？",
+    a: "设计变更建议通过图纸、文字或小程序记录确认，保留变更内容、确认时间和相关说明，避免后续只靠口头回忆。",
+  },
+  {
+    q: "水电节点如何留痕？",
+    a: "水电阶段建议记录线路走向、开关插座位置、管线固定、打压测试和封槽前照片，方便后续检修和核对。",
+  },
+  {
+    q: "防水验收需要注意什么？",
+    a: "防水验收要关注防水区域、高度、阴阳角处理、闭水试验时间和楼下检查情况，并建议拍照留档。",
+  },
+  {
+    q: "透明工地适合哪些业主？",
+    a: "适合工作忙、不能天天跑工地，或重视隐蔽工程、节点确认和施工记录的业主。",
+  },
 ];
 
 function FlowIcon({ name }: { name: string }) {
@@ -62,6 +113,8 @@ export default function TransparentSitePage() {
   return (
     <>
       <BreadcrumbLd items={[{ name: "首页", path: "/" }, { name: "透明工地", path: "/transparent-site" }]} />
+      <WebPageLd name={pageTitle} description={pageDescription} path="/transparent-site/" />
+      <FaqPageLd faqs={transparentFaqs} />
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-forest/10 bg-paper">
@@ -74,9 +127,9 @@ export default function TransparentSitePage() {
           </nav>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <span className="eyebrow"><span className="h-px w-8 bg-clay" />透明工地 · 晟景的核心卖点</span>
-              <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl">装修过程看得见，比事后扯皮强</h1>
-              <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">透明工地不是营销概念，而是一套让装修过程可查看、可追溯的流程。工长提交日报，老板审核后再展示给业主，把进度、现场照片、设计确认和施工记录沉淀为工地档案。</p>
+              <span className="eyebrow"><span className="h-px w-8 bg-clay" />透明工地 · 过程记录</span>
+              <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl">{pageTitle}</h1>
+              <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">晟景装饰不是只在完工后展示效果，而是把装修过程中的关键节点、现场照片、施工记录和设计确认沉淀下来，让业主在过程中就能看到进度。</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="btn-primary">预约量房</Link>
                 <Link href="/guides" className="btn-secondary">查看装修知识</Link>
@@ -197,8 +250,8 @@ export default function TransparentSitePage() {
       <section className="section">
         <div className="container-page">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="section-title">为什么这能减少扯皮和不信任</h2>
-            <p className="section-subtitle">装修扯皮大多来自信息差。过程有记录，责任就清楚。</p>
+            <h2 className="section-title">为什么这能减少装修信息不对称</h2>
+            <p className="section-subtitle">装修周期长、节点多。过程有记录，后续沟通就少一点猜测，多一点依据。</p>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2">
             {benefits.map((b, i) => (
@@ -243,6 +296,28 @@ export default function TransparentSitePage() {
               </ul>
               <p className="mt-3 text-xs text-ink-muted">不适合不代表不能做，只是性价比相对低。</p>
             </div></Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section">
+        <div className="container-page">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />FAQ<span className="h-px w-8 bg-clay" /></span>
+            <h2 className="mt-4 section-title">关于透明工地，业主常问这些</h2>
+            <p className="section-subtitle">回答只基于可说明的流程，不做价格、效果或纠纷处理承诺。</p>
+          </Reveal>
+          <div className="mx-auto mt-10 max-w-3xl divide-y divide-forest/10 overflow-hidden rounded-2xl border border-forest/10 bg-white shadow-soft">
+            {transparentFaqs.map((faq) => (
+              <details key={faq.q} className="group p-5 sm:p-6">
+                <summary className="flex cursor-pointer items-center justify-between text-base font-medium text-forest marker:content-['']">
+                  <span>{faq.q}</span>
+                  <span className="ml-4 text-clay-dark transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{faq.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
