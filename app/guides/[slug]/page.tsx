@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { guides, guideSlugs, getGuideBySlug } from "@/lib/guides";
 import { siteConfig } from "@/lib/site";
-import { BreadcrumbLd } from "@/components/json-ld";
+import { ArticleLd, BreadcrumbLd, FaqPageLd } from "@/components/json-ld";
 
 export function generateStaticParams() {
   return guideSlugs.map((slug) => ({ slug }));
@@ -51,6 +51,8 @@ export default function GuideDetailPage({
           { name: guide.title, path: `/guides/${guide.slug}` },
         ]}
       />
+      <ArticleLd guide={guide} />
+      {guide.faqs ? <FaqPageLd faqs={guide.faqs} /> : null}
       <article className="section">
         <div className="container-page">
           <nav className="mb-6 text-sm text-ink-muted" aria-label="面包屑">
@@ -110,6 +112,27 @@ export default function GuideDetailPage({
                 );
               })}
             </div>
+
+            {guide.faqs ? (
+              <section className="mt-10 rounded-2xl border border-forest/10 bg-white p-5 shadow-soft sm:p-6">
+                <h2 className="text-lg font-semibold text-forest">常见问题</h2>
+                <div className="mt-4 divide-y divide-forest/10">
+                  {guide.faqs.map((faq) => (
+                    <details key={faq.q} className="group py-4 first:pt-0 last:pb-0">
+                      <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-forest marker:content-['']">
+                        {faq.q}
+                        <span className="ml-4 text-wood-dark transition-transform group-open:rotate-45">
+                          +
+                        </span>
+                      </summary>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                        {faq.a}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             {/* 底部 CTA */}
             <div className="mt-10 rounded-2xl border border-wood/30 bg-wood/10 p-5 sm:p-6">

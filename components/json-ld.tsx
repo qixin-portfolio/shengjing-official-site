@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import type { Guide } from "@/lib/guides";
 
 /**
  * JSON-LD 结构化数据组件
@@ -92,6 +93,26 @@ export function BreadcrumbLd({
           name: item.name,
           item: siteConfig.url + item.path,
         })),
+      }}
+    />
+  );
+}
+
+export function ArticleLd({ guide }: { guide: Guide }) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: guide.title,
+        description: guide.description,
+        datePublished: guide.publishedAt,
+        dateModified: guide.updatedAt,
+        inLanguage: "zh-CN",
+        author: { "@type": "Organization", name: siteConfig.name },
+        publisher: { "@type": "Organization", name: siteConfig.name },
+        mainEntityOfPage: `${siteConfig.url}/guides/${guide.slug}/`,
+        keywords: guide.keywords,
       }}
     />
   );

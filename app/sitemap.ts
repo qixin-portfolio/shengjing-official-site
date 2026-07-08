@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { guides } from "@/lib/guides";
+import { caseStudies } from "@/lib/cases";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -22,5 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...guidePages];
+  const casePages: MetadataRoute.Sitemap = caseStudies.map((item) => ({
+    url: `${siteConfig.url}/cases/${item.slug}/`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...casePages, ...guidePages];
 }
