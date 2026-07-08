@@ -5,10 +5,37 @@ import { FaqPageLd } from "@/components/json-ld";
 import { PhoneMockup, DailyReportMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
 
+const homeTitle = "晟景装饰｜交城本地装修公司｜透明工地";
+const homeDescription =
+  "交城装修、旧房翻新、整装、全屋定制。通过透明工地小程序查看工长日报、现场照片和关键节点记录，让装修过程更看得见。";
+const homeUrl = "https://www.shengjingjc.cn/";
+const homeOgImage = "https://www.shengjingjc.cn/og-home.jpg";
+
 export const metadata: Metadata = {
-  title: siteConfig.tagline,
-  description: siteConfig.description,
-  alternates: { canonical: "/" },
+  title: homeTitle,
+  description: homeDescription,
+  alternates: { canonical: homeUrl },
+  openGraph: {
+    title: homeTitle,
+    description: homeDescription,
+    url: homeUrl,
+    siteName: siteConfig.name,
+    type: "website",
+    images: [
+      {
+        url: homeOgImage,
+        width: 1200,
+        height: 630,
+        alt: "晟景装饰交城本地装修公司透明工地分享图",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
+    images: [homeOgImage],
+  },
 };
 
 const trustItems = [
