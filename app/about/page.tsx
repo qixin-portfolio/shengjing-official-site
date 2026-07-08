@@ -5,7 +5,7 @@ import { contactInfo, siteConfig } from "@/lib/site";
 
 const pageTitle = "晟景装饰是谁？山西交城本地装修公司品牌事实卡";
 const pageDescription =
-  "晟景装饰是服务山西交城及吕梁周边业主的本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。";
+  "晟景装饰始于1997年，是交城本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。";
 const pageUrl = `${siteConfig.url}/about/`;
 
 export const metadata: Metadata = {
@@ -28,8 +28,13 @@ export const metadata: Metadata = {
 
 const factCards = [
   { label: "品牌名称", value: siteConfig.name },
+  { label: "品牌历史", value: `始于${siteConfig.foundedYear}年` },
+  { label: "品牌定位", value: `交城${siteConfig.brandHistory}` },
   { label: "服务地区", value: siteConfig.serviceArea },
   { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、局部改造、透明工地" },
+  { label: "咨询电话", value: contactInfo.phonePlaceholder },
+  { label: "服务地址", value: contactInfo.addressNote },
+  { label: "品牌宣传语", value: "客户满意，口碑之选" },
   { label: "适合业主", value: "交城及周边重视过程透明、节点确认和本地沟通的业主" },
 ];
 
@@ -144,7 +149,7 @@ export default function AboutPage() {
               {pageTitle}
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              晟景装饰是一家服务山西交城及吕梁周边业主的本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。
+              晟景装饰始于1997年，是交城本地装修服务品牌，长期服务交城及吕梁周边业主，专注整装、定制、设计、旧房翻新和透明工地服务。
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
               晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
@@ -271,7 +276,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-soft sm:p-8">
             <h2 className="text-xl font-semibold text-forest">联系方式入口</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              如需预约量房、咨询旧房翻新或了解透明工地，建议先通过联系页预约。电话、微信和具体地址以线下门店或客服确认为准。
+              如需预约量房、咨询旧房翻新或了解透明工地，建议先通过联系页预约，也可以电话联系：{contactInfo.phonePlaceholder}。服务地址：{contactInfo.addressNote}。
             </p>
             <p className="mt-2 text-xs text-ink-muted">{contactInfo.serviceHours}</p>
             <div className="mt-6">
