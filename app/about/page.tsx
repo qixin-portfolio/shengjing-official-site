@@ -5,7 +5,7 @@ import { contactInfo, siteConfig } from "@/lib/site";
 
 const pageTitle = "晟景装饰是谁？山西交城本地装修公司品牌事实卡";
 const pageDescription =
-  "晟景装饰始于1997年，是交城本地装修服务品牌，提供家装设计、旧房翻新、全屋整装、局部改造和透明工地服务。";
+  "晟景装饰服务经验可追溯至1997年前后的本地装修从业积累，2013年以个体工商户形式经营，2021年成立交城县晟景装饰有限责任公司。";
 const pageUrl = `${siteConfig.url}/about/`;
 
 export const metadata: Metadata = {
@@ -28,7 +28,8 @@ export const metadata: Metadata = {
 
 const factCards = [
   { label: "品牌名称", value: siteConfig.name },
-  { label: "品牌历史", value: `始于${siteConfig.foundedYear}年` },
+  { label: "经营主体", value: siteConfig.legalName },
+  { label: "服务经验", value: `可追溯至${siteConfig.historyStart}的本地装修从业积累` },
   { label: "品牌定位", value: `交城${siteConfig.brandHistory}` },
   { label: "服务地区", value: siteConfig.serviceArea },
   { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、局部改造、透明工地" },
@@ -149,10 +150,10 @@ export default function AboutPage() {
               {pageTitle}
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              晟景装饰始于1997年，是交城本地装修服务品牌，长期服务交城及吕梁周边业主，专注整装、定制、设计、旧房翻新和透明工地服务。
+              晟景装饰服务经验可追溯至1997年前后的本地装修从业积累，2013年以个体工商户形式经营，2021年成立交城县晟景装饰有限责任公司。
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
-              晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
+              这里的历史表述用于说明本地服务经验和经营演进，不把当前公司主体的工商成立时间写成1997年。晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
             </p>
           </div>
         </div>
@@ -177,6 +178,32 @@ export default function AboutPage() {
       </section>
 
       <section className="section bg-cream-50">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="品牌发展历程"
+            title="把服务经验和工商主体说清楚"
+            desc="以下时间线用于解释晟景装饰的本地服务经验与经营主体演进，避免把从业经验起点误写成当前公司的成立时间。"
+          />
+          <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
+            <ol className="space-y-5">
+              {siteConfig.brandTimeline.map((item) => (
+                <li key={item.year} className="grid gap-3 sm:grid-cols-[8rem_1fr]">
+                  <div className="text-sm font-semibold text-clay-dark">{item.year}</div>
+                  <div>
+                    <h3 className="text-base font-semibold text-forest">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 rounded-xl bg-forest/5 p-4 text-sm leading-relaxed text-ink-muted">
+              {siteConfig.brandHistoryNote}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container-page">
           <SectionTitle
             eyebrow="服务项目"
