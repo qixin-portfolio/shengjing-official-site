@@ -131,7 +131,7 @@ return {
 
 ```ts
 {
-  title: "晟景装饰｜交城本地28年装修服务品牌",
+  title: "晟景装饰｜交城本地装修服务品牌",
   desc: "整装、定制、设计、旧房翻新，透明工地让装修进度看得见。",
   link: "https://www.shengjingjc.cn/",
   imgUrl: "https://www.shengjingjc.cn/og-home.jpg",
@@ -154,7 +154,7 @@ About 页：
 ```ts
 {
   title: "晟景装饰是谁？交城本地装修服务品牌",
-  desc: "始于1997年，服务交城及吕梁周边业主，主打整装、定制、设计、旧房翻新和透明工地。",
+  desc: "服务经验可追溯至1997年前后的本地装修从业积累，服务交城及吕梁周边业主，主打整装、定制、设计、旧房翻新和透明工地。",
   link: "https://www.shengjingjc.cn/about/",
   imgUrl: "https://www.shengjingjc.cn/og-home.jpg",
 }

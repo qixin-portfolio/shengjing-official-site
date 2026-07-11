@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 const trustItems = [
-  { num: "28", unit: "年", title: "本地服务经验", desc: "深耕交城及周边，熟悉本地户型、材料和施工习惯。" },
+  { num: "多年", unit: "经验", title: "本地服务积累", desc: "服务经验可追溯至1997年前后的本地装修从业积累。" },
   { num: "5", unit: "类", title: "关键节点留痕", desc: "水电、防水、瓦工、木工、油工，封槽前后都有记录。" },
   { num: "1", unit: "套", title: "透明工地小程序", desc: "工长日报 + 老板审核 + 业主查看，过程可追溯。" },
   { num: "少", unit: "跑", title: "不用天天跑工地", desc: "手机就能看施工进度、现场照片和关键节点。" },
@@ -103,10 +103,10 @@ export default function HomePage() {
             <div>
               <span className="eyebrow">
                 <span className="h-px w-8 bg-clay" />
-                晟景装饰 · 交城本地 28 年老品牌
+                晟景装饰 · 交城本地装修服务品牌
               </span>
               <h1 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl lg:text-[2.75rem]">
-                交城装修，找看得见进度的本地老品牌
+                交城装修，找看得见进度的本地团队
               </h1>
               <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
                 不用天天跑工地，手机就能看施工进度、现场照片和关键节点。晟景装饰结合透明工地小程序，把装修过程记录下来，让沟通更清楚。
