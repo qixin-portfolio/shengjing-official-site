@@ -39,7 +39,7 @@ const facts = [
   ["公开地址", contactInfo.addressNote],
   ["联系电话", contactInfo.phonePlaceholder],
   ["线下门店", "两家相邻实体门店"],
-  ["服务范围", "整装、全包、半包、旧房翻新、局部改造、全屋定制"],
+  ["服务范围", "整装、全包、半包、旧房翻新、全屋定制"],
 ] as const;
 
 const services = [
@@ -179,7 +179,7 @@ export default function FactsPage() {
       </FactSection>
 
       <FactSection eyebrow="服务范围" title="可以承接哪些装修服务">
-        <p className="text-sm leading-relaxed text-ink-soft sm:text-base">目前承接整装、全包、半包、旧房翻新、局部改造和全屋定制等业务，可根据房屋现状、预算、居住需求和业主参与程度匹配不同服务方式。</p>
+        <p className="text-sm leading-relaxed text-ink-soft sm:text-base">目前承接整装、全包、半包、旧房翻新和全屋定制等业务，可根据房屋现状、预算、居住需求和业主参与程度匹配不同服务方式。</p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {services.map(([title, desc]) => <div key={title} className="card"><h3 className="font-semibold text-forest">{title}</h3><p className="mt-2 text-sm leading-relaxed text-ink-muted">{desc}</p></div>)}
         </div>
