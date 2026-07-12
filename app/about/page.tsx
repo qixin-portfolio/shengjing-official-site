@@ -54,6 +54,12 @@ const suitableOwners = [
   "希望报价、材料、进度和验收节点说清楚的业主",
 ];
 
+const completionServices = [
+  ["我的家装档案", "保存设计图纸、施工照片、验收记录和完工资料。"],
+  ["电子质保卡", "查看项目编号、交付日期和质保范围，具体期限以合同约定为准。"],
+  ["售后报修工单", "提交问题描述和现场照片，并查看售后处理状态。"],
+] as const;
+
 const brandFaqs = [
   {
     q: "晟景装饰主要服务哪里？",
@@ -155,6 +161,9 @@ export default function AboutPage() {
             <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
               这里的历史表述用于说明本地服务经验和经营演进，不把当前公司主体的工商成立时间写成1997年。晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
             </p>
+            <Link href="/facts/" className="mt-6 inline-flex text-sm font-medium text-clay-dark hover:text-clay">
+              查看完整公开事实说明 →
+            </Link>
           </div>
         </div>
       </section>
@@ -250,11 +259,14 @@ export default function AboutPage() {
               不是只看完工图，而是把过程记录下来
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-cream/70 sm:text-base">
-              晟景装饰不是只在完工后展示效果，而是把装修过程中的关键节点、现场照片、施工记录和设计确认沉淀下来，让业主在过程中就能看到进度。
+              {siteConfig.miniProgram.name}不只是展示工地照片，也覆盖施工进度、日报上传与审核发布、业主查看、图纸管理、完工归档和售后工单。
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/transparent-site/" className="btn bg-clay text-cream hover:bg-clay-dark">
                 了解透明工地
+              </Link>
+              <Link href="/facts/" className="btn border border-cream/30 text-cream hover:bg-cream/10">
+                查看公开事实
               </Link>
               <Link href="/contact/" className="btn border border-cream/30 text-cream hover:bg-cream/10">
                 联系方式入口
@@ -277,6 +289,48 @@ export default function AboutPage() {
                 {item}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-cream-50">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="实体门店与服务机制"
+            title="交城两家相邻门店，方便到店沟通"
+            desc={`晟景装饰在${contactInfo.addressNote}设有两家相邻实体门店，可进行设计沟通、材料了解、施工对接和售后咨询。门店照片和具体合作品牌以正式素材和到店确认内容为准。`}
+          />
+          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
+            {["到店了解方案", "沟通施工范围", "确认交付与售后"].map((item) => (
+              <div key={item} className="card text-sm font-medium text-forest">{item}</div>
+            ))}
+          </div>
+          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
+            <h3 className="text-lg font-semibold text-forest">从设计、施工到售后</h3>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+              内部核心团队负责设计、项目管理、客户沟通和售后协调，并与相对固定的施工班组合作。新增项目、方案调整或费用变化，会先说明内容与价格，经业主确认后再安排施工和计费。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="完工后服务"
+            title="交付后还能继续查看项目资料"
+            desc={`${siteConfig.miniProgram.name}不只服务施工阶段，也延续到交付归档与售后处理。具体可见资料以项目实际上传情况和合同约定为准。`}
+          />
+          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
+            {completionServices.map(([title, desc]) => (
+              <div key={title} className="card">
+                <h3 className="text-base font-semibold text-forest">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mx-auto mt-6 max-w-3xl text-center">
+            <Link href="/facts/" className="text-sm font-medium text-clay-dark hover:text-clay">查看主体、门店与服务边界 →</Link>
           </div>
         </div>
       </section>
