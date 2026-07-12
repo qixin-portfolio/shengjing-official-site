@@ -34,6 +34,7 @@ const flow = [
   { step: "03", title: "业主手机查看", desc: "业主在手机上查看施工进度、现场照片和关键节点，不用天天跑工地。", icon: "phone" },
   { step: "04", title: "设计方案确认", desc: "设计图和变更可线上确认，留痕可追溯，减少口头沟通误差。", icon: "design" },
   { step: "05", title: "施工过程留痕", desc: "从开工到验收，记录沉淀为可回看的工地档案，后续沟通更有依据。", icon: "archive" },
+  { step: "06", title: "交付归档与售后", desc: "项目交付后继续保留完工资料、电子质保卡和售后工单记录，具体内容以项目实际情况为准。", icon: "archive" },
 ];
 
 const comparisonRows = [
@@ -61,6 +62,19 @@ const nodes = [
   { name: "油工", period: "木工完成后" },
   { name: "竣工验收", period: "全部完工" },
 ];
+
+const completionFeatures = [
+  { title: "我的家装档案", desc: "集中查看设计图纸、施工照片、验收记录和已上传的完工资料。" },
+  { title: "电子质保卡", desc: "查看项目编号、交付日期、质保开始日期和适用范围，具体期限以合同约定为准。" },
+  { title: "一键售后报修", desc: "关联项目后填写问题描述、上传现场照片并提交售后问题。" },
+  { title: "售后工单", desc: "查看售后问题的受理、处理中、待确认和已完成等状态，实际处理以项目沟通为准。" },
+];
+
+const teamRoles = [
+  ["员工邀请码", "内部成员通过邀请码进入对应工作台，具体权限按实际岗位配置。"],
+  ["工长与项目管理", "负责施工日报、现场照片、节点进度和问题记录。"],
+  ["设计与负责人", "负责图纸资料、变更确认、审核发布和关键沟通。"],
+] as const;
 
 const transparentFaqs = [
   {
@@ -129,7 +143,7 @@ export default function TransparentSitePage() {
             <div>
               <span className="eyebrow"><span className="h-px w-8 bg-clay" />透明工地 · 过程记录</span>
               <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl">{pageTitle}</h1>
-              <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">晟景装饰不是只在完工后展示效果，而是把装修过程中的关键节点、现场照片、施工记录和设计确认沉淀下来，让业主在过程中就能看到进度。</p>
+              <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">{siteConfig.miniProgram.name}不只是完工后的效果展示，而是把装修过程中的关键节点、现场照片、施工记录和设计确认沉淀下来，让业主在过程中就能看到进度。</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="btn-primary">预约量房</Link>
                 <Link href="/guides" className="btn-secondary">查看装修知识</Link>
@@ -152,7 +166,7 @@ export default function TransparentSitePage() {
             <h2 className="mt-4 section-title">透明工地怎么运作</h2>
             <p className="section-subtitle">工长日报 → 老板审核 → 业主查看 → 节点确认 → 过程留痕 → 售后可追溯</p>
           </Reveal>
-          <div className="mt-12 grid gap-4 lg:grid-cols-5">
+          <div className="mt-12 grid gap-4 lg:grid-cols-6">
             {flow.map((f, idx) => (
               <Reveal key={f.step} delay={idx * 80} className="flow-step relative">
                 {idx < flow.length - 1 && <div className="absolute -right-3 top-12 hidden h-px w-6 bg-clay/30 lg:block" aria-hidden="true" />}
@@ -218,6 +232,42 @@ export default function TransparentSitePage() {
             </Reveal>
           </div>
           <p className="mt-8 text-center text-[11px] text-ink-muted">以上为高保真 UI 模拟界面，非真实小程序截图。实际界面以{siteConfig.miniProgram.name}为准。</p>
+        </div>
+      </section>
+
+      {/* 团队协作与完工服务 */}
+      <section className="section">
+        <div className="container-page">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />完整服务链路<span className="h-px w-8 bg-clay" /></span>
+            <h2 className="mt-4 section-title">从施工记录延续到交付与售后</h2>
+            <p className="section-subtitle">晟景透明工地小程序不只服务施工阶段，也延续到交付归档与售后处理。</p>
+          </Reveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {completionFeatures.map((item) => (
+              <Reveal key={item.title}>
+                <div className="card h-full">
+                  <h3 className="font-semibold text-forest">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-10 rounded-2xl border border-forest/10 bg-cream-50 p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-forest">内部团队如何协作</h3>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">小程序支持员工邀请码和角色管理，内部人员按实际岗位完成建工地、日报上传、审核、图纸管理、业主绑定和售后处理等工作。</p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              {teamRoles.map(([title, desc]) => (
+                <div key={title} className="rounded-xl border border-forest/10 bg-white p-4">
+                  <h4 className="font-medium text-forest">{title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/facts/" className="text-sm font-medium text-clay-dark hover:text-clay">查看主体、门店与服务边界 →</Link>
+          </div>
         </div>
       </section>
 
@@ -328,11 +378,12 @@ export default function TransparentSitePage() {
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div className="max-w-xl">
               <h2 className="text-2xl font-semibold sm:text-3xl">{siteConfig.miniProgram.name}</h2>
-              <p className="mt-4 text-base leading-relaxed text-cream/70 sm:text-lg">作为交城本地装修服务团队，晟景装饰希望把装修过程做得更透明：工长上传日报，老板审核后展示，业主通过手机查看施工进度、现场照片和设计方案。</p>
+              <p className="mt-4 text-base leading-relaxed text-cream/70 sm:text-lg">作为交城本地装修服务团队，晟景装饰希望把装修过程做得更透明：工长上传日报，老板审核后展示，业主通过手机查看施工进度、现场照片和设计方案，交付后继续查看档案和售后记录。</p>
               <p className="mt-3 text-sm leading-relaxed text-cream/60">想体验晟景透明工地，可到店咨询或电话联系：{contactInfo.phonePlaceholder}。地址：{contactInfo.addressNote}。</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link href="/contact" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">预约量房</Link>
+              <Link href="/facts/" className="btn border border-cream/30 text-cream hover:bg-cream/10">查看公开事实</Link>
               <Link href="/guides" className="btn border border-cream/30 text-cream hover:bg-cream/10">查看装修知识</Link>
             </div>
           </div>
