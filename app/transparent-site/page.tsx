@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { contactInfo, siteConfig } from "@/lib/site";
 import { BreadcrumbLd, FaqPageLd, WebPageLd } from "@/components/json-ld";
@@ -155,6 +156,28 @@ export default function TransparentSitePage() {
               <p className="mt-4 text-center text-[11px] text-ink-muted">↑ 业主手机查看现场照片模拟界面（非真实截图）</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="mini-program" className="scroll-mt-20 border-b border-forest/10 bg-white py-16 sm:py-20" aria-labelledby="mini-program-title">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] lg:gap-16">
+          <div>
+            <span className="eyebrow"><span className="h-px w-8 bg-clay" />微信小程序入口</span>
+            <h2 id="mini-program-title" className="mt-4 section-title">扫码打开晟景透明工地</h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-ink-soft">
+              这是晟景透明工地小程序的官方入口。工长在已分配的工地上传施工日报和现场照片，管理人员审核后，关联该工地的业主可在手机上查看已发布的进度与记录。
+            </p>
+            <dl className="mt-8 divide-y divide-forest/10 border-y border-forest/10">
+              <div className="grid gap-1 py-4 sm:grid-cols-[7rem_1fr] sm:gap-5"><dt className="font-semibold text-forest">施工中</dt><dd className="text-sm leading-6 text-ink-soft">查看已审核的日报、现场照片、进度节点和已提供的设计资料。</dd></div>
+              <div className="grid gap-1 py-4 sm:grid-cols-[7rem_1fr] sm:gap-5"><dt className="font-semibold text-forest">交付后</dt><dd className="text-sm leading-6 text-ink-soft">查看已归档的项目资料与电子质保卡，也可提交售后报修并跟进工单。</dd></div>
+            </dl>
+            <p className="mt-5 text-sm leading-7 text-ink-muted">项目内容仅对已关联的业主和相应工作人员开放；实际可见资料以项目记录和账号权限为准，质保范围与期限以合同约定为准。</p>
+            <Link href="/contact/" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-clay-dark">需要关联自己的工地？联系晟景 <span aria-hidden="true">→</span></Link>
+          </div>
+          <figure className="mx-auto w-full max-w-[380px] border border-forest/10 bg-white p-5 text-center sm:p-7">
+            <Image src="/images/transparent-site/qr-code.png" alt="晟景透明工地微信小程序码" width={650} height={634} sizes="(max-width: 640px) 80vw, 320px" className="mx-auto h-auto w-full max-w-[320px]" />
+            <figcaption className="mt-4 text-sm font-medium text-forest">打开微信，扫一扫进入小程序</figcaption>
+          </figure>
         </div>
       </section>
 

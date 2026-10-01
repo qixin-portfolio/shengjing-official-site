@@ -124,7 +124,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ol>
-            <Link href="/transparent-site/" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">详细了解透明工地 <span aria-hidden="true">→</span></Link>
+            <Link href="/transparent-site/#mini-program" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">了解小程序并扫码进入 <span aria-hidden="true">→</span></Link>
           </div>
           <div className="border border-forest/15 bg-white px-5 py-8 sm:px-10 sm:py-12">
             <PhoneMockup><DailyReportMockup /></PhoneMockup>
