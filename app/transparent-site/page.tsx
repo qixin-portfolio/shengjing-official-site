@@ -142,15 +142,15 @@ export default function TransparentSitePage() {
             </div>
             <figure className="border border-forest/15 bg-white p-4 sm:p-6">
               <Image
-                src="/images/transparent-site/screenshots/site-progress-redacted.png"
-                alt="晟景透明工地小程序管理端工地进度实机截图，项目名称和位置已遮挡"
-                width={1290}
-                height={1325}
+                src="/images/transparent-site/illustrations/progress-concept.webp"
+                alt="晟景透明工地小程序功能示意图，展示施工进度、工长日报、现场照片和设计资料"
+                width={1536}
+                height={1024}
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="h-auto w-full"
                 priority
               />
-              <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，项目名称和位置已遮挡；数字仅为该工地当时的记录。</figcaption>
+              <figcaption className="mt-4 text-xs leading-5 text-ink-muted">功能示意图，非实机截图；实际界面和可见内容以小程序版本及账号权限为准。</figcaption>
             </figure>
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function TransparentSitePage() {
         </div>
       </section>
 
-      {/* 实机界面 */}
+      {/* 功能示意 */}
       <section className="section bg-forest-50">
         <div className="container-page">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -213,14 +213,14 @@ export default function TransparentSitePage() {
             <Reveal>
               <figure className="border border-forest/15 bg-white p-4 sm:p-6">
                 <Image
-                  src="/images/transparent-site/screenshots/daily-report-excerpt.png"
-                  alt="晟景透明工地小程序施工时间线实机截图节选，包含节点、审核状态和日报内容"
-                  width={1290}
-                  height={990}
+                  src="/images/transparent-site/illustrations/diary-concept.webp"
+                  alt="晟景透明工地小程序功能示意图，展示工长日报、审核发布和业主查看的流程"
+                  width={1536}
+                  height={1024}
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className="h-auto w-full"
                 />
-                <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，已裁去现场照片；业主仅查看自己已关联项目中已发布的内容。</figcaption>
+                <figcaption className="mt-4 text-xs leading-5 text-ink-muted">功能示意图，非实机截图；业主仅查看自己已关联项目中已发布的内容。</figcaption>
               </figure>
             </Reveal>
             <div className="grid gap-0 border-t border-forest/20">
@@ -237,7 +237,7 @@ export default function TransparentSitePage() {
               ))}
             </div>
           </div>
-          <p className="mt-8 text-center text-xs text-ink-muted">以上为小程序实机界面节选；不同身份及版本的界面和可见内容可能不同。</p>
+          <p className="mt-8 text-center text-xs text-ink-muted">以上为小程序功能示意，不代表当前实机界面；不同身份及版本的可见内容可能不同。</p>
         </div>
       </section>
 

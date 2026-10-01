@@ -127,14 +127,14 @@ export default function HomePage() {
           </div>
           <figure className="border border-forest/15 bg-white p-4 sm:p-6">
             <Image
-              src="/images/transparent-site/screenshots/daily-report-excerpt.png"
-              alt="晟景透明工地小程序施工时间线实机截图节选，显示已审核的施工记录"
-              width={1290}
-              height={990}
+              src="/images/transparent-site/illustrations/diary-concept.webp"
+              alt="晟景透明工地小程序功能示意图，展示工长日报、审核发布和业主查看的流程"
+              width={1536}
+              height={1024}
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="h-auto w-full"
             />
-            <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，已裁去项目现场照片；实际界面和可见内容以账号权限及项目记录为准。</figcaption>
+            <figcaption className="mt-4 text-xs leading-5 text-ink-muted">功能示意图，非实机截图；实际界面和可见内容以账号权限及项目记录为准。</figcaption>
           </figure>
         </div>
       </section>
