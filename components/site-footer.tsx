@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { contactInfo, navLinks, siteConfig } from "@/lib/site";
 
@@ -11,12 +12,13 @@ export function SiteFooter() {
           {/* 品牌 */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 font-semibold text-cream">
-              <span
-                aria-hidden="true"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-800 text-base font-bold text-cream ring-1 ring-clay/20"
-              >
-                晟
-              </span>
+              <Image
+                src="/images/brand/shengjing-logo.jpg"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 shrink-0 rounded-full object-cover"
+              />
               <span className="flex flex-col leading-none">
                 <span className="text-lg">{siteConfig.name}</span>
                 <span className="mt-0.5 text-[10px] font-normal tracking-wider text-cream/50">

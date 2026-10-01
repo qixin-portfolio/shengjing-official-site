@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { navLinks, siteConfig } from "@/lib/site";
@@ -16,12 +17,13 @@ export function SiteHeader() {
           className="flex items-center gap-2.5 font-semibold text-forest"
           aria-label={`${siteConfig.name} 首页`}
         >
-          <span
-            aria-hidden="true"
-            className="inline-flex h-9 w-9 items-center justify-center rounded bg-forest text-base font-bold text-cream"
-          >
-            晟
-          </span>
+          <Image
+            src="/images/brand/shengjing-logo.jpg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          />
           <span className="flex flex-col leading-none">
             <span className="text-base tracking-tight">{siteConfig.name}</span>
             <span className="mt-0.5 text-[10px] font-normal tracking-wider text-ink-muted">

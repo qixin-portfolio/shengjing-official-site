@@ -9,7 +9,7 @@ const homeTitle = "晟景装饰｜交城本地装修公司｜透明工地";
 const homeDescription =
   "交城装修、旧房翻新、整装、全屋定制。通过透明工地小程序查看工长日报、现场照片和关键节点记录，让装修过程更看得见。";
 const homeUrl = siteConfig.url + "/";
-const homeOgImage = siteConfig.url + "/images/home/construction-scene.jpg";
+const homeOgImage = siteConfig.url + "/images/home/storefront-concept.jpg";
 
 export const metadata: Metadata = {
   title: homeTitle,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: homeUrl,
     siteName: siteConfig.name,
     type: "website",
-    images: [{ url: homeOgImage, width: 1672, height: 941, alt: "晟景装饰官网装修施工场景示意图" }],
+    images: [{ url: homeOgImage, width: 1672, height: 941, alt: "晟景装饰门店形象效果图，非实拍" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -55,8 +55,8 @@ export default function HomePage() {
     <>
       <section className="home-hero relative isolate overflow-hidden" aria-labelledby="home-title">
         <Image
-          src="/images/home/construction-scene.jpg"
-          alt="装修施工场景示意图，空间内可见施工中的吊顶、保护地面和板材"
+          src="/images/home/storefront-concept.jpg"
+          alt="晟景装饰门店形象效果图，展示相邻门店外立面，非实拍"
           fill
           priority
           sizes="100vw"
@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col gap-3 border-t border-forest/25 pt-5 text-xs text-ink-soft sm:flex-row sm:items-end sm:justify-between">
             <p>服务范围：{siteConfig.serviceArea}</p>
-            <p className="max-w-xs sm:text-right">施工场景示意图，非晟景项目实拍</p>
+            <p className="max-w-xs sm:text-right">门店形象效果图，非门店实拍</p>
           </div>
         </div>
       </section>
