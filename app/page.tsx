@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaqPageLd } from "@/components/json-ld";
-import { DailyReportMockup, PhoneMockup } from "@/components/phone-mockup";
 import { caseStudies } from "@/lib/cases";
 import { contactInfo, homeFaqs, siteConfig } from "@/lib/site";
 
@@ -126,10 +125,17 @@ export default function HomePage() {
             </ol>
             <Link href="/transparent-site/#mini-program" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">了解小程序并扫码进入 <span aria-hidden="true">→</span></Link>
           </div>
-          <div className="border border-forest/15 bg-white px-5 py-8 sm:px-10 sm:py-12">
-            <PhoneMockup><DailyReportMockup /></PhoneMockup>
-            <p className="mt-5 text-center text-xs text-ink-muted">小程序功能模拟界面，实际展示以项目记录为准</p>
-          </div>
+          <figure className="border border-forest/15 bg-white p-4 sm:p-6">
+            <Image
+              src="/images/transparent-site/screenshots/daily-report-excerpt.png"
+              alt="晟景透明工地小程序施工时间线实机截图节选，显示已审核的施工记录"
+              width={1290}
+              height={990}
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="h-auto w-full"
+            />
+            <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，已裁去项目现场照片；实际界面和可见内容以账号权限及项目记录为准。</figcaption>
+          </figure>
         </div>
       </section>
 

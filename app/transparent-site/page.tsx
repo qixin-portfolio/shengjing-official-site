@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { contactInfo, siteConfig } from "@/lib/site";
 import { BreadcrumbLd, FaqPageLd, WebPageLd } from "@/components/json-ld";
-import { PhoneMockup, PhotoGridMockup, DailyReportMockup, DesignConfirmMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
 
 const pageTitle = "晟景透明工地：装修进度看得见，施工过程有记录";
@@ -53,15 +52,6 @@ const benefits = [
   { title: "关键节点可回看", desc: "水电封槽前、防水做完后、瓦工贴砖后，照片和记录都在。" },
   { title: "沟通更有依据", desc: "哪天做了什么、谁确认的，记录可回看，减少只靠口头回忆。" },
   { title: "装修档案长期保存", desc: "设计资料、施工记录、验收记录、完工照片可以长期保存。" },
-];
-
-const nodes = [
-  { name: "水电改造", period: "开工第 1-2 周" },
-  { name: "防水验收", period: "水电完成后" },
-  { name: "瓦工贴砖", period: "防水验收后" },
-  { name: "木工", period: "瓦工进行中" },
-  { name: "油工", period: "木工完成后" },
-  { name: "竣工验收", period: "全部完工" },
 ];
 
 const completionFeatures = [
@@ -150,11 +140,18 @@ export default function TransparentSitePage() {
                 <Link href="/guides" className="btn-secondary">查看装修知识</Link>
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-clay/10 blur-2xl" />
-              <PhoneMockup><PhotoGridMockup /></PhoneMockup>
-              <p className="mt-4 text-center text-[11px] text-ink-muted">↑ 业主手机查看现场照片模拟界面（非真实截图）</p>
-            </div>
+            <figure className="border border-forest/15 bg-white p-4 sm:p-6">
+              <Image
+                src="/images/transparent-site/screenshots/site-progress-redacted.png"
+                alt="晟景透明工地小程序管理端工地进度实机截图，项目名称和位置已遮挡"
+                width={1290}
+                height={1325}
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="h-auto w-full"
+                priority
+              />
+              <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，项目名称和位置已遮挡；数字仅为该工地当时的记录。</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -205,56 +202,42 @@ export default function TransparentSitePage() {
         </div>
       </section>
 
-      {/* 四屏手机模拟 */}
+      {/* 实机界面 */}
       <section className="section bg-forest-50">
         <div className="container-page">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="section-title">业主在手机上能看到什么</h2>
-            <p className="section-subtitle">不用天天跑工地，打开小程序就能看到这四样。</p>
+            <h2 className="section-title">施工记录在小程序里怎么呈现</h2>
+            <p className="section-subtitle">工长提交、管理人员审核后，关联工地的业主可查看已发布的记录。</p>
           </Reveal>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <Reveal delay={0}>
-              <div className="mb-3 text-center"><h3 className="text-sm font-semibold text-forest">工长日报</h3><p className="text-xs text-ink-muted">每天施工内容、人员、进度</p></div>
-              <PhoneMockup><DailyReportMockup /></PhoneMockup>
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
+            <Reveal>
+              <figure className="border border-forest/15 bg-white p-4 sm:p-6">
+                <Image
+                  src="/images/transparent-site/screenshots/daily-report-excerpt.png"
+                  alt="晟景透明工地小程序施工时间线实机截图节选，包含节点、审核状态和日报内容"
+                  width={1290}
+                  height={990}
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="h-auto w-full"
+                />
+                <figcaption className="mt-4 text-xs leading-5 text-ink-muted">管理端实机截图节选，已裁去现场照片；业主仅查看自己已关联项目中已发布的内容。</figcaption>
+              </figure>
             </Reveal>
-            <Reveal delay={80}>
-              <div className="mb-3 text-center"><h3 className="text-sm font-semibold text-forest">现场照片</h3><p className="text-xs text-ink-muted">按节点归档，可随时回看</p></div>
-              <PhoneMockup><PhotoGridMockup /></PhoneMockup>
-            </Reveal>
-            <Reveal delay={160}>
-              <div className="mb-3 text-center"><h3 className="text-sm font-semibold text-forest">节点进度</h3><p className="text-xs text-ink-muted">清楚现在做到哪一步</p></div>
-              <PhoneMockup>
-                <div className="space-y-3 text-ink">
-                  <p className="pt-3 text-[10px] font-medium text-ink-muted">晟景透明工地</p>
-                  <p className="text-xs font-semibold text-forest">施工进度 · 6 个节点</p>
-                  <div className="h-px bg-forest/10" />
-                  <div className="space-y-2.5">
-                    {nodes.map((n, i) => {
-                      const done = i < 3; const current = i === 3;
-                      return (
-                        <div key={n.name} className="flex items-start gap-2.5">
-                          <span className={`mt-0.5 h-2.5 w-2.5 rounded-full ${done ? (current ? "bg-clay ring-2 ring-clay/30" : "bg-forest") : "bg-ink/15"}`} />
-                          <div>
-                            <p className={`text-[10px] font-medium ${current ? "text-clay-dark" : done ? "text-forest" : "text-ink-muted"}`}>{n.name}{current ? " · 进行中" : done ? " · 已完成" : ""}</p>
-                            <p className="text-[9px] text-ink-muted">{n.period}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="mt-3 rounded-xl bg-forest/5 px-3 py-2">
-                    <p className="text-[9px] text-ink-muted">整体进度：约 50%</p>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-ink/10"><div className="h-full w-1/2 rounded-full bg-clay" /></div>
-                  </div>
+            <div className="grid gap-0 border-t border-forest/20">
+              {[
+                ["工长日报", "记录当天施工内容、人员和进度，审核后再展示。"],
+                ["现场照片", "与对应节点一起归档，可按项目记录回看。"],
+                ["节点进度", "查看已记录的施工阶段和最近更新。"],
+                ["设计资料", "查看项目中已上传并授权可见的图纸与确认记录。"],
+              ].map(([title, detail]) => (
+                <div key={title} className="border-b border-forest/20 py-5">
+                  <h3 className="font-semibold text-forest">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-ink-soft">{detail}</p>
                 </div>
-              </PhoneMockup>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mb-3 text-center"><h3 className="text-sm font-semibold text-forest">设计确认</h3><p className="text-xs text-ink-muted">变更线上确认，留痕可追溯</p></div>
-              <PhoneMockup><DesignConfirmMockup /></PhoneMockup>
-            </Reveal>
+              ))}
+            </div>
           </div>
-          <p className="mt-8 text-center text-[11px] text-ink-muted">以上为高保真 UI 模拟界面，非真实小程序截图。实际界面以{siteConfig.miniProgram.name}为准。</p>
+          <p className="mt-8 text-center text-xs text-ink-muted">以上为小程序实机界面节选；不同身份及版本的界面和可见内容可能不同。</p>
         </div>
       </section>
 
