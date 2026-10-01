@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import { contactInfo, siteConfig } from "@/lib/site";
 import { BreadcrumbLd } from "@/components/json-ld";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "联系我们",
-  description: "预约量房、微信咨询、电话咨询、到店沟通。晟景装饰服务山西交城及周边，具体地址请以线下门店或客服确认为准。",
+  description: "联系晟景装饰，预约量房或到店咨询。电话 13935842860，地址：山西省交城县南环路康健装饰广场。",
   alternates: { canonical: "/contact" },
 };
 
 const consultPaths = [
-  { title: "预约量房", desc: "填写需求和联系方式，我们安排量房时间。量房后给出初步方案和报价建议。", items: ["服务区域：山西吕梁交城县及周边", "建议提前预约，避免跑空", "量房后 3 个工作日内出初步方案"], cta: "预约量房", href: "/contact", primary: true, icon: "calendar" },
-  { title: "微信咨询", desc: "添加微信咨询装修问题，发送户型图可以更快给出建议。", note: "二维码待客服确认后上线", icon: "wechat" },
-  { title: "电话咨询", desc: "电话咨询请通过微信或到店预约，我们会在确认联系方式后更新。", note: "具体号码请以线下门店或客服确认为准", icon: "phone" },
+  { title: "预约量房", desc: "先电话说明房屋情况和装修需求，再沟通量房时间。", items: ["服务区域：山西吕梁交城县及周边", "建议提前预约，避免跑空", "具体方案与报价以量房沟通为准"], cta: "电话预约量房", icon: "calendar" },
+  { title: "微信咨询", desc: "微信二维码尚未接入官网，可先电话沟通咨询方式。", icon: "wechat" },
+  { title: "电话咨询", desc: "电话沟通装修需求、量房安排和到店时间。", icon: "phone" },
 ];
 
 const prepChecklist = [
@@ -77,21 +77,21 @@ export default function ContactPage() {
               <div className="mt-5 space-y-2 text-sm text-cream/80">
                 {consultPaths[0].items?.map((item) => (<p key={item}>· {item}</p>))}
               </div>
-              <div className="mt-6"><Link href="/contact" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">{consultPaths[0].cta}</Link></div>
+              <div className="mt-6"><a href={"tel:" + contactInfo.phonePlaceholder} className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">{consultPaths[0].cta}</a></div>
             </div>
             <div className="card">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-clay/15 text-clay-dark"><ConsultIcon name="wechat" /></div>
               <h2 className="mt-4 text-lg font-semibold text-forest">微信咨询</h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{consultPaths[1].desc}</p>
               <div className="mt-4 flex h-28 items-center justify-center rounded-xl border border-dashed border-clay/30 bg-clay/5">
-                <div className="text-center"><p className="text-xs font-medium text-clay-dark">扫码添加微信</p><p className="mt-1 text-[11px] text-ink-muted">{consultPaths[1].note}</p></div>
+                <p className="text-xs font-medium text-clay-dark">正式二维码待补充</p>
               </div>
             </div>
             <div className="card">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest/10 text-forest"><ConsultIcon name="phone" /></div>
               <h2 className="mt-4 text-lg font-semibold text-forest">电话咨询</h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{consultPaths[2].desc}</p>
-              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">电话号码</p><p className="mt-1 text-xs text-ink-muted">{consultPaths[2].note}</p></div>
+              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">电话号码</p><a href={"tel:" + contactInfo.phonePlaceholder} className="mt-1 inline-block text-base font-semibold text-forest hover:text-clay-dark">{contactInfo.phonePlaceholder}</a></div>
             </div>
           </div>
 
@@ -126,7 +126,7 @@ export default function ContactPage() {
             <div className="card">
               <h2 className="text-lg font-semibold text-forest">到店沟通</h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">建议提前预约，避免跑空。到店可以看材料样板、聊方案。</p>
-              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">门店地址</p><p className="mt-1 text-xs text-ink-muted">具体地址请以线下门店或客服确认为准</p></div>
+              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">门店地址</p><p className="mt-1 text-sm text-ink-soft">{contactInfo.addressNote}</p></div>
             </div>
           </div>
 

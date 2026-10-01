@@ -8,7 +8,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-forest/10 bg-cream/85 backdrop-blur-md supports-[backdrop-filter]:bg-cream/75">
+    <header className="sticky top-0 z-40 border-b border-forest/10 bg-white/95 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         {/* 品牌 Logo 区 */}
         <Link
@@ -18,7 +18,7 @@ export function SiteHeader() {
         >
           <span
             aria-hidden="true"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-800 text-base font-bold text-cream shadow-soft ring-1 ring-clay/20"
+            className="inline-flex h-9 w-9 items-center justify-center rounded bg-forest text-base font-bold text-cream"
           >
             晟
           </span>
@@ -43,7 +43,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="hidden rounded-xl bg-clay px-4 py-2 text-sm font-medium text-cream shadow-soft transition-all hover:bg-clay-dark hover:shadow-card sm:inline-flex"
+            className="hidden rounded bg-forest px-4 py-2 text-sm font-medium text-cream transition-colors hover:bg-forest-800 sm:inline-flex"
           >
             预约量房
           </Link>

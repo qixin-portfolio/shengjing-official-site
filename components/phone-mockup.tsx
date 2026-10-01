@@ -29,9 +29,9 @@ export function DailyReportMockup() {
       <div className="flex items-center justify-between pt-3">
         <div>
           <p className="text-[10px] font-medium text-ink-muted">晟景透明工地</p>
-          <p className="text-xs font-semibold text-forest">交城·某小区·王宅</p>
+          <p className="text-xs font-semibold text-forest">演示项目 · 施工记录</p>
         </div>
-        <span className="tag tag-clay text-[10px]">第 42 天</span>
+        <span className="tag tag-clay text-[10px]">界面示意</span>
       </div>
 
       <div className="h-px bg-forest/10" />

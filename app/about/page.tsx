@@ -32,7 +32,7 @@ const factCards = [
   { label: "服务经验", value: `可追溯至${siteConfig.historyStart}的本地装修从业积累` },
   { label: "品牌定位", value: `交城${siteConfig.brandHistory}` },
   { label: "服务地区", value: siteConfig.serviceArea },
-  { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、局部改造、透明工地" },
+  { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、透明工地" },
   { label: "咨询电话", value: contactInfo.phonePlaceholder },
   { label: "服务地址", value: contactInfo.addressNote },
   { label: "品牌宣传语", value: "客户满意，口碑之选" },
@@ -43,7 +43,6 @@ const services = [
   "家装设计：根据户型、预算和居住需求沟通方案",
   "旧房翻新：关注拆改边界、水电更新、防水和墙面处理",
   "全屋整装：设计、施工、材料和定制衔接",
-  "局部改造：厨房、卫生间、墙面、水电等局部更新",
   "透明工地：工长日报、现场照片、关键节点和设计确认留痕",
 ];
 
@@ -67,7 +66,7 @@ const brandFaqs = [
   },
   {
     q: "晟景装饰适合旧房翻新吗？",
-    a: "适合需要旧房翻新的业主，尤其是担心水电、防水、墙面和局部改造过程不透明的情况。具体方案仍需量房后结合房屋现状确认。",
+    a: "适合需要旧房翻新的业主，尤其是担心水电、防水和墙面处理过程不透明的情况。具体方案仍需量房后结合房屋现状确认。",
   },
   {
     q: "什么是透明工地？",
