@@ -108,6 +108,63 @@ test("wx.config errors do not trigger custom sharing", async () => {
   assert.equal(calls.some(call => call[0] === "friends"), false);
 });
 
+test("diagnostics distinguish signature, SDK, config, and each share API result", async () => {
+  const { win, calls } = fixture();
+  const updates = [];
+  win.wx.updateAppMessageShareData = data => { calls.push(["friends", data]); data.success(); };
+  win.wx.updateTimelineShareData = data => { calls.push(["timeline", data]); data.fail({ errMsg: "updateTimelineShareData:permission denied" }); };
+  load().configureWeChatShare(win, (stage, status) => updates.push([stage, status]));
+  await tick();
+  for (const stage of ["signature", "sdk", "config", "friends"]) {
+    assert.equal(updates.filter(update => update[0] === stage).at(-1)[1].state, "ok");
+  }
+  assert.equal(updates.filter(update => update[0] === "timeline").at(-1)[1].message, "微信未授予此接口权限");
+});
+
+test("diagnostics report config rejection but never expose raw SDK payloads", async () => {
+  const { win } = fixture();
+  const updates = [];
+  win.wx.config = () => win.error({ errMsg: "config:invalid signature secret=PRIVATE_TEST_VALUE" });
+  load().configureWeChatShare(win, (stage, status) => updates.push([stage, status]));
+  await tick();
+  assert.equal(updates.at(-1)[0], "config");
+  assert.equal(updates.at(-1)[1].message, "微信拒绝签名");
+  assert.equal(JSON.stringify(updates).includes("PRIVATE_TEST_VALUE"), false);
+  assert.equal(updates.some(update => update[0] === "friends"), false);
+});
+
+test("diagnostics report HTTP and SDK failures without changing ordinary sharing", async () => {
+  const failedRequest = fixture();
+  const requestUpdates = [];
+  failedRequest.win.fetch = async () => ({ ok: false, status: 503 });
+  load().configureWeChatShare(failedRequest.win, (stage, status) => requestUpdates.push([stage, status]));
+  await tick();
+  assert.equal(requestUpdates.at(-1)[1].message, "签名请求失败（HTTP 503）");
+  const failedSdk = fixture();
+  const sdkUpdates = [];
+  delete failedSdk.win.wx;
+  failedSdk.win.document.createElement = () => ({ remove: () => {} });
+  failedSdk.win.document.head = { appendChild: script => script.onerror() };
+  load().configureWeChatShare(failedSdk.win, (stage, status) => sdkUpdates.push([stage, status]));
+  await tick();
+  assert.equal(sdkUpdates.at(-1)[0], "sdk");
+  assert.equal(sdkUpdates.at(-1)[1].message, "微信脚本加载失败");
+});
+
+test("diagnostics reject unknown error details and ignore callbacks after cleanup", async () => {
+  const { win, calls } = fixture();
+  const updates = [];
+  const cleanup = load().configureWeChatShare(win, (stage, status) => updates.push([stage, status]));
+  await tick();
+  const friends = calls.find(call => call[0] === "friends")[1];
+  friends.fail({ errMsg: "unknown PRIVATE_TEST_VALUE" });
+  assert.equal(updates.at(-1)[1].message, "微信返回接口错误");
+  const count = updates.length;
+  cleanup(); friends.success();
+  assert.equal(updates.length, count);
+  assert.equal(JSON.stringify(updates).includes("PRIVATE_TEST_VALUE"), false);
+});
+
 test("lazy SDK load uses official URL; SDK failure is harmless", async () => {
   for (const succeeds of [true, false]) {
     const { win, calls } = fixture();
