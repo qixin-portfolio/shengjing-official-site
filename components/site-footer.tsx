@@ -21,7 +21,7 @@ export function SiteFooter() {
               />
               <span className="flex flex-col leading-none">
                 <span className="text-lg">{siteConfig.name}</span>
-                <span className="mt-0.5 text-[10px] font-normal tracking-wider text-cream/50">
+                <span className="mt-1 text-xs font-normal text-cream/75">
                   交城 · 透明工地
                 </span>
               </span>
@@ -29,7 +29,7 @@ export function SiteFooter() {
             <p className="mt-3 text-sm leading-relaxed text-cream/70">
               {siteConfig.tagline}
             </p>
-            <p className="mt-2 text-xs leading-relaxed text-cream/50">
+            <p className="mt-2 text-xs leading-relaxed text-cream/75">
               服务区域：{siteConfig.serviceArea}
             </p>
           </div>
@@ -55,7 +55,9 @@ export function SiteFooter() {
           <div>
             <h3 className="text-sm font-semibold text-cream">联系方式</h3>
             <ul className="mt-3 space-y-2 text-sm text-cream/70">
-              <li><a href={"tel:" + contactInfo.phonePlaceholder} className="hover:text-clay-light">电话：{contactInfo.phonePlaceholder}</a></li>
+              {contactInfo.phones.map((phone) => <li key={phone}><a href={"tel:" + phone} className="hover:text-clay-light">电话：{phone}</a></li>)}
+              <li><Link href="/contact/" className="hover:text-clay-light">微信咨询二维码</Link></li>
+              <li><Link href="/cases/#douyin" className="hover:text-clay-light">抖音视频与案例</Link></li>
               <li>地址：{contactInfo.addressNote}</li>
               <li>到店建议提前预约</li>
             </ul>
@@ -67,7 +69,7 @@ export function SiteFooter() {
             <p className="mt-3 text-xs leading-relaxed text-cream/60">
               {siteConfig.miniProgram.name}
             </p>
-            <p className="mt-1 text-xs leading-relaxed text-cream/50">
+            <p className="mt-1 text-xs leading-relaxed text-cream/75">
               {siteConfig.miniProgram.desc}
             </p>
             <div className="mt-4">
@@ -82,11 +84,11 @@ export function SiteFooter() {
         </div>
 
         {/* 底部：版权 + 备案 */}
-        <div className="mt-10 border-t border-cream/10 pt-6">
-          <p className="text-xs text-cream/50">
-            © {year} {siteConfig.name}。本站内容为品牌介绍与装修知识分享，不构成合同承诺。具体服务内容、价格、工期以线下签约为准。
+        <div className="mt-10 border-t border-cream/20 pt-6">
+          <p className="text-xs leading-6 text-cream/75">
+            © {year} {siteConfig.name}。装修项目、价格、工期和质保安排，以双方签署的合同为准。
           </p>
-          <div className="mt-3 text-xs text-cream/50">
+          <div className="mt-3 text-xs leading-6 text-cream/75">
             <span>备案号：晋ICP备2026008726号-1</span>
           </div>
         </div>

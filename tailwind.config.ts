@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 品牌主色：温暖、真实、本地老品牌感
+        // 深绿品牌色与中性阅读底色。
         cream: {
-          DEFAULT: "#F6F2EA", // 米白（主背景）
-          50: "#FBF9F4",
-          100: "#F6F2EA",
-          200: "#EDE6D6",
+          DEFAULT: "#F5F7F4",
+          50: "#FAFBFA",
+          100: "#F5F7F4",
+          200: "#E5EBE6",
         },
         forest: {
           DEFAULT: "#304238", // 深绿（主品牌色）
@@ -40,7 +40,7 @@ const config: Config = {
         ink: {
           DEFAULT: "#352F2A", // 深棕黑（主文字，比纯黑温暖）
           soft: "#5F5E5A",
-          muted: "#A19C96", // 暖灰（辅助文字）
+          muted: "#656C65", // 辅助文字保持可读对比度。
         },
       },
       fontFamily: {
@@ -53,6 +53,14 @@ const config: Config = {
           "Microsoft YaHei",
           "sans-serif",
         ],
+      },
+      letterSpacing: {
+        tighter: "0",
+        tight: "0",
+        normal: "0",
+        wide: "0",
+        wider: "0",
+        widest: "0",
       },
       container: {
         center: true,

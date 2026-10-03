@@ -5,7 +5,7 @@
 :root {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --background: #f6f2ea;
+  --background: #f5f7f4;
   --foreground: #352f2a;
 }
 
@@ -25,6 +25,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #dbe6de;
+  color: #1a241d;
+}
+
+input, textarea {
+  caret-color: #304238;
+}
+
+html {
+  scrollbar-color: #78867c #f5f7f4;
+  scroll-padding-top: 5rem;
 }
 
 .home-hero-overlay {
@@ -60,16 +74,17 @@ body {
   .home-hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(246, 248, 244, 0.95) 0%,
-      rgba(246, 248, 244, 0.94) 65%,
-      rgba(246, 248, 244, 0.52) 100%
+      rgba(246, 248, 244, 0.99) 0%,
+      rgba(246, 248, 244, 0.97) 36%,
+      rgba(246, 248, 244, 0.90) 66%,
+      rgba(246, 248, 244, 0.10) 100%
     );
   }
 }
 
 :focus-visible {
-  outline: 2px solid #947461;
-  outline-offset: 2px;
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
   border-radius: 4px;
 }
 
@@ -80,16 +95,16 @@ body {
 
   /* 按钮 */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all duration-200 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-white;
   }
   .btn-primary {
-    @apply btn bg-forest text-cream shadow-soft hover:bg-forest-800 hover:shadow-card hover:-translate-y-px;
+    @apply btn bg-forest text-cream hover:bg-forest-800;
   }
   .btn-secondary {
     @apply btn border border-forest/30 bg-transparent text-forest hover:bg-forest/5 hover:border-forest/50;
   }
   .btn-clay {
-    @apply btn bg-clay text-cream shadow-soft hover:bg-clay-dark hover:shadow-card hover:-translate-y-px;
+    @apply btn bg-forest text-cream hover:bg-forest-800;
   }
   .btn-ghost-clay {
     @apply btn border border-clay/30 bg-clay/10 text-clay-dark hover:bg-clay/20;
@@ -111,13 +126,13 @@ body {
 
   /* 卡片 */
   .card {
-    @apply rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-all duration-200 ease-smooth hover:shadow-card hover:border-clay/20 hover:-translate-y-0.5;
+    @apply rounded-lg border border-forest/15 bg-white p-6;
   }
   .card-dark {
-    @apply rounded-2xl bg-forest-900 p-6 text-cream shadow-dark sm:p-8;
+    @apply rounded-lg bg-forest-900 p-6 text-cream sm:p-8;
   }
   .card-clay {
-    @apply rounded-2xl border border-clay/20 bg-clay/5 p-6;
+    @apply rounded-lg border border-forest/15 bg-forest/5 p-6;
   }
 
   .eyebrow {
@@ -153,7 +168,7 @@ body {
 
   /* 流程步骤 */
   .flow-step {
-    @apply rounded-2xl border border-forest/10 bg-white p-5 shadow-soft transition-all duration-200 ease-smooth hover:shadow-card hover:border-clay/30;
+    @apply rounded-lg border border-forest/15 bg-white p-5;
   }
 
   /* 案例风格色块 */
@@ -185,42 +200,27 @@ body {
   .nav-link:hover {
     @apply text-forest;
   }
+  .nav-link[aria-current="page"] {
+    @apply bg-forest/5 text-forest;
+  }
   .nav-link::after {
     content: "";
     position: absolute;
     left: 50%;
     bottom: 4px;
-    width: 0;
-    height: 2px;
-    background: #947461;
-    border-radius: 1px;
-    transform: translateX(-50%);
-    transition: width 0.2s ease;
-  }
-  .nav-link:hover::after {
     width: 60%;
+    height: 2px;
+    background: #304238;
+    border-radius: 1px;
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.2s ease;
+  }
+  .nav-link:hover::after, .nav-link[aria-current="page"]::after {
+    transform: translateX(-50%) scaleX(1);
   }
 
-  /* 背景纹理：纸张感 + 陶土光斑 */
-  .bg-paper {
-    background-color: #f6f2ea;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(148, 116, 97, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(48, 66, 56, 0.04) 0%, transparent 40%);
-  }
-  .bg-wood-glow {
-    background-image: radial-gradient(
-      ellipse at top right,
-      rgba(207, 174, 123, 0.12) 0%,
-      transparent 50%
-    );
-  }
-  .bg-clay-glow {
-    background-image: radial-gradient(
-      ellipse at bottom left,
-      rgba(148, 116, 97, 0.08) 0%,
-      transparent 50%
-    );
+  .bg-paper, .bg-wood-glow, .bg-clay-glow {
+    background-color: #f5f7f4;
   }
 
   /* 对比表高亮列 */
@@ -248,16 +248,15 @@ body {
   }
 }
 
-/* 滚动渐显动效（克制，尊重 prefers-reduced-motion） */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
+.reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
   }
 }
 
