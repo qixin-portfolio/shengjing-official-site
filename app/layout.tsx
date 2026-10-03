@@ -3,6 +3,7 @@ import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WeChatShare } from "@/components/wechat-share";
 import {
   OrganizationLd,
   WebSiteLd,
@@ -92,6 +93,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
+        <WeChatShare />
       </body>
     </html>
   );
