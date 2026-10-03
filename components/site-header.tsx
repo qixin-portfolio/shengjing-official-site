@@ -1,14 +1,31 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { navLinks, siteConfig } from "@/lib/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const isCurrent = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  useEffect(() => {
+    if (!open) return;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onEscape);
+    return () => document.removeEventListener("keydown", onEscape);
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-forest/10 bg-cream/85 backdrop-blur-md supports-[backdrop-filter]:bg-cream/75">
+    <header className="sticky top-0 z-40 border-b border-forest/10 bg-white">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         {/* 品牌 Logo 区 */}
         <Link
@@ -16,15 +33,16 @@ export function SiteHeader() {
           className="flex items-center gap-2.5 font-semibold text-forest"
           aria-label={`${siteConfig.name} 首页`}
         >
-          <span
-            aria-hidden="true"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-forest to-forest-800 text-base font-bold text-cream shadow-soft ring-1 ring-clay/20"
-          >
-            晟
-          </span>
+          <Image
+            src="/images/brand/shengjing-logo.jpg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          />
           <span className="flex flex-col leading-none">
             <span className="text-base tracking-tight">{siteConfig.name}</span>
-            <span className="mt-0.5 text-[10px] font-normal tracking-wider text-ink-muted">
+            <span className="mt-1 text-xs font-normal text-ink-muted">
               交城 · 透明工地
             </span>
           </span>
@@ -33,7 +51,7 @@ export function SiteHeader() {
         {/* 桌面导航 */}
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="主导航">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="nav-link">
+            <Link key={link.href} href={link.href} className="nav-link" aria-current={isCurrent(link.href) ? "page" : undefined}>
               {link.label}
             </Link>
           ))}
@@ -43,15 +61,16 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="hidden rounded-xl bg-clay px-4 py-2 text-sm font-medium text-cream shadow-soft transition-all hover:bg-clay-dark hover:shadow-card sm:inline-flex"
+            className="hidden min-h-11 items-center rounded-lg bg-forest px-4 py-2 text-sm font-medium text-cream transition-colors hover:bg-forest-800 sm:inline-flex"
           >
             预约量房
           </Link>
 
           <button
+            ref={menuButton}
             type="button"
-            className="inline-flex items-center justify-center rounded-lg p-2 text-forest hover:bg-forest/5 lg:hidden"
-            aria-label="打开菜单"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-forest hover:bg-forest/5 lg:hidden"
+            aria-label={open ? "关闭菜单" : "打开菜单"}
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
@@ -82,7 +101,8 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-3 text-sm font-medium text-ink-soft transition-colors hover:bg-forest/5 hover:text-forest"
+                className="rounded-lg px-3 py-3 text-sm font-medium text-ink-soft transition-colors hover:bg-forest/5 hover:text-forest aria-[current=page]:bg-forest/5 aria-[current=page]:text-forest"
+                aria-current={isCurrent(link.href) ? "page" : undefined}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -90,7 +110,7 @@ export function SiteHeader() {
             ))}
             <Link
               href="/contact"
-              className="mt-2 rounded-xl bg-clay px-3 py-3 text-center text-sm font-medium text-cream"
+              className="mt-2 rounded-lg bg-forest px-3 py-3 text-center text-sm font-medium text-cream"
               onClick={() => setOpen(false)}
             >
               预约量房

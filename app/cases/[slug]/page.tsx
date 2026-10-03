@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -7,6 +8,7 @@ import {
   getCaseStudyBySlug,
 } from "@/lib/cases";
 import { BreadcrumbLd } from "@/components/json-ld";
+import { siteConfig } from "@/lib/site";
 
 export function generateStaticParams() {
   return caseSlugs.map((slug) => ({ slug }));
@@ -19,11 +21,24 @@ export function generateMetadata({
 }): Metadata {
   const item = getCaseStudyBySlug(params.slug);
   if (!item) return {};
+  const cover = item.images?.[0];
+  const url = `${siteConfig.url}/cases/${item.slug}/`;
 
   return {
     title: item.title,
     description: item.summary,
     alternates: { canonical: `/cases/${item.slug}` },
+    ...(cover ? {
+      openGraph: {
+        title: item.title,
+        description: item.summary,
+        url,
+        siteName: siteConfig.name,
+        type: "website",
+        images: [{ url: siteConfig.url + cover.src, width: cover.width, height: cover.height, alt: cover.alt }],
+      },
+      twitter: { card: "summary_large_image", title: item.title, description: item.summary, images: [siteConfig.url + cover.src] },
+    } : {}),
   };
 }
 
@@ -43,9 +58,9 @@ export default function CaseDetailPage({
     ["装修类型", item.renovationType],
     ["风格方向", item.style],
     ["当前状态", item.currentStatus],
-    ["透明工地记录状态", item.transparentRecordStatus],
-    ["图片授权状态", item.imageAuthStatus],
-    ["业主反馈授权状态", item.ownerFeedbackAuthStatus],
+    ["施工记录", item.transparentRecordStatus],
+    ["照片说明", item.imageAuthStatus],
+    ["业主反馈", item.ownerFeedbackAuthStatus],
   ];
 
   return (
@@ -72,17 +87,43 @@ export default function CaseDetailPage({
           </nav>
 
           <div className="mx-auto max-w-3xl">
-            <span className="eyebrow">
-              <span className="h-px w-8 bg-wood-dark" />
-              真实案例资料
-            </span>
-            <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl">
+            <h1 className="text-3xl font-bold leading-tight text-forest sm:text-4xl">
               {item.title}
             </h1>
             <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
               {item.summary}
             </p>
           </div>
+
+          {item.images && item.images.length > 0 && (
+            <section className="mx-auto mt-10 max-w-5xl" aria-labelledby="project-images-title">
+              <div className="border-t border-forest/20 pt-6">
+                <h2 id="project-images-title" className="text-xl font-semibold text-forest">{item.imageLabel ?? "项目图片"}</h2>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-soft">{item.imageAuthStatus}</p>
+              </div>
+              <div className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2">
+                {item.images.map((image, index) => (
+                  <figure key={image.src}>
+                    <a href={image.src} target="_blank" rel="noopener noreferrer" aria-label={`查看大图：${image.caption}（新窗口）`} className="block rounded-lg">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        priority={index === 0}
+                        sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1100px) 46vw, 500px"
+                        className="h-auto w-full rounded-lg"
+                      />
+                    </a>
+                    <figcaption className="mt-3 flex items-center justify-between gap-4 text-sm leading-6 text-ink-soft">
+                      <span>{image.caption}</span>
+                      <a href={image.src} target="_blank" rel="noopener noreferrer" aria-label={`查看大图：${image.caption}（新窗口）`} className="inline-flex min-h-11 shrink-0 items-center text-forest underline underline-offset-4">查看大图</a>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="mx-auto mt-10 max-w-4xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft">
             <h2 className="text-lg font-semibold text-forest">案例信息</h2>
@@ -112,10 +153,12 @@ export default function CaseDetailPage({
 
           <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-forest/10 bg-cream-50 p-6 sm:p-8">
             <h2 className="text-lg font-semibold text-forest">
-              资料补充说明
+              照片与后续资料
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              案例资料会在取得图片授权、业主反馈授权和隐私确认后继续补充。当前页面不公开客户姓名、电话、完整门牌号和完整报价明细，也不把效果图写成实景完工图。
+              {item.images?.length
+                ? "施工日报、验收记录和业主反馈仍待授权后补充，图片不能替代现场验收。客户姓名、电话、门牌和完整报价不公开。"
+                : "照片和业主反馈取得授权后再补充。客户姓名、电话、门牌和完整报价不公开；设计效果图会注明，方便与完工照片区分。"}
             </p>
           </div>
 

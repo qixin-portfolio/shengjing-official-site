@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { siteConfig, homeFaqs } from "@/lib/site";
 import { FaqPageLd } from "@/components/json-ld";
-import { PhoneMockup, DailyReportMockup } from "@/components/phone-mockup";
-import { Reveal } from "@/components/reveal";
+import { BrandShowcase } from "@/components/brand-showcase";
+import { DouyinShowcase } from "@/components/douyin-showcase";
+import { caseStudies } from "@/lib/cases";
+import { contactInfo, homeFaqs, siteConfig } from "@/lib/site";
 
 const homeTitle = "晟景装饰｜交城本地装修公司｜透明工地";
 const homeDescription =
-  "交城装修、旧房翻新、整装、全屋定制。通过透明工地小程序查看工长日报、现场照片和关键节点记录，让装修过程更看得见。";
-const homeUrl = "https://www.shengjingjc.cn/";
-const homeOgImage = "https://www.shengjingjc.cn/og-home.jpg";
+  "晟景装饰在交城提供别墅、大宅、精装、设计与施工服务，也承接旧房翻新和全屋定制。施工日报和现场照片审核后，可在透明工地小程序查看。";
+const homeUrl = siteConfig.url + "/";
+const homeOgImage = siteConfig.url + "/images/home/storefront-concept.jpg";
 
 export const metadata: Metadata = {
   title: homeTitle,
@@ -21,14 +23,7 @@ export const metadata: Metadata = {
     url: homeUrl,
     siteName: siteConfig.name,
     type: "website",
-    images: [
-      {
-        url: homeOgImage,
-        width: 1200,
-        height: 630,
-        alt: "晟景装饰交城本地装修公司透明工地分享图",
-      },
-    ],
+    images: [{ url: homeOgImage, width: 1672, height: 941, alt: "晟景装饰门店形象效果图，非实拍" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,260 +33,195 @@ export const metadata: Metadata = {
   },
 };
 
-const trustItems = [
-  { num: "多年", unit: "经验", title: "本地服务积累", desc: "服务经验可追溯至1997年前后的本地装修从业积累。" },
-  { num: "5", unit: "类", title: "关键节点留痕", desc: "水电、防水、瓦工、木工、油工，封槽前后都有记录。" },
-  { num: "1", unit: "套", title: "透明工地小程序", desc: "工长日报 + 老板审核 + 业主查看，过程可追溯。" },
-  { num: "少", unit: "跑", title: "不用天天跑工地", desc: "手机就能看施工进度、现场照片和关键节点。" },
-];
+const entryLinks = [
+  ["认识晟景", "门店地址、开店经历和公司信息", "/facts/"],
+  ["看见施工过程", "今天做了什么，手机上就能看", "/transparent-site/"],
+  ["聊聊你的装修", "咨询服务，预约到店或量房", "/contact/"],
+] as const;
 
-const transparentFlow = [
-  { step: "01", title: "工长提交日报", desc: "记录施工内容、人员和进度，上传现场照片。", icon: "pen" },
-  { step: "02", title: "老板审核", desc: "管理人员审核后再展示给业主，避免随意发。", icon: "check" },
-  { step: "03", title: "业主手机查看", desc: "进度、照片、节点、设计确认，都在手机里。", icon: "phone" },
-];
+const process = [
+  ["01", "工长记录", "把当天做了什么、做到哪里和现场照片传上来。"],
+  ["02", "审核发布", "管理人员检查日报和照片，再发布给业主看。"],
+  ["03", "业主查看", "打开小程序，看自己工地的日报、照片和图纸。"],
+] as const;
 
 const services = [
-  { title: "新房装修", desc: "毛坯房从量房到验收的全流程服务，适合首次装修业主。", icon: "home" },
-  { title: "老房翻新", desc: "老房水电改造、墙面重做、空间优化，过程记录更关键。", icon: "refresh" },
-  { title: "整装服务", desc: "设计、施工、材料、定制一站对接，减少多头沟通。", icon: "layers" },
-  { title: "定制设计", desc: "根据家庭需求、户型和预算出方案，风格不只是效果图。", icon: "pen" },
-  { title: "施工管理", desc: "分阶段施工、节点确认、过程留痕，施工进度可查看。", icon: "clipboard" },
-  { title: "售后沟通", desc: "本地团队售后响应更及时，装修档案长期保存。", icon: "chat" },
-];
-
-const casePreview = [
-  { title: "现代简约", gradient: "from-cream-200 via-white to-ink/5", accent: "text-ink" },
-  { title: "新中式", gradient: "from-forest-800 via-forest-600 to-clay/30", accent: "text-cream" },
-  { title: "奶油风", gradient: "from-wood/30 via-wood-light/40 to-cream-100", accent: "text-ink" },
-  { title: "改善型住宅", gradient: "from-clay-dark/40 via-forest-800 to-ink", accent: "text-cream" },
-];
-
-function ServiceIcon({ name }: { name: string }) {
-  const c = "h-6 w-6";
-  switch (name) {
-    case "home": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M9 21v-6h6v6" /></svg>);
-    case "refresh": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15 6.7L3 16" /><path d="M3 21v-5h5" /></svg>);
-    case "layers": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></svg>);
-    case "pen": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.586 7.586" /><circle cx="11" cy="11" r="2" /></svg>);
-    case "clipboard": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 2h6a1 1 0 0 1 1 1v1H8V3a1 1 0 0 1 1-1z" /><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2" /><path d="M9 12h6M9 16h4" /></svg>);
-    case "chat": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>);
-    default: return null;
-  }
-}
-
-function FlowIcon({ name }: { name: string }) {
-  const c = "h-5 w-5";
-  switch (name) {
-    case "pen": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /></svg>);
-    case "check": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>);
-    case "phone": return (<svg className={c} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" /><path d="M12 18h.01" /></svg>);
-    default: return null;
-  }
-}
+  ["别墅与大宅", "先看户型和家庭成员的使用习惯，再讨论空间布局、材料与施工安排。"],
+  ["精装服务", "把设计、材料、定制与安装一起考虑，具体包含项目写进报价与合同。"],
+  ["家装设计", "量房后聊动线、收纳、配色和灯光，方案确定后再安排施工。"],
+  ["施工与定制", "施工分阶段检查，定制确认尺寸、板材和五金，已发布的工地记录可用手机查看。"],
+] as const;
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero 首屏 */}
-      <section className="relative overflow-hidden bg-paper">
-        <div className="pointer-events-none absolute inset-0 bg-wood-glow" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 bg-clay-glow" aria-hidden="true" />
+      <section className="home-hero relative isolate overflow-hidden" aria-labelledby="home-title">
+        <Image
+          src="/images/home/storefront-concept.jpg"
+          alt="晟景装饰门店形象效果图，展示相邻门店外立面，非实拍"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[56%_center] sm:object-center"
+        />
+        <div className="home-hero-overlay absolute inset-0" aria-hidden="true" />
+        <div className="container-page relative z-10 flex min-h-[670px] flex-col justify-between py-10 sm:min-h-[700px] sm:py-14 lg:min-h-[760px]">
+          <div className="max-w-[660px] pt-6 sm:pt-16 lg:pt-24">
+            <h1 id="home-title" className="home-display text-[3.5rem] font-semibold leading-none text-forest sm:text-[5rem] lg:text-[6rem]">
+              晟景装饰
+            </h1>
+            <p className="mt-5 text-sm font-medium text-forest">{siteConfig.serviceFocus}</p>
+            <p className="mt-5 max-w-[12ch] text-3xl font-semibold leading-[1.35] text-forest sm:text-4xl lg:text-[2.75rem]">
+              交城装修，<br />过程看得见。
+            </p>
+            <p className="mt-6 max-w-lg text-sm leading-7 text-ink sm:text-base">
+              别墅、大宅、新房精装，也做旧房翻新和全屋定制，欢迎到店聊。
+              开工后，用晟景透明工地小程序看施工日报、现场照片和设计资料。
+            </p>
+            <p className="mt-3 text-sm font-medium text-forest">{siteConfig.tagline}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/contact/" className="btn-primary">预约量房 <span aria-hidden="true">→</span></Link>
+              <Link href="/transparent-site/" className="btn border border-forest/45 bg-white/75 text-forest hover:bg-white">了解透明工地</Link>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col gap-2 border-t border-forest/25 bg-white/90 px-3 py-3 text-xs leading-5 text-ink-soft sm:mt-0 sm:flex-row sm:items-end sm:justify-between sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-5">
+            <p className="sm:bg-white/90 sm:px-3 sm:py-2">服务范围：{siteConfig.serviceArea}</p>
+            <p className="max-w-xs sm:bg-white/90 sm:px-3 sm:py-2 sm:text-right">门店形象效果图，非门店实拍</p>
+          </div>
+        </div>
+      </section>
 
-        <div className="container-page relative py-12 sm:py-16 lg:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <span className="eyebrow">
-                <span className="h-px w-8 bg-clay" />
-                晟景装饰 · 交城本地装修服务品牌
+      <nav className="border-b border-forest/15 bg-white" aria-label="首页快速入口">
+        <div className="container-page grid md:grid-cols-3">
+          {entryLinks.map(([label, detail, href]) => (
+            <Link key={href} href={href} className="group flex min-h-24 items-center gap-5 border-b border-forest/10 py-5 transition-colors hover:bg-forest/5 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+              <span className="flex-1">
+                <span className="block text-lg font-semibold text-forest">{label}</span>
+                <span className="mt-1 block text-xs leading-5 text-ink-soft">{detail}</span>
               </span>
-              <h1 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-forest sm:text-4xl lg:text-[2.75rem]">
-                交城装修，找看得见进度的本地团队
-              </h1>
-              <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
-                不用天天跑工地，手机就能看施工进度、现场照片和关键节点。晟景装饰结合透明工地小程序，把装修过程记录下来，让沟通更清楚。
-              </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="/contact" className="btn-primary">预约量房</Link>
-                <Link href="/transparent-site" className="btn-secondary">了解透明工地</Link>
-                <Link href="/guides/jiaocheng-decoration-questions" className="btn-ghost-clay">查看装修问题库</Link>
-              </div>
-              <p className="mt-5 text-xs text-ink-muted">服务区域：{siteConfig.serviceArea}</p>
-            </div>
-
-            {/* 右：手机 + 浮动卡片 */}
-            <div className="relative">
-              <div className="absolute -left-4 top-8 hidden w-40 rounded-2xl border border-forest/10 bg-white p-3 shadow-card lg:block">
-                <p className="text-[10px] font-semibold text-forest">现场照片</p>
-                <div className="mt-2 grid grid-cols-3 gap-1">
-                  <div className="aspect-square rounded bg-gradient-to-br from-clay/30 to-clay/10" />
-                  <div className="aspect-square rounded bg-gradient-to-br from-forest/30 to-forest/10" />
-                  <div className="aspect-square rounded bg-gradient-to-br from-wood/30 to-wood/10" />
-                </div>
-                <p className="mt-1.5 text-[9px] text-ink-muted">3 张 · 封槽前留档</p>
-              </div>
-              <div className="absolute -right-2 top-20 hidden rounded-xl bg-clay px-3 py-2 text-xs font-medium text-cream shadow-card lg:block">
-                <span className="tag-dot">老板已审核</span>
-              </div>
-              <div className="absolute -right-4 bottom-16 hidden rounded-xl bg-forest px-3 py-2 text-xs font-medium text-cream shadow-card lg:block">
-                <span className="tag-dot"><span className="inline-block h-2 w-2 rounded-full bg-clay" />设计确认已留痕</span>
-              </div>
-              <div className="relative mx-auto">
-                <PhoneMockup><DailyReportMockup /></PhoneMockup>
-              </div>
-              <p className="mt-4 text-center text-[11px] text-ink-muted">↑ 业主手机查看工地日报模拟界面（非真实截图）</p>
-            </div>
-          </div>
+              <span className="text-lg text-forest transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </Link>
+          ))}
         </div>
-        <div className="h-1 w-full bg-gradient-to-r from-clay/30 via-clay to-clay/30" />
+      </nav>
+
+      <section className="bg-[#f3f5f1] py-16 sm:py-24" aria-labelledby="process-title">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
+          <div>
+            <h2 id="process-title" className="home-section-title">今天工地做了什么，<br />打开手机看一看。</h2>
+            <p className="mt-4 text-sm font-medium text-forest">晟景透明工地小程序</p>
+            <p className="mt-6 max-w-xl text-base leading-8 text-ink-soft">
+              工长记录当天的施工情况，管理人员审核后，你就能在手机上看到。
+              水电怎么走、哪天做的防水、方案改了什么，已上传的资料都能回看。
+            </p>
+            <ol className="mt-10 border-t border-forest/20">
+              {process.map(([number, title, detail]) => (
+                <li key={number} className="grid grid-cols-[3rem_1fr] gap-3 border-b border-forest/20 py-5 sm:grid-cols-[4rem_1fr]">
+                  <span className="pt-1 text-sm font-semibold text-clay-dark">{number}</span>
+                  <div><h3 className="text-lg font-semibold text-forest">{title}</h3><p className="mt-1 text-sm leading-6 text-ink-soft">{detail}</p></div>
+                </li>
+              ))}
+            </ol>
+            <Link href="/transparent-site/#mini-program" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">了解小程序并扫码进入 <span aria-hidden="true">→</span></Link>
+          </div>
+          <figure className="border border-forest/15 bg-white p-4 sm:p-6">
+            <Image
+              src="/images/transparent-site/illustrations/diary-concept.webp"
+              alt="晟景透明工地小程序功能示意图，展示工长日报、审核发布和业主查看的流程"
+              width={1536}
+              height={1024}
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="h-auto w-full"
+            />
+            <figcaption className="mt-4 text-xs leading-5 text-ink-muted">小程序功能示意图，非实机截图。登录后可查看自己工地已发布的资料。</figcaption>
+          </figure>
+        </div>
       </section>
 
-      {/* 信任数据条 */}
-      <section className="border-b border-forest/10 bg-white">
-        <div className="container-page py-10">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {trustItems.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80} className="trust-stat">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-forest">{item.num}</span>
-                  <span className="text-lg font-medium text-clay-dark">{item.unit}</span>
-                </div>
-                <h3 className="mt-1.5 text-sm font-semibold text-forest">{item.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
-              </Reveal>
+      <section className="bg-white py-16 sm:py-24" aria-labelledby="services-title">
+        <div className="container-page">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div><h2 id="services-title" className="home-section-title">新房、旧房，<br className="hidden sm:block" />都从看现场开始。</h2><p className="mt-4 text-sm font-medium text-forest">装修服务</p></div>
+            <p className="max-w-sm text-sm leading-7 text-ink-soft">带上户型图，说说预算和居住需求。量房后再确认方案、材料、工期与报价。</p>
+          </div>
+          <div className="mt-12 grid border-t border-forest/20 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map(([title, detail]) => (
+              <div key={title} className="border-b border-forest/20 px-0 py-7 sm:pr-6 lg:border-r lg:px-6 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0">
+                <h3 className="text-xl font-semibold text-forest">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-ink-soft">{detail}</p>
+              </div>
             ))}
           </div>
+          <Link href="/services/" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">查看全部服务 <span aria-hidden="true">→</span></Link>
         </div>
       </section>
 
-      {/* 透明工地核心展示 */}
-      <section className="section bg-forest-50">
-        <div className="container-page">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <span className="eyebrow"><span className="h-px w-8 bg-clay" />透明工地</span>
-              <h2 className="mt-4 section-title">装修进度，看得见才放心</h2>
-              <p className="mt-4 section-subtitle">工长提交日报，老板审核后再展示给业主。业主不用天天跑工地，也能在手机上看到施工进度、现场照片和关键节点。</p>
-              <div className="mt-8 space-y-4">
-                {transparentFlow.map((f, idx) => (
-                  <Reveal key={f.step} delay={idx * 100}>
-                    <div className="flex items-start gap-4">
-                      <div className="flex flex-col items-center">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest text-cream shadow-soft"><FlowIcon name={f.icon} /></div>
-                        {idx < transparentFlow.length - 1 && <div className="mt-1 h-8 w-px bg-clay/30" />}
-                      </div>
-                      <div className="pt-1.5">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-clay-dark">{f.step}</span>
-                          <h3 className="text-sm font-semibold text-forest">{f.title}</h3>
-                        </div>
-                        <p className="mt-1 text-xs leading-relaxed text-ink-muted">{f.desc}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
+      <BrandShowcase />
+
+      <section className="bg-forest-900 py-16 text-cream sm:py-24" aria-labelledby="facts-title">
+        <div className="container-page grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div>
+            <h2 id="facts-title" className="home-section-title !text-cream">在交城做装修，<br />这些年怎么走过来。</h2>
+            <p className="mt-4 text-sm font-medium text-cream/80">关于晟景</p>
+            <p className="mt-6 text-sm leading-7 text-cream/75">早年从家里的五金建材做起，后来经营艺术玻璃和门业，2013 年开始使用晟景装饰名称。两家相邻门店在南环路康健装饰广场，欢迎来坐坐。</p>
+            <Link href="/facts/" className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-cream hover:text-clay-light">查看门店与公司信息 <span aria-hidden="true">→</span></Link>
+          </div>
+          <div className="border-t border-cream/25">
+            {siteConfig.brandTimeline.map((item) => (
+              <div key={item.year} className="grid gap-3 border-b border-cream/25 py-6 sm:grid-cols-[9rem_1fr] sm:gap-7">
+                <p className="text-xl font-semibold text-cream">{item.year}</p>
+                <div><h3 className="text-base font-semibold text-cream">{item.title}</h3><p className="mt-2 text-sm leading-6 text-cream/65">{item.desc}</p></div>
               </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/transparent-site" className="btn-primary">了解透明工地</Link>
-                <Link href="/cases" className="btn-secondary">查看案例类型</Link>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[3rem] bg-clay/10 blur-2xl" />
-              <PhoneMockup><DailyReportMockup /></PhoneMockup>
-            </div>
+            ))}
+            <p className="mt-5 text-xs leading-6 text-cream/75">早期开店经历来自经营者口述；现公司主体成立于 2021 年。</p>
           </div>
         </div>
       </section>
 
-      {/* 服务区 */}
-      <section className="section">
+      <section className="bg-white py-16 sm:py-24" aria-labelledby="cases-title">
         <div className="container-page">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />装修服务<span className="h-px w-8 bg-clay" /></span>
-            <h2 className="mt-4 section-title">从新房到老房，从整装到定制</h2>
-            <p className="section-subtitle">覆盖交城业主常见需求，每个环节都有过程记录。</p>
-          </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 60}>
-                <div className="card group">
-                  <div className="flex items-center gap-3 text-forest">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-forest/10 transition-colors group-hover:bg-clay/15"><ServiceIcon name={s.icon} /></span>
-                    <h3 className="text-base font-semibold text-forest">{s.title}</h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{s.desc}</p>
-                </div>
-              </Reveal>
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div><h2 id="cases-title" className="home-section-title">看看我们<br className="hidden sm:block" />做过的项目。</h2><p className="mt-4 text-sm font-medium text-forest">项目资料</p></div>
+            <p className="max-w-md text-sm leading-7 text-ink-soft">天泰小区130㎡法式复古项目已补充6张完工实拍，客厅、卧室、餐厅和阳台都能看。施工记录与业主反馈获得授权后再补充。</p>
+          </div>
+          <div className="mt-10 border-t border-forest/20">
+            {caseStudies.map((item) => (
+              <Link key={item.slug} href={"/cases/" + item.slug + "/"} className={`group grid gap-6 border-b border-forest/20 py-7 transition-colors hover:bg-[#f3f5f1] sm:items-center sm:px-4 ${item.images?.length ? "sm:grid-cols-[12rem_1fr_auto]" : "sm:grid-cols-[1fr_auto]"}`}>
+                {item.images?.[0] && <Image src={item.images[0].src} alt={item.images[0].alt} width={item.images[0].width} height={item.images[0].height} sizes="(max-width: 639px) 100vw, 192px" className="h-auto w-full rounded-lg" />}
+                <div><h3 className="text-lg font-semibold text-forest sm:text-xl">{item.title}</h3><p className="mt-2 text-xs leading-5 text-ink-soft">{item.currentStatus}</p></div>
+                <span className="text-sm font-semibold text-clay-dark transition-transform group-hover:translate-x-1">查看项目资料 →</span>
+              </Link>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Link href="/services" className="btn-secondary">查看全部服务</Link>
-          </div>
+          <Link href="/cases/" className="mt-7 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">浏览全部案例资料 <span aria-hidden="true">→</span></Link>
         </div>
       </section>
 
-      {/* 案例类型预览（新增） */}
-      <section className="section bg-cream-50">
-        <div className="container-page">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />案例类型<span className="h-px w-8 bg-clay" /></span>
-            <h2 className="mt-4 section-title">四种主流风格，对应不同业主</h2>
-            <p className="section-subtitle">真实案例经业主授权后陆续补充，不虚构客户信息。</p>
-          </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {casePreview.map((c, i) => (
-              <Reveal key={c.title} delay={i * 60}>
-                <Link href="/cases" className="block overflow-hidden rounded-2xl border border-forest/10 bg-white shadow-soft transition-all hover:shadow-card hover:-translate-y-0.5">
-                  <div className={`swatch bg-gradient-to-br ${c.gradient}`}>
-                    <span className={`text-lg font-bold ${c.accent}`}>{c.title}</span>
-                  </div>
-                  <p className="p-3 text-center text-xs text-ink-muted">查看详情 →</p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <DouyinShowcase />
 
-      {/* FAQ */}
-      <section className="section">
-        <div className="container-page">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />业主常问<span className="h-px w-8 bg-clay" /></span>
-            <h2 className="mt-4 section-title">这些问题，也是交城业主最常问的</h2>
-            <p className="section-subtitle">不绕弯子，直接说我们实际怎么做的。</p>
-          </Reveal>
-          <div className="mx-auto mt-12 max-w-3xl divide-y divide-forest/10 rounded-2xl border border-forest/10 bg-white">
-            {homeFaqs.map((faq, idx) => (
-              <details key={idx} className="group p-5 sm:p-6">
-                <summary className="flex cursor-pointer items-center justify-between text-base font-medium text-forest marker:content-['']">
-                  <span className="flex items-center gap-3">
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-clay/10 text-xs font-bold text-clay-dark">?</span>
-                    {faq.q}
-                  </span>
-                  <span className="ml-4 shrink-0 text-clay-dark transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+      <section className="border-t border-forest/15 bg-[#f3f5f1] py-16 sm:py-24" aria-labelledby="faq-title">
+        <div className="container-page grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div><h2 id="faq-title" className="home-section-title">装修前，<br />你可能想问这些。</h2><p className="mt-4 text-sm font-medium text-forest">装修常见问题</p><Link href="/guides/" className="mt-7 inline-flex items-center gap-3 text-sm font-semibold text-forest hover:text-clay-dark">更多装修知识 <span aria-hidden="true">→</span></Link></div>
+          <div className="border-t border-forest/20">
+            {homeFaqs.map((faq) => (
+              <details key={faq.q} className="group border-b border-forest/20">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base font-semibold text-forest [&::-webkit-details-marker]:hidden">
+                  <span>{faq.q}</span><span className="text-xl font-normal leading-none text-clay-dark transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                 </summary>
-                <p className="mt-3 pl-9 text-sm leading-relaxed text-ink-soft">{faq.a}</p>
+                <p className="max-w-2xl pb-5 text-sm leading-7 text-ink-soft">{faq.a}</p>
               </details>
             ))}
           </div>
-          <FaqPageLd faqs={homeFaqs.map((f) => ({ q: f.q, a: f.a }))} />
+          <FaqPageLd faqs={homeFaqs.map((faq) => ({ q: faq.q, a: faq.a }))} />
         </div>
       </section>
 
-      {/* 底部 CTA */}
-      <section className="section bg-forest-900 text-cream">
-        <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
-            <div className="max-w-xl">
-              <h2 className="text-2xl font-semibold sm:text-3xl">准备装修，先看看工地怎么管。</h2>
-              <p className="mt-3 text-base text-cream/70 sm:text-lg">预约量房，了解晟景装饰的透明工地服务，开工后手机查看施工进度。</p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-              <Link href="/contact" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">预约量房</Link>
-              <Link href="/transparent-site" className="btn border border-cream/30 text-cream hover:bg-cream/10">了解透明工地</Link>
-            </div>
+      <section className="bg-forest-600 py-16 text-white sm:py-20" aria-labelledby="contact-title">
+        <div className="container-page flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div><h2 id="contact-title" className="home-section-title !text-white">准备装修了？<br />来店里聊聊。</h2><p className="mt-4 text-sm font-medium text-white/85">到店或电话聊聊</p><p className="mt-5 text-sm leading-7 text-white/85">{contactInfo.addressNote}</p></div>
+          <div className="flex flex-wrap gap-3">
+            {contactInfo.phones.map((phone) => <a key={phone} href={"tel:" + phone} className="btn bg-white text-forest hover:bg-cream">拨打 {phone}</a>)}
+            <Link href="/contact/" className="btn border border-white/70 text-white hover:bg-white/10">查看联系方式</Link>
           </div>
         </div>
       </section>

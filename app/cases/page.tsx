@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BreadcrumbLd } from "@/components/json-ld";
 import { Reveal } from "@/components/reveal";
+import { DouyinShowcase } from "@/components/douyin-showcase";
 import { caseStudies } from "@/lib/cases";
 
 export const metadata: Metadata = {
   title: "装修案例",
-  description: "晟景装饰装修案例，包括天泰小区 130㎡ 法式复古装修案例、万硕花园 148㎡ 意式简约设计案例，以及案例类型展示。",
+  description: "查看天泰小区130㎡法式复古、万硕花园148㎡意式简约项目资料，了解装修风格、户型和施工阶段。",
   alternates: { canonical: "/cases" },
 };
 
 const caseTypes = [
-  { title: "现代简约", desc: "线条干净、色彩克制、注重功能。适合刚需住房和小户型，预算相对可控。", tags: ["刚需住房", "小户型", "功能优先"], gradient: "from-cream-200 via-white to-ink/5", accent: "text-ink", suit: "刚需住房 / 小户型 / 首次装修", focus: "功能布局、收纳系统、材料性价比", nodes: "水电点位、防水、瓦工平整度" },
-  { title: "新中式", desc: "传统元素与现代材质结合，注重意境和留白。适合改善型住房和对东方审美有偏好的业主。", tags: ["改善型住房", "东方审美", "材质讲究"], gradient: "from-forest-800 via-forest-600 to-clay/30", accent: "text-cream", suit: "改善型住房 / 东方审美 / 材质讲究", focus: "空间意境、材质对比、木作细节", nodes: "木工收口、定制柜体、墙面处理" },
-  { title: "奶油风", desc: "低饱和度暖色调，柔软材质，整体温馨。适合年轻业主和注重居家氛围的家庭。", tags: ["年轻业主", "温馨氛围", "暖色调"], gradient: "from-wood/30 via-wood-light/40 to-cream-100", accent: "text-ink", suit: "年轻家庭 / 温馨氛围 / 收纳友好", focus: "色彩搭配、软装搭配、灯光氛围", nodes: "墙面找平、乳胶漆色差、灯光点位" },
-  { title: "改善型住宅", desc: "注重空间规划、收纳系统和居住品质。适合换房升级的家庭，对设计细节要求更高。", tags: ["换房升级", "收纳系统", "品质优先"], gradient: "from-clay-dark/40 via-forest-800 to-ink", accent: "text-cream", suit: "换房升级 / 长住需求 / 品质优先", focus: "空间重构、动线优化、收纳系统", nodes: "拆除结构、水电重排、全屋定制" },
+  { title: "现代简约", desc: "以简洁的线条和实用布局为主，重点考虑日常使用和收纳。", tags: ["刚需住房", "小户型", "功能优先"], gradient: "from-cream-200 via-white to-ink/5", accent: "text-ink", suit: "刚需住房 / 小户型 / 首次装修", focus: "功能布局、收纳系统、材料性价比", nodes: "水电点位、防水、瓦工平整度" },
+  { title: "新中式", desc: "用木色、线条和中式元素搭配现代空间，注意家具尺寸、材质和木作收口。", tags: ["改善型住房", "东方审美", "材质讲究"], gradient: "from-forest-800 via-forest-600 to-clay/30", accent: "text-cream", suit: "改善型住房 / 东方审美 / 材质讲究", focus: "空间意境、材质对比、木作细节", nodes: "木工收口、定制柜体、墙面处理" },
+  { title: "奶油风", desc: "以浅暖色为主，搭配柔和灯光和软装。选色时要一起看墙面、地面和家具。", tags: ["年轻业主", "温馨氛围", "暖色调"], gradient: "from-wood/30 via-wood-light/40 to-cream-100", accent: "text-ink", suit: "年轻家庭 / 温馨氛围 / 收纳友好", focus: "色彩搭配、软装搭配、灯光氛围", nodes: "墙面找平、乳胶漆色差、灯光点位" },
+  { title: "改善型住宅", desc: "围绕家庭成员、动线和收纳调整布局，考虑长期居住的使用习惯。", tags: ["换房升级", "收纳系统", "品质优先"], gradient: "from-clay-dark/40 via-forest-800 to-ink", accent: "text-cream", suit: "换房升级 / 长住需求 / 品质优先", focus: "空间重构、动线优化、收纳系统", nodes: "拆除结构、水电重排、全屋定制" },
 ];
 
 const houseTypes = [
@@ -38,7 +40,7 @@ const realCasePlan = [
   { text: "补充开工前 / 施工中 / 完工后对比照片", done: false },
   { text: "补充业主真实评价（经业主同意后）", done: false },
   { text: "按风格和户型分类，方便业主参考", done: false },
-  { text: "在官网 /cases 上线真实案例卡片", done: false },
+  { text: "在案例页补充获准公开的项目资料", done: false },
 ];
 
 export default function CasesPage() {
@@ -54,21 +56,24 @@ export default function CasesPage() {
           </nav>
 
           <Reveal className="mx-auto max-w-3xl">
-            <span className="eyebrow"><span className="h-px w-8 bg-clay" />装修案例 · 类型库</span>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">风格类型 · 户型类型 · 施工阶段</h1>
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">本页补充已整理的真实成交案例，并按风格、户型、施工阶段展示。案例只公开已确认可公开的信息，不公开客户姓名、完整门牌号和完整报价明细。</p>
+            <span className="eyebrow"><span className="h-px w-8 bg-clay" />装修案例</span>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">项目资料、风格与施工阶段</h1>
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">这里展示已成交项目的小区、面积、户型和风格，天泰项目已补充图片。业主姓名、门牌和完整报价不公开，业主反馈获得授权后再补充。</p>
           </Reveal>
 
           <div className="mt-12">
             <h2 className="section-title">真实案例</h2>
-            <p className="section-subtitle">图片和业主反馈会在取得授权后继续补充，当前不把效果图写成完工图。</p>
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <p className="section-subtitle">天泰小区项目可查看6张完工实拍；万硕花园目前展示设计阶段资料。</p>
+            <div className="mt-8 grid items-start gap-6 lg:grid-cols-2">
               {caseStudies.map((item) => (
                 <Link
                   key={item.slug}
                   href={`/cases/${item.slug}`}
-                  className="block rounded-2xl border border-forest/10 bg-white p-6 shadow-soft transition-all hover:border-clay/20 hover:shadow-card"
+                  className="block rounded-lg border border-forest/15 bg-white p-6 transition-colors hover:border-forest/40"
                 >
+                  {item.images?.[0] && (
+                    <Image src={item.images[0].src} alt={item.images[0].alt} width={item.images[0].width} height={item.images[0].height} sizes="(max-width: 1023px) 100vw, 50vw" className="mb-6 h-auto w-full rounded-lg" />
+                  )}
                   <span className="tag-clay">{item.status}</span>
                   <h3 className="mt-4 text-xl font-semibold leading-snug text-forest">
                     {item.title}
@@ -109,7 +114,7 @@ export default function CasesPage() {
           {/* 风格类型 */}
           <div className="mt-14">
             <h2 className="section-title">风格类型</h2>
-            <p className="section-subtitle">四种主流风格，对应不同业主需求。</p>
+            <p className="section-subtitle">先看你喜欢的配色、材质和布局，再按预算讨论方案。</p>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {caseTypes.map((c, i) => (
                 <Reveal key={c.title} delay={i * 60}>
@@ -154,7 +159,7 @@ export default function CasesPage() {
           {/* 施工阶段时间线 */}
           <div className="mt-16">
             <h2 className="section-title">施工阶段</h2>
-            <p className="section-subtitle">每个阶段都有过程记录，这是透明工地的核心。</p>
+            <p className="section-subtitle">下面是施工阶段的示例安排，实际顺序和工期要按房屋情况、材料到货和合同确定。</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {stages.map((s, idx) => (
                 <Reveal key={s.name} delay={idx * 50}>
@@ -176,10 +181,10 @@ export default function CasesPage() {
             </div>
           </div>
 
-          {/* 真实案例补充计划 */}
+          {/* 后续会补哪些资料 */}
           <Reveal className="mt-16 rounded-2xl border border-clay/30 bg-clay/5 p-6 sm:p-8">
-            <h2 className="text-lg font-semibold text-forest">真实案例补充计划</h2>
-            <p className="mt-2 text-sm text-ink-soft">我们不虚构客户姓名、小区和评价。以下是我们正在做的整理工作：</p>
+            <h2 className="text-lg font-semibold text-forest">后续会补哪些资料</h2>
+            <p className="mt-2 text-sm text-ink-soft">获得授权后，我们会逐步整理这些项目资料：</p>
             <div className="mt-4 space-y-2">
               {realCasePlan.map((p) => (
                 <div key={p.text} className="flex items-start gap-3 text-sm text-ink-soft">
@@ -191,11 +196,12 @@ export default function CasesPage() {
           </Reveal>
 
           <div className="mt-12 text-center">
-            <p className="text-sm text-ink-muted">想看正在施工的工地？可以预约实地看工地。</p>
+            <p className="text-sm text-ink-muted">想看在施工的工地？请联系门店，确认项目和现场安排。</p>
             <div className="mt-4"><Link href="/contact" className="btn-primary">预约看工地</Link></div>
           </div>
         </div>
       </section>
+      <DouyinShowcase />
     </>
   );
 }

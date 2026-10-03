@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import Image from "next/image";
+import { contactInfo, siteConfig, wechatContacts } from "@/lib/site";
 import { BreadcrumbLd } from "@/components/json-ld";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "联系我们",
-  description: "预约量房、微信咨询、电话咨询、到店沟通。晟景装饰服务山西交城及周边，具体地址请以线下门店或客服确认为准。",
+  description: "联系晟景装饰，预约量房或到店咨询。电话 13935842860、15935887816，可扫码加微信。地址：山西省交城县南环路康健装饰广场。",
   alternates: { canonical: "/contact" },
 };
 
 const consultPaths = [
-  { title: "预约量房", desc: "填写需求和联系方式，我们安排量房时间。量房后给出初步方案和报价建议。", items: ["服务区域：山西吕梁交城县及周边", "建议提前预约，避免跑空", "量房后 3 个工作日内出初步方案"], cta: "预约量房", href: "/contact", primary: true, icon: "calendar" },
-  { title: "微信咨询", desc: "添加微信咨询装修问题，发送户型图可以更快给出建议。", note: "二维码待客服确认后上线", icon: "wechat" },
-  { title: "电话咨询", desc: "电话咨询请通过微信或到店预约，我们会在确认联系方式后更新。", note: "具体号码请以线下门店或客服确认为准", icon: "phone" },
+  { title: "预约量房", desc: "先电话说明房屋情况和装修需求，再沟通量房时间。", items: ["服务区域：山西吕梁交城县及周边", "到店前请电话预约", "看过现场再确认方案与报价"], cta: "电话预约量房", icon: "calendar" },
+  { title: "微信咨询", desc: "扫码加门店联系人，把户型图、装修想法或参考图片发来。", icon: "wechat" },
+  { title: "电话咨询", desc: "电话沟通装修需求、量房安排和到店时间。", icon: "phone" },
 ];
 
 const prepChecklist = [
@@ -61,7 +62,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-3xl text-center">
             <span className="eyebrow justify-center"><span className="h-px w-8 bg-clay" />联系我们<span className="h-px w-8 bg-clay" /></span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">预约量房 · 咨询装修</h1>
-            <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">不管最后选不选晟景，建议先了解透明工地。我们可以根据你的户型、需求和预算，给出初步方案和建议。</p>
+            <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">说说房子在哪、多大、想怎么装，有户型图也可以带来。我们看过现场后，再和你讨论方案与报价。</p>
           </div>
         </div>
       </section>
@@ -77,28 +78,35 @@ export default function ContactPage() {
               <div className="mt-5 space-y-2 text-sm text-cream/80">
                 {consultPaths[0].items?.map((item) => (<p key={item}>· {item}</p>))}
               </div>
-              <div className="mt-6"><Link href="/contact" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">{consultPaths[0].cta}</Link></div>
+              <div className="mt-6"><a href={"tel:" + contactInfo.phonePlaceholder} className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">{consultPaths[0].cta}</a></div>
             </div>
             <div className="card">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-clay/15 text-clay-dark"><ConsultIcon name="wechat" /></div>
               <h2 className="mt-4 text-lg font-semibold text-forest">微信咨询</h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{consultPaths[1].desc}</p>
-              <div className="mt-4 flex h-28 items-center justify-center rounded-xl border border-dashed border-clay/30 bg-clay/5">
-                <div className="text-center"><p className="text-xs font-medium text-clay-dark">扫码添加微信</p><p className="mt-1 text-[11px] text-ink-muted">{consultPaths[1].note}</p></div>
+              <div className="mt-5 grid gap-6 sm:grid-cols-2">
+                {wechatContacts.map((contact) => (
+                  <figure key={contact.qrImage}>
+                    <a href={contact.qrImage} target="_blank" rel="noopener noreferrer" aria-label={`查看${contact.name}微信二维码大图`}>
+                      <Image src={contact.qrImage} alt={`${contact.name}微信联系二维码，非公众号码`} width={240} height={240} sizes="(max-width: 640px) 240px, 200px" className="mx-auto h-auto w-full max-w-[240px] object-contain" />
+                    </a>
+                    <figcaption className="mt-3 text-center text-xs leading-5 text-ink-soft">{contact.name}<br /><a href={contact.qrImage} target="_blank" rel="noopener noreferrer" className="text-forest underline underline-offset-4">查看大图</a></figcaption>
+                  </figure>
+                ))}
               </div>
             </div>
             <div className="card">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest/10 text-forest"><ConsultIcon name="phone" /></div>
               <h2 className="mt-4 text-lg font-semibold text-forest">电话咨询</h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{consultPaths[2].desc}</p>
-              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">电话号码</p><p className="mt-1 text-xs text-ink-muted">{consultPaths[2].note}</p></div>
+              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">电话号码</p>{contactInfo.phones.map((phone) => <a key={phone} href={"tel:" + phone} className="mt-2 block w-fit text-base font-semibold text-forest hover:text-clay-dark">{phone}</a>)}</div>
             </div>
           </div>
 
           {/* 预约准备清单 */}
           <Reveal className="mt-12 rounded-2xl border border-forest/10 bg-white p-6 sm:p-8">
-            <h2 className="text-lg font-semibold text-forest">预约量房前，建议准备这些</h2>
-            <p className="mt-2 text-sm text-ink-muted">准备越充分，量房后出的方案越贴近你的需求。</p>
+            <h2 className="text-lg font-semibold text-forest">量房前，可以准备这些资料</h2>
+            <p className="mt-2 text-sm text-ink-muted">户型图、现状照片和预算范围，能帮助我们了解你的房子。</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {prepChecklist.map((item) => (
                 <div key={item.title} className="rounded-xl bg-cream-50 p-4 transition-colors hover:bg-clay/5">
@@ -109,7 +117,7 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs text-ink-muted">没准备齐也没关系，可以先预约量房，现场沟通中再明确。</p>
+            <p className="mt-4 text-xs text-ink-muted">资料没齐也可以先约时间，量房时一起讨论。</p>
           </Reveal>
 
           {/* 服务区域 + 到店 */}
@@ -120,13 +128,13 @@ export default function ContactPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-cream">
                   <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                 </div>
-                <div><p className="text-base font-semibold text-forest">{siteConfig.serviceArea}</p><p className="text-xs text-ink-muted">交城本地团队，响应更及时</p></div>
+                <div><p className="text-base font-semibold text-forest">{siteConfig.serviceArea}</p><p className="text-xs text-ink-muted">主要服务交城及周边</p></div>
               </div>
             </div>
             <div className="card">
               <h2 className="text-lg font-semibold text-forest">到店沟通</h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">建议提前预约，避免跑空。到店可以看材料样板、聊方案。</p>
-              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">门店地址</p><p className="mt-1 text-xs text-ink-muted">具体地址请以线下门店或客服确认为准</p></div>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">来店里可以看材料样板、聊方案。请提前电话预约时间。</p>
+              <div className="mt-4 rounded-xl bg-cream-50 p-4"><p className="text-sm font-medium text-forest">门店地址</p><p className="mt-1 text-sm text-ink-soft">{contactInfo.addressNote}</p></div>
             </div>
           </div>
 
@@ -134,8 +142,8 @@ export default function ContactPage() {
           <div className="mt-12 rounded-2xl bg-forest-900 p-6 text-cream sm:p-8">
             <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
               <div className="max-w-xl">
-                <h2 className="text-lg font-semibold">准备装修，先看看工地怎么管。</h2>
-                <p className="mt-3 text-sm text-cream/70">不管最后选不选晟景，建议先了解透明工地——装修过程看得见，比事后扯皮强。</p>
+                <h2 className="text-lg font-semibold">想看看开工后怎么查进度？</h2>
+                <p className="mt-3 text-sm text-cream/70">小程序里可以看已发布的日报、现场照片和设计资料。点击下面的介绍，了解查看方式。</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                 <Link href="/transparent-site" className="btn bg-clay text-cream shadow-card hover:bg-clay-dark">了解透明工地</Link>

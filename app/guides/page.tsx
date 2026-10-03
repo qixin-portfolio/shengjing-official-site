@@ -6,7 +6,7 @@ import { BreadcrumbLd } from "@/components/json-ld";
 export const metadata: Metadata = {
   title: "装修知识",
   description:
-    "晟景装饰装修知识库，回答交城业主真实搜索问题：交城装修公司怎么选、为什么要看工地进度、新房装修前确认什么。",
+    "选装修公司、比较报价、旧房翻新和分阶段验收，整理交城业主装修前后常问的问题。",
   alternates: { canonical: "/guides" },
 };
 
@@ -32,13 +32,13 @@ export default function GuidesPage() {
           <div className="mx-auto max-w-3xl">
             <span className="eyebrow">
               <span className="h-px w-8 bg-wood-dark" />
-              装修知识 · GEO 内容
+              装修知识
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
-              回答交城业主真实搜索问题
+              准备装修，先了解这些
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              这些文章不是软文，是我们根据交城业主常问的问题整理的判断标准和可执行步骤。如果你正在选装修公司或准备装修，可以先看看。
+              怎么选装修公司、怎么看报价、水电防水怎么验收，下面按问题整理。选团队、看方案或检查工地时，可以拿出来对照。
             </p>
           </div>
 
@@ -47,20 +47,20 @@ export default function GuidesPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <span className="text-xs font-medium uppercase tracking-wider text-wood-light">
-                  GEO 问题库
+                  装修问答
                 </span>
                 <h2 className="mt-2 text-xl font-semibold">
-                  交城业主装修常见问题库
+                  交城装修常见问题
                 </h2>
                 <p className="mt-2 text-sm text-cream/70">
-                  30+ 高频问题，覆盖找公司、比报价、看工地、水电防水、设计确认、售后扯皮。答案具体、可引用、不夸大。
+                  找公司、比报价、看工地、设计确认和售后，有30多个问题可以查。
                 </p>
               </div>
               <Link
                 href="/guides/jiaocheng-decoration-questions"
                 className="btn shrink-0 bg-wood text-ink hover:bg-wood-dark hover:text-cream"
               >
-                查看问题库 →
+                查看装修问答 →
               </Link>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function GuidesPage() {
               还有其他装修问题？
             </h2>
             <p className="mt-2 text-sm text-ink-soft">
-              欢迎预约量房或微信咨询，我们面对面聊。
+              可以电话咨询，也可以预约量房或到店聊聊。
             </p>
             <div className="mt-5">
               <Link href="/contact" className="btn-primary">

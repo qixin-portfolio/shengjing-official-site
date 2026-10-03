@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site";
+import { contactInfo, siteConfig } from "@/lib/site";
 import type { Guide } from "@/lib/guides";
 
 /**
@@ -29,6 +29,11 @@ export function OrganizationLd() {
         description: siteConfig.description,
         areaServed: siteConfig.serviceArea,
         knowsLanguage: "zh-CN",
+        contactPoint: contactInfo.phones.map((telephone) => ({
+          "@type": "ContactPoint",
+          telephone,
+          contactType: "装修咨询",
+        })),
       }}
     />
   );
@@ -65,13 +70,19 @@ export function LocalBusinessLd() {
         address: {
           "@type": "PostalAddress",
           addressCountry: siteConfig.serviceAreaParts.country,
+          streetAddress: contactInfo.addressNote,
           addressRegion: siteConfig.serviceAreaParts.region,
           addressLocality:
             siteConfig.serviceAreaParts.city +
             siteConfig.serviceAreaParts.locality,
         },
         knowsLanguage: "zh-CN",
-        // telephone 暂不填写，待人工确认真实电话后补充
+        telephone: contactInfo.phonePlaceholder,
+        contactPoint: contactInfo.phones.map((telephone) => ({
+          "@type": "ContactPoint",
+          telephone,
+          contactType: "装修咨询",
+        })),
       }}
     />
   );

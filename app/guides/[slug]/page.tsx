@@ -137,10 +137,10 @@ export default function GuideDetailPage({
             {/* 底部 CTA */}
             <div className="mt-10 rounded-2xl border border-wood/30 bg-wood/10 p-5 sm:p-6">
               <p className="text-sm font-medium text-forest">
-                想了解晟景装饰的透明工地服务？
+                想看看自己的工地怎么用手机查看？
               </p>
               <p className="mt-1 text-xs text-ink-muted">
-                预约量房，看看我们的工地怎么管。
+                了解小程序里的日报和照片，也可以电话咨询或预约量房。
               </p>
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <Link href="/contact" className="btn-primary">

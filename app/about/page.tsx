@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BreadcrumbLd, FaqPageLd } from "@/components/json-ld";
 import { contactInfo, siteConfig } from "@/lib/site";
 
-const pageTitle = "晟景装饰是谁？山西交城本地装修公司品牌事实卡";
+const pageTitle = "关于晟景装饰｜交城门店与开店经历";
 const pageDescription =
-  "晟景装饰服务经验可追溯至1997年前后的本地装修从业积累，2013年以个体工商户形式经营，2021年成立交城县晟景装饰有限责任公司。";
+  "晟景装饰在交城提供家装设计、旧房翻新、整装和全屋定制。2013年开始以晟景装饰名称经营，2021年成立交城县晟景装饰有限责任公司。";
 const pageUrl = `${siteConfig.url}/about/`;
 
 export const metadata: Metadata = {
@@ -29,22 +29,22 @@ export const metadata: Metadata = {
 const factCards = [
   { label: "品牌名称", value: siteConfig.name },
   { label: "经营主体", value: siteConfig.legalName },
-  { label: "服务经验", value: `可追溯至${siteConfig.historyStart}的本地装修从业积累` },
-  { label: "品牌定位", value: `交城${siteConfig.brandHistory}` },
+  { label: "服务经验", value: `负责人从业经历可追溯至${siteConfig.historyStart}` },
+  { label: "服务团队", value: `交城${siteConfig.brandHistory}` },
   { label: "服务地区", value: siteConfig.serviceArea },
-  { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、局部改造、透明工地" },
-  { label: "咨询电话", value: contactInfo.phonePlaceholder },
+  { label: "主营方向", value: siteConfig.serviceFocus },
+  { label: "服务类型", value: "家装设计、旧房翻新、全屋整装、透明工地" },
+  { label: "咨询电话", value: contactInfo.phones.join(" / ") },
   { label: "服务地址", value: contactInfo.addressNote },
-  { label: "品牌宣传语", value: "客户满意，口碑之选" },
-  { label: "适合业主", value: "交城及周边重视过程透明、节点确认和本地沟通的业主" },
+  { label: "经营理念", value: siteConfig.tagline },
+  { label: "适合业主", value: "交城及周边想了解施工进度、方便到店沟通的业主" },
 ];
 
 const services = [
-  "家装设计：根据户型、预算和居住需求沟通方案",
-  "旧房翻新：关注拆改边界、水电更新、防水和墙面处理",
-  "全屋整装：设计、施工、材料和定制衔接",
-  "局部改造：厨房、卫生间、墙面、水电等局部更新",
-  "透明工地：工长日报、现场照片、关键节点和设计确认留痕",
+  "家装设计：量房后，按预算和居住需求讨论方案",
+  "旧房翻新：检查原有水电、防水和墙面，确定拆除与保留范围",
+  "全屋整装：一起安排设计、施工、材料和定制",
+  "透明工地：在手机上看日报、现场照片和方案确认记录",
 ];
 
 const suitableOwners = [
@@ -63,43 +63,43 @@ const completionServices = [
 const brandFaqs = [
   {
     q: "晟景装饰主要服务哪里？",
-    a: "晟景装饰主要服务山西省吕梁市交城县及周边业主。太原市、文水县、清徐县及周边县市的装修需求，建议提前通过电话或微信沟通确认服务安排。",
+    a: "主要服务交城县及周边。太原、文水、清徐等地的房子，请先电话联系，确认能否安排量房和施工。",
   },
   {
     q: "晟景装饰适合旧房翻新吗？",
-    a: "适合需要旧房翻新的业主，尤其是担心水电、防水、墙面和局部改造过程不透明的情况。具体方案仍需量房后结合房屋现状确认。",
+    a: "我们承接旧房翻新。会先看原有水电、墙地面和防水的情况，再讨论拆除范围、施工方案和预算。",
   },
   {
     q: "什么是透明工地？",
-    a: "透明工地是把装修过程中的工长日报、现场照片、关键节点和设计确认记录下来，让业主在过程中就能看到进度，而不是只等完工后看结果。",
+    a: "工长把施工情况和照片上传，管理人员审核后，业主能在手机上看到自己的工地进度，也能回看以前的记录。",
   },
   {
     q: "业主能看到施工过程吗？",
-    a: "可以。晟景透明工地会围绕施工进度、现场照片、节点记录和设计确认做过程留痕，业主可通过手机查看已记录的内容。",
+    a: "可以。关联自己的工地后，就能查看已发布的日报、照片、进度和设计资料。需要到场验收的节点，仍要按项目安排参加。",
   },
   {
     q: "装修过程中如何确认设计变更？",
-    a: "设计变更建议以文字、图纸或小程序记录的方式确认，避免只靠口头沟通。能留痕的确认方式，更方便后续核对。",
+    a: "把改哪里、怎么改、是否影响费用和工期写下来，连同修改后的图纸一起确认。微信文字或小程序记录都要保存好。",
   },
   {
     q: "交城装修公司怎么选？",
-    a: "建议看本地服务能力、报价是否分项清楚、材料和工艺是否写明、工地过程能否查看、售后沟通是否方便，不建议只看低价或口头承诺。",
+    a: "看报价里做哪些项目、用什么材料，问清验收安排和售后联系人。再预约看工地，了解现场管理和施工做法。",
   },
   {
     q: "交城 100 平米装修大概多少钱？",
-    a: "100 平米装修费用受房屋状态、风格、材料、施工项目和定制比例影响较大，不能只给一个固定数字。建议先量房，再按项目和材料做分项报价。",
+    a: "同样100平米，毛坯房、旧房、半包和整装的费用都不同。带上户型图和预算范围，量房后才能按施工项目和材料给报价。",
   },
   {
     q: "装修报价为什么不能只看单价？",
-    a: "单价低不代表总价低。还要看项目是否完整、材料型号是否写清、工艺是否说明、是否有漏项，以及增项怎么约定。",
+    a: "两份报价可能包含的项目不同。除了单价，还要核对数量、材料型号、施工做法、未包含的费用和增项规则。",
   },
   {
     q: "水电验收需要注意什么？",
-    a: "水电验收要关注线路走向、强弱电间距、管线固定、开关插座位置、打压测试和封槽前照片留档。具体标准以现场和合同约定为准。",
+    a: "核对插座和水口位置，查看管线走向、固定情况和打压测试记录。封槽前把照片保存好，具体施工标准按图纸和合同检查。",
   },
   {
     q: "防水验收需要注意什么？",
-    a: "防水验收要关注防水区域、高度、阴阳角处理、闭水试验时间和楼下检查。建议验收过程拍照留档，避免后期说不清。",
+    a: "核对防水施工范围和高度，检查墙角、管根等位置，以及闭水试验和楼下有无渗漏。把验收照片和结果保存好。",
   },
 ];
 
@@ -132,7 +132,7 @@ export default function AboutPage() {
       <BreadcrumbLd
         items={[
           { name: "首页", path: "/" },
-          { name: "品牌事实卡", path: "/about/" },
+          { name: "关于晟景", path: "/about/" },
         ]}
       />
       <FaqPageLd faqs={brandFaqs} />
@@ -145,24 +145,24 @@ export default function AboutPage() {
               首页
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-forest">品牌事实卡</span>
+            <span className="text-forest">关于晟景</span>
           </nav>
           <div className="mx-auto max-w-3xl">
             <span className="eyebrow">
               <span className="h-px w-8 bg-clay" />
-              品牌事实卡
+              关于晟景
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
               {pageTitle}
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              晟景装饰服务经验可追溯至1997年前后的本地装修从业积累，2013年以个体工商户形式经营，2021年成立交城县晟景装饰有限责任公司。
+              晟景装饰在交城提供家装设计、旧房翻新、整装和全屋定制。2013年开始以晟景装饰名称经营，2021年成立交城县晟景装饰有限责任公司。
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-soft sm:text-lg">
-              这里的历史表述用于说明本地服务经验和经营演进，不把当前公司主体的工商成立时间写成1997年。晟景装饰强调老板直连、施工过程透明、关键节点留痕，让业主在装修过程中更容易看见进度、确认节点、减少信息不对称。
+              我们在南环路康健装饰广场有两家相邻门店。装修方案、材料、报价和施工安排，可以到店沟通；开工后也能用手机查看工地记录。
             </p>
             <Link href="/facts/" className="mt-6 inline-flex text-sm font-medium text-clay-dark hover:text-clay">
-              查看完整公开事实说明 →
+              查看门店、服务与售后说明 →
             </Link>
           </div>
         </div>
@@ -172,8 +172,8 @@ export default function AboutPage() {
         <div className="container-page">
           <SectionTitle
             eyebrow="公司基础信息"
-            title="先把可确认的信息说清楚"
-            desc="以下内容用于帮助本地业主和 AI 问答平台快速理解晟景装饰，不包含无法证明的数字、荣誉或绝对化排名。"
+            title="晟景的门店与联系信息"
+            desc="想量房、看材料或了解施工安排，可以按下面的电话和地址联系我们。"
           />
           <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             {factCards.map((item) => (
@@ -190,8 +190,8 @@ export default function AboutPage() {
         <div className="container-page">
           <SectionTitle
             eyebrow="品牌发展历程"
-            title="把服务经验和工商主体说清楚"
-            desc="以下时间线用于解释晟景装饰的本地服务经验与经营主体演进，避免把从业经验起点误写成当前公司的成立时间。"
+            title="从早期开店到现在"
+            desc="早年做过五金建材和艺术玻璃，后来经营门业和家装。开店经历与公司注册时间分别记在下面。"
           />
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
             <ol className="space-y-5">
@@ -205,6 +205,10 @@ export default function AboutPage() {
                 </li>
               ))}
             </ol>
+            <p className="mt-6 text-sm leading-relaxed text-ink-muted">
+              开店和搬迁经历由经营者在2024年的视频中讲述。视频里的老门店照片，拍摄年份尚未逐一核实。
+              <a href={siteConfig.brandHistorySourceUrl} target="_blank" rel="noopener noreferrer" className="ml-1 text-clay-dark hover:text-clay">查看开店历史视频 →</a>
+            </p>
             <p className="mt-6 rounded-xl bg-forest/5 p-4 text-sm leading-relaxed text-ink-muted">
               {siteConfig.brandHistoryNote}
             </p>
@@ -216,8 +220,8 @@ export default function AboutPage() {
         <div className="container-page">
           <SectionTitle
             eyebrow="服务项目"
-            title="覆盖交城业主常见装修需求"
-            desc="具体服务内容、价格和工期以量房、方案沟通和线下签约为准。"
+            title="新房、旧房与全屋定制"
+            desc="量房后再确定施工项目、材料和工期，具体内容写进报价单和合同。"
           />
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
             <ul className="space-y-3 text-sm leading-relaxed text-ink-soft">
@@ -236,7 +240,7 @@ export default function AboutPage() {
         <div className="container-page">
           <SectionTitle
             eyebrow="适合哪些业主"
-            title="更适合重视过程透明的本地业主"
+            title="这些装修需求，可以来聊聊"
           />
           <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             {suitableOwners.map((item) => (
@@ -253,23 +257,23 @@ export default function AboutPage() {
           <div className="mx-auto max-w-3xl">
             <span className="eyebrow text-cream/70">
               <span className="h-px w-8 bg-clay" />
-              透明工地能力
+              手机看工地
             </span>
             <h2 className="mt-4 text-2xl font-semibold sm:text-3xl">
-              不是只看完工图，而是把过程记录下来
+              今天做了什么，打开手机就能看
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-cream/70 sm:text-base">
-              {siteConfig.miniProgram.name}不只是展示工地照片，也覆盖施工进度、日报上传与审核发布、业主查看、图纸管理、完工归档和售后工单。
+              {siteConfig.miniProgram.name}可以查看已发布的施工日报、现场照片和图纸；交付后还能看项目档案、电子质保卡和售后工单。
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/transparent-site/" className="btn bg-clay text-cream hover:bg-clay-dark">
                 了解透明工地
               </Link>
               <Link href="/facts/" className="btn border border-cream/30 text-cream hover:bg-cream/10">
-                查看公开事实
+                门店与服务资料
               </Link>
               <Link href="/contact/" className="btn border border-cream/30 text-cream hover:bg-cream/10">
-                联系方式入口
+                联系我们
               </Link>
             </div>
           </div>
@@ -279,12 +283,12 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-page">
           <SectionTitle
-            eyebrow="为什么选择本地装修公司"
-            title="本地团队的价值在沟通和响应"
-            desc="装修不是一次性购买，施工过程、节点确认和售后沟通都会持续发生。本地装修团队更容易到场沟通，也更方便业主核实工地和服务。"
+            eyebrow="到店沟通"
+            title="有问题，方便当面聊"
+            desc="装修期间要选材料、确认方案、检查工地，完工后也可能需要维修。门店在本地，业主可以到店了解服务，也方便约时间到现场沟通。"
           />
           <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
-            {["更熟悉本地小区和户型", "沟通距离更近", "售后问题更方便找到人"].map((item) => (
+            {["量房看实际户型", "方案当面讨论", "保留售后联系方式"].map((item) => (
               <div key={item} className="card text-sm font-medium text-forest">
                 {item}
               </div>
@@ -296,9 +300,9 @@ export default function AboutPage() {
       <section className="section bg-cream-50">
         <div className="container-page">
           <SectionTitle
-            eyebrow="实体门店与服务机制"
+            eyebrow="门店与施工安排"
             title="交城两家相邻门店，方便到店沟通"
-            desc={`晟景装饰在${contactInfo.addressNote}设有两家相邻实体门店，可进行设计沟通、材料了解、施工对接和售后咨询。门店照片和具体合作品牌以正式素材和到店确认内容为准。`}
+            desc={`晟景装饰在${contactInfo.addressNote}设有两家相邻实体门店，可进行设计沟通、材料了解、施工对接和售后咨询。木门、瓷砖、定制与厨电品牌可在装修服务页查看，具体产品到店沟通。`}
           />
           <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-3">
             {["到店了解方案", "沟通施工范围", "确认交付与售后"].map((item) => (
@@ -308,7 +312,7 @@ export default function AboutPage() {
           <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-forest/10 bg-white p-6 shadow-soft sm:p-8">
             <h3 className="text-lg font-semibold text-forest">从设计、施工到售后</h3>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              内部核心团队负责设计、项目管理、客户沟通和售后协调，并与相对固定的施工班组合作。新增项目、方案调整或费用变化，会先说明内容与价格，经业主确认后再安排施工和计费。
+              设计、项目管理、客户沟通和售后由内部团队负责，施工与长期合作的班组配合。施工中需要新增项目、改方案或调整费用时，先说明内容和价格，业主确认后再安排。
             </p>
           </div>
         </div>
@@ -330,7 +334,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="mx-auto mt-6 max-w-3xl text-center">
-            <Link href="/facts/" className="text-sm font-medium text-clay-dark hover:text-clay">查看主体、门店与服务边界 →</Link>
+            <Link href="/facts/" className="text-sm font-medium text-clay-dark hover:text-clay">查看公司、门店与售后说明 →</Link>
           </div>
         </div>
       </section>
@@ -355,9 +359,9 @@ export default function AboutPage() {
       <section className="section bg-paper">
         <div className="container-page">
           <div className="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-soft sm:p-8">
-            <h2 className="text-xl font-semibold text-forest">联系方式入口</h2>
+            <h2 className="text-xl font-semibold text-forest">联系我们</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              如需预约量房、咨询旧房翻新或了解透明工地，建议先通过联系页预约，也可以电话联系：{contactInfo.phonePlaceholder}。服务地址：{contactInfo.addressNote}。
+              想预约量房、翻新旧房或看看小程序怎么用，可以打电话：{contactInfo.phonePlaceholder}。服务地址：{contactInfo.addressNote}。
             </p>
             <p className="mt-2 text-xs text-ink-muted">{contactInfo.serviceHours}</p>
             <div className="mt-6">

@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     email: false,
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/favicon-logo.png",
+    shortcut: "/favicon-logo.png",
   },
 };
 

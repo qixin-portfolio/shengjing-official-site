@@ -1,44 +1,55 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbLd } from "@/components/json-ld";
+import { BrandShowcase } from "@/components/brand-showcase";
 
 export const metadata: Metadata = {
   title: "装修服务",
   description:
-    "晟景装饰提供新房装修、老房翻新、整装服务、定制设计、施工管理和售后沟通，覆盖交城业主常见装修需求。",
+    "了解晟景装饰的别墅、大宅、精装、设计、施工及全屋定制服务，查看门店代理品牌。量房后确认方案、报价、材料与工期。",
   alternates: { canonical: "/services" },
 };
 
 const serviceList = [
   {
+    title: "别墅与大宅",
+    desc: "先看房屋和家庭需求，再讨论各层布局、动线、设备与收纳，按现场条件确认施工范围。",
+    points: ["量房后讨论空间布局", "材料与定制一起选配", "施工范围分项确认"],
+  },
+  {
+    title: "精装服务",
+    desc: "从方案到材料、施工与安装逐项安排。已经交付的精装房，先检查现状，再确认调整内容。",
+    points: ["设计与材料协调", "安装尺寸提前核对", "费用与工期按项目确认"],
+  },
+  {
     title: "整装服务",
-    desc: "设计、施工、材料、定制一站对接，减少多头沟通。适合希望省心、不想自己跑工地的业主。",
-    points: ["设计 + 施工 + 材料一站对接", "报价分项列明", "施工进度可查看"],
+    desc: "一起安排设计、材料、施工和定制，具体包含的项目写进报价单。",
+    points: ["设计、施工、材料一起安排", "报价分项列明", "施工进度可查看"],
   },
   {
     title: "定制设计",
-    desc: "根据家庭需求、户型和预算出方案，风格不只是效果图，更要能落地。",
-    points: ["量房后出初步方案", "风格、材质、色彩可沟通", "设计变更线上确认留痕"],
+    desc: "量房后按预算和居住需求设计，讨论布局、材质、配色和收纳。",
+    points: ["量房后出初步方案", "风格、材质、色彩可沟通", "设计修改保存确认记录"],
   },
   {
     title: "新房装修",
-    desc: "毛坯房从量房到验收的全流程服务，适合首次装修的业主。",
+    desc: "从毛坯房开始，依次确认设计、报价、材料和施工，再分阶段验收。",
     points: ["水电、防水、瓦工分阶段确认", "关键节点照片留档", "验收分项进行"],
   },
   {
     title: "老房翻新",
-    desc: "老房水电改造、墙面重做、空间优化。老房翻新更依赖过程记录，隐蔽工程尤其重要。",
-    points: ["原房水电排查", "隐蔽工程封槽前留档", "整改记录可追溯"],
+    desc: "先检查原有水电、墙面和防水，确定哪些拆、哪些留，再安排更新和施工。",
+    points: ["原房水电排查", "隐蔽工程封槽前留档", "保存整改前后的照片"],
   },
   {
     title: "施工管理",
-    desc: "分阶段施工、节点确认、过程留痕。工长日报 + 老板审核 + 业主查看。",
+    desc: "工长上传日报和照片，管理人员审核后，业主可以在手机上看进度。",
     points: ["工长日报 + 现场照片", "进度节点标注", "透明工地小程序查看"],
   },
   {
     title: "售后沟通",
-    desc: "本地团队售后响应更及时，装修档案长期保存，不是装完就找不到人。",
-    points: ["本地团队响应及时", "装修档案长期保存", "售后问题可回看施工记录"],
+    desc: "完工后可以联系本地团队，或用小程序提交报修。讨论维修时，可对照已有的施工资料。",
+    points: ["本地团队对接售后", "已归档资料可继续查看", "售后问题可回看施工记录"],
   },
 ];
 
@@ -67,10 +78,10 @@ export default function ServicesPage() {
               装修服务
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-forest sm:text-4xl">
-              覆盖交城业主常见需求的装修服务
+              别墅、大宅、精装，从设计到施工
             </h1>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              从新房装修到老房翻新，从整装到定制设计，晟景装饰的服务都围绕一个核心：让施工过程看得见、能说清。所有服务都可配合透明工地小程序，开工后手机查看进度。
+              房子是毛坯还是旧房，想整装还是半包，可以先和我们聊聊。量房后确认方案和报价；开工后，已发布的日报和现场照片可以用手机查看。
             </p>
           </div>
 
@@ -100,10 +111,10 @@ export default function ServicesPage() {
 
           <div className="mt-12 rounded-2xl bg-forest-900 p-6 text-center text-cream sm:p-8">
             <h2 className="text-xl font-semibold sm:text-2xl">
-              不确定选哪个服务？先预约量房。
+              还没确定怎么装？可以先约量房。
             </h2>
             <p className="mt-3 text-sm text-cream/70 sm:text-base">
-              量房后我们会根据你的户型、需求和预算，给出初步方案和建议。
+              看过现场，再按户型、预算和你的想法讨论初步方案。
             </p>
             <div className="mt-6">
               <Link
@@ -116,6 +127,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <BrandShowcase />
     </>
   );
 }
